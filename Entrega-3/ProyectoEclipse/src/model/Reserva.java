@@ -37,4 +37,19 @@ public double getFechaYHoraInicio() {
 public double getFechaYHoraFin() {
 	return fechaYHoraFin;
 }
+public int getNumReserva() {
+	return numeroReserva;
+}
+public Sede getSedeFin() {
+	return sedeFin;
+}
+public Sede getSedeInicio() {
+	return sedeInicio;
+}
+public Carro getCarroReservado() {
+	return carroReservado;
+}
+public Cliente getCliente() {
+	return cliente;
+}
 }

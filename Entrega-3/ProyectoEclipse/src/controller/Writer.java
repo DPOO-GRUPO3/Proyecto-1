@@ -5,7 +5,11 @@ import java.util.HashMap;
 import model.Alquiler;
 import model.Carro;
 import model.Categoria;
+import model.Cliente;
+import model.Licencia;
+import model.Reserva;
 import model.Sede;
+import model.Tarjeta;
 import model.Temporada;
 
 // Esta clase traduce los objetos a stringpara la persistencia
@@ -66,7 +70,53 @@ public String comprimirSede(Sede sede) {
 	String inicio=sede.getInicio().toString();
 	String fin= sede.getFin().toString();
 	return nombre+";"+direccion+";"+inicio+";"+fin;
-}}
+}
+//SEXTO OBJETO: Tarjeta
+public String comprimirTarjeta(Tarjeta tarjeta) {
+	String numero =tarjeta.getNumero();
+	String codigo=tarjeta.getCodigo();
+	String bloqueada="0";
+	if (tarjeta.getBloqueo()==true) {
+		bloqueada="1";
+	}
+	return numero+";"+codigo+";"+bloqueada;
+}
+// SEPTIMO OBJETO LICENCIA
+public String comprimirLicencia(Licencia licencia) {
+	String fechaVens =licencia.getFechaVens();
+	String numero=licencia.getNumero();
+	String pais=licencia.getPais();
+	String rutaImagen =licencia.getRutaImagen();
+	return fechaVens+";"+numero+";"+pais+";"+rutaImagen;
+
+}
+// OCTAVO OBJETO: Cliente
+public String comprimirCliente(Cliente cliente) {
+	String contrasena=cliente.getContrasena();
+	String email=cliente.getEmail();
+	String pais =cliente.getNacionalidad();
+	String nombre =cliente.getNombre();
+	String rutaImagen=cliente.getRutaImagenID();
+	String usuario=cliente.getUsuario();
+	String numLicencia=cliente.getLicencia().getNumero();
+	String numTarjeta=cliente.getTarjeta().getNumero();
+	return usuario+";"+contrasena+";"+email+";"+pais+";"+nombre
+			+";"+rutaImagen+";"+numLicencia+";"+numTarjeta;
+}
+//NOVENO OBJETO: Reserva
+public String comprimirReserva(Reserva reserva) {
+	String idReserva=String.valueOf(reserva.getNumReserva());
+	String sedeFin=reserva.getSedeFin().getNombre();
+	String sedeInicio=reserva.getSedeInicio().getNombre();
+	String placa=reserva.getCarroReservado().getPlaca();
+	String categoria=reserva.getCategoria().getNombre();
+	String fin =String.valueOf(reserva.getFechaYHoraFin());
+	String inicio =String.valueOf(reserva.getFechaYHoraInicio());
+	String UsuarioCliente=reserva.getCliente().getUsuario();
+	return idReserva+";"+sedeFin+";"+sedeInicio+";"+placa+";"+categoria
+			+";"+fin+";"+inicio+";"+UsuarioCliente;
+}
+}
 	
 
 	

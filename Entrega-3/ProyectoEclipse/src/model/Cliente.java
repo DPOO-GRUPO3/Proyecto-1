@@ -12,7 +12,6 @@ public class Cliente implements Usuario {
 	private String email;
 	private String nacionalidad;
 	private String rutaImagenID;
-	private String cedula;
 	//licencia
 	private Licencia licencia;
 	//tarjeta
@@ -20,9 +19,7 @@ public class Cliente implements Usuario {
 	
 	
 	public Cliente(String usuario, String contrasena, String nombre,
-			String email, String nacionalidad, String rutaImagenID,
-			String cedula) {
-		this.cedula=cedula;
+			String email, String nacionalidad, String rutaImagenID) {
 		this.contrasena=contrasena;
 		this.email=email;
 		this.nacionalidad=nacionalidad;
@@ -51,9 +48,7 @@ public class Cliente implements Usuario {
 
 		return nombre;
 	}
-	public String getCedula() {
-		return cedula;
-	}
+
 	public String getEmail() {
 		return email;
 	}
