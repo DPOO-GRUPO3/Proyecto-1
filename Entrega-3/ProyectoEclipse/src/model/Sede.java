@@ -27,9 +27,9 @@ public class Sede {
 	
 	//Métodos consultar información
 	
-	String getNombre()
+	public String getNombre()
 	{
-		return this.nombre;
+		return nombre;
 	}
 	
 	String getUbicacion()

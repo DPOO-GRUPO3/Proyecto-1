@@ -21,7 +21,7 @@ public class Carro {
 	private String estado;
 	// Fecha en que el carro dejara de estar en limpieza o mantenimiento, si su estado
 	// disponible, su valor es null
-	private String fechaDispCons;
+	private int fechaDispCons;
 	
 	//Método constructor
 	public void carro(String placa,String marca,String modelo, String color,String tipoTransmision) {
@@ -34,7 +34,7 @@ public class Carro {
 		this.categoria =null;
 		this.sede=null;
 		this.reservas= new ArrayList<Reserva>();
-		this.fechaDispCons=null;
+		this.fechaDispCons=0;
 		this.usoActual=null;
 		this.estado=null;
 	}
@@ -60,7 +60,7 @@ public class Carro {
 	public Sede getSede() {
 		return sede;
 	}
-	public String getFechaDispCons() {
+	public int getFechaDispCons() {
 		return fechaDispCons;
 	}
 	public ArrayList<Reserva> getReservas() {
@@ -76,13 +76,13 @@ public class Carro {
 	public void setCategoria(Categoria categoria){
 		this.categoria = categoria;
 	}
-	public void setCede(Cede cede){
-		this.cede = cede;
+	public void setCede(Sede cede){
+		this.sede = cede;
 	}
 	public void agregarReserva(Reserva reserva){
 		this.reservas.add(reserva);
 	}
-	public void setFechaDisponibleCons(String fechaDispCons){
+	public void setFechaDisponibleCons(int fechaDispCons){
 		this.fechaDispCons = fechaDispCons;
 	}
 	public void setUsoActual(Alquiler usoActual) {
