@@ -6,6 +6,7 @@ import model.Alquiler;
 import model.Carro;
 import model.Categoria;
 import model.Sede;
+import model.Temporada;
 
 // Esta clase traduce los objetos a stringpara la persistencia
 public class Writer {
@@ -49,5 +50,16 @@ public class Writer {
 			String tarifa = String.valueOf(categoria.tarifaCat());
 			return nombre+";"+tarifa;
 		}
+	// CUARTO OBJETO: TEMPORADA
+	public String comprimirTemporada(Temporada temporada) {
+		String id =String.valueOf(temporada.getIdTemporada());
+		String fechaInicio =String.valueOf(temporada.getInicioTemporada());
+		String fechaFin =String.valueOf(temporada.getFinTemporada());
+		String tarifa =String.valueOf(temporada.getTarifaTemporada());
+		return id+";"+fechaInicio+";"+fechaFin+";"+tarifa;
+		
 	}
+}
+	
+
 	
