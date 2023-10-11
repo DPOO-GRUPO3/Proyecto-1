@@ -10,17 +10,17 @@ public class Alquiler {
 	private ArrayList<Licencia> licencias;
 	public static double tarifaTemporada;
 	
-	public Alquiler(Cliente cliente,String fechaDeb,Cede cedeDevolucion) {
+	public Alquiler(Cliente cliente,String fechaDeb,Sede sedeDevolucion) {
 		this.cliente=cliente;
 		this.fechaDeb=fechaDeb;
-		this.cedeDevolucion=cedeDevolucion;
+		this.sedeDevolucion=sedeDevolucion;
 		this.licenciasConductores = new ArrayList<Licencia>();
 	}
 	public Cliente getCliente() {
 		return cliente;
 	}
-	public Cede getSedeDevolucion() {
-		return sedeDevolucion;
+	public Sede getSedeDevolucion() {
+		return sedeDevolucion;}
 	}
 	public String getFechaDeb() {
 		return fechaDeb;

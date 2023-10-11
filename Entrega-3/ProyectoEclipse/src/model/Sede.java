@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 public class Sede {
 	
@@ -14,6 +15,8 @@ public class Sede {
 	
 	private LocalTime fin;
 	
+	private ArrayList<Carro> Carros;
+	
 	//Constructor
 	
 	public Sede (String nombre, String ubicacion, LocalTime inicio, LocalTime fin)
@@ -22,30 +25,46 @@ public class Sede {
 		this.ubicacion= ubicacion;
 		this.inicio = inicio;
 		this.fin = fin;
+		this.Carros = new ArrayList<Carro>();
 		
 	}
 	
 	//Métodos consultar información
 	
-	String getNombre()
+	//getters
+	
+	public String getNombre()
 	{
 		return this.nombre;
 	}
 	
-	String getUbicacion()
+	public String getUbicacion()
 	{
 		return this.ubicacion;
 	}
 	
-	LocalTime getInicio()
+	public LocalTime getInicio()
 	{
 		return this.inicio;
 	}
 	
-	LocalTime getFin()
+	public LocalTime getFin()
 	{
 		return this.fin;
 	}
+	
+	public ArrayList<Carro> getCarro()
+	{ 
+		return this.Carros;
+	}
+	
+	//setters
+	
+	public void setCarro(Carro carro)
+	{
+		
+	}
+	
 	
 	
 	
