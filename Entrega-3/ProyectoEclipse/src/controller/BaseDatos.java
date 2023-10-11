@@ -1,4 +1,8 @@
 package controller;
+import java.io.BufferedReader;
+
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.HashMap;
 
 import model.Alquiler;
@@ -10,7 +14,8 @@ import model.Reserva;
 import model.Sede;
 import model.Tarjeta;
 import model.Temporada;
-public class BaseDatos {
+import controller.Writer;
+public class BaseDatos{
 	
 //Los atributos son los distintos maps que la forman
 //
@@ -26,6 +31,12 @@ private HashMap<String,Empleado> mapaEmpleados; //mapa empleados por login
 private HashMap<String, Admin> mapaAdmins; //mapa administradpres
 private HashMap<String, Licencia> mapaLicencias; //mapa licencias por numero de licencia
 private HashMap<String, Tarjeta> mapaTarjetas; //mapa tarjetas por número
+
+// writer
+private Writer writer=new Writer();
+
+//REader
+private Reader reader =new Reader();
 //Metodos
 public BaseDatos() {
 	this.mapaAdmins=new HashMap<>();
@@ -46,4 +57,39 @@ public HashMap<String, Licencia> getMapaLicencias(){
 public HashMap<String, Tarjeta> getMapaTarjetas(){
 	return mapaTarjetas;
 }
+public HashMap<String, Carro> getMapaCarros(){
+	return mapaCarros;
 }
+// PRIMER OBJETO: TEMPORADA:
+//READ: DEscargar todas las temporadas
+private void crearMapaTemporadas() {
+BufferedReader br = new BufferedReader(new FileReader("./data/temporadas.txt"));
+
+String linea = br.readLine();
+
+while (linea != null) {
+	String[] partes = linea.split(";");
+	String id = partes[0];
+	Temporada temp=reader.descomprimirTemporada(linea);
+	mapaTemporadas.put(id, temp);
+	linea = br.readLine();
+}
+br.close();
+}
+//Write: Actualizar archivo, reescribirlo.
+private String generarTextoTemporadas(){
+	String texto="";
+	for(Temporada temp:mapaTemporadas.values()) {
+		texto+=writer.comprimirTemporada(temp);
+		texto+="\n";
+	}
+	return texto;
+}
+private void actualizarArchivoTemporadas() {
+	String texto=generarTextoTemporadas();
+	FileWriter fichero = new FileWriter("./data/temporadas.txt");
+	fichero.write(texto);
+	fichero.close();
+}
+}
+
