@@ -34,7 +34,7 @@ public class Sede {
 	
 	//Métodos consultar información
 	
-	//getters
+
 	
 	public String getNombre()
 	{

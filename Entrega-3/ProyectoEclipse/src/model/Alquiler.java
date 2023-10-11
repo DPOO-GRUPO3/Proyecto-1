@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Alquiler {
 	// Métodos
 	
+<<<<<<< HEAD
 	private Cliente cliente;
 	
 	private LocalTime fechaDeb;
@@ -25,6 +26,13 @@ public class Alquiler {
 		this.sedeDevolucion = sedeDevolucion;
 		this.sedeRecoger= sedeRecoger;
 		this.licencias = new ArrayList<Licencia>();
+=======
+	public Alquiler(Cliente cliente,String fechaDeb,Cede cedeDevolucion) {
+		this.cliente=cliente;
+		this.fechaDeb=fechaDeb;
+		this.sedeDevolucion=sedeDevolucion;
+		this.licenciasConductores = new ArrayList<Licencia>();
+>>>>>>> branch 'main' of https://github.com/DPOO-GRUPO3/Proyecto-1.git
 	}
 
 	public Cliente getCliente() 
