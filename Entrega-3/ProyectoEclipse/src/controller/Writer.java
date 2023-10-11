@@ -44,6 +44,10 @@ public class Writer {
 			return str;
 		}
 		// TERCER OBJETO: CATEGORIA
-		
+		public String comprimirCategoria(Categoria categoria) {
+			String nombre = categoria.getNombre();
+			String tarifa = String.valueOf(categoria.tarifaCat());
+			return nombre+";"+tarifa;
+		}
 	}
 	
