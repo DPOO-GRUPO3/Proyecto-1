@@ -78,13 +78,11 @@ public class Carro {
 	}
 	public void setCede(Sede sede){
 		this.sede = sede;
-	public void setCede(Sede sede){
-		this.sede = sede;
 	}
 	public void agregarReserva(Reserva reserva){
 		this.reservas.add(reserva);
 	}
-	public void setFechaDisponibleCons(String fechaDispCons){
+	public void setFechaDisponibleCons(int fechaDispCons){
 		this.fechaDispCons = fechaDispCons;
 	}
 	public void setUsoActual(Alquiler usoActual) {
