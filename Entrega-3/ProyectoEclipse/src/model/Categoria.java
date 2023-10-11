@@ -7,7 +7,7 @@ public class Categoria {
 	
 	public Categoria(String nombreCat, Double tarifaAsociada) {
 		this.nombreCat=nombreCat;
-		this.tarifaCat=tarifaCat;
+		this.tarifaCat=tarifaAsociada;
 	}
 	public String getNombre() {
 	return nombreCat;

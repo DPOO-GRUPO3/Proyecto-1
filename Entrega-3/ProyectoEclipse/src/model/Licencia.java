@@ -6,7 +6,7 @@ private String pais;
 private String fechaVens;
 private String rutaImagen;
 
-public Licencia(String cedula,String numero,String pais,String
+public Licencia(String numero,String pais,String
 		fechaVens,String rutaImagen) {
 
 	this.fechaVens=fechaVens;

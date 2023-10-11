@@ -18,6 +18,9 @@ public Temporada(int fechaInicio,int fechaFin,double tarifaTemporada) {
 			
 	
 }
+public void setID(int id) {
+	this.idTemporada=id;
+}
 public int getInicioTemporada() {
 	return fechaInicio;
 }

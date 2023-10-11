@@ -4,9 +4,11 @@ import java.util.HashMap;
 import model.Alquiler;
 import model.Carro;
 import model.Categoria;
+import model.Cliente;
 import model.Licencia;
 import model.Reserva;
 import model.Sede;
+import model.Tarjeta;
 import model.Temporada;
 public class BaseDatos {
 	
@@ -23,7 +25,7 @@ private HashMap<String,Cliente> mapaClientes; //mapa clientes por login
 private HashMap<String,Empleado> mapaEmpleados; //mapa empleados por login
 private HashMap<String, Admin> mapaAdmins; //mapa administradpres
 private HashMap<String, Licencia> mapaLicencias; //mapa licencias por numero de licencia
-private HashMap<String, Terjeta> mapaTarjetas; //mapa tarjetas por número
+private HashMap<String, Tarjeta> mapaTarjetas; //mapa tarjetas por número
 //Metodos
 public BaseDatos() {
 	this.mapaAdmins=new HashMap<>();
@@ -38,5 +40,10 @@ public BaseDatos() {
 	this.mapaTarjetas=new HashMap<>();
 	this.mapaTemporadas=new HashMap<>();
 }
-
+public HashMap<String, Licencia> getMapaLicencias(){
+	return mapaLicencias;
+}
+public HashMap<String, Tarjeta> getMapaTarjetas(){
+	return mapaTarjetas;
+}
 }
