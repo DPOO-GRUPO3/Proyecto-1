@@ -19,7 +19,25 @@ public class Cliente implements Usuario {
 	private Tarjeta tarjeta;
 	
 	
-	public Cliente()
+	public Cliente(String usuario, String contrasena, String nombre,
+			String email, String nacionalidad, String rutaImagenID,
+			String cedula) {
+		this.cedula=cedula;
+		this.contrasena=contrasena;
+		this.email=email;
+		this.nacionalidad=nacionalidad;
+		this.nombre=nombre;
+		this.rutaImagenID=rutaImagenID;
+		this.usuario=usuario;
+		this.licencia=null;
+		this.tarjeta=null;
+	}
+	public void setLicencia(Licencia licencia) {
+		this.licencia=licencia;
+	}
+	public void setTarjeta(Tarjeta tarjeta) {
+		this.tarjeta=tarjeta;
+	}
 	public String getUsuario() {
 		return usuario;
 	}
@@ -33,5 +51,23 @@ public class Cliente implements Usuario {
 
 		return nombre;
 	}
-
+	public String getCedula() {
+		return cedula;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public String getNacionalidad() {
+		return nacionalidad;
+		
+	}
+	public String getRutaImagenID() {
+		return rutaImagenID;
+}
+	public Licencia getLicencia() {
+		return licencia;
+	}
+	public Tarjeta getTarjeta() {
+		return tarjeta;
+	}
 }
