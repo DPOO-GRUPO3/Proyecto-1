@@ -76,7 +76,7 @@ public class Carro {
 	public void setCategoria(Categoria categoria){
 		this.categoria = categoria;
 	}
-	public void setCede(Sede cede){
+	public void setCede(Sede sede){
 		this.sede = sede;
 	}
 	public void agregarReserva(Reserva reserva){
