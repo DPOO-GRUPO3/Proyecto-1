@@ -8,29 +8,22 @@ public class Alquiler {
 	private String fechaDeb;
 	private Sede sedeDevolucion;
 	private ArrayList<Licencia> licencias;
-	public static int numeroAlquileres;
-	private int idAlquiler;
-	
+	public static double tarifaTemporada;
 	
 	public Alquiler(Cliente cliente,String fechaDeb,Cede cedeDevolucion) {
 		this.cliente=cliente;
 		this.fechaDeb=fechaDeb;
-		this.cedeDevolucion=cedeDevolucion;
+		this.sedeDevolucion=sedeDevolucion;
 		this.licenciasConductores = new ArrayList<Licencia>();
-		numeroAlquileres++;
-		idAlquiler=numeroAlquileres;
 	}
 	public Cliente getCliente() {
 		return cliente;
 	}
 	public Sede getSedeDevolucion() {
-		return sedeDevolucion;
+		return sedeDevolucion;}
 	}
 	public String getFechaDeb() {
 		return fechaDeb;
-	}
-	public int getIDalquileres() {
-		return idAlquiler;
 	}
 	public ArrayList<Licencia> getLicencias(){
 		return licencias;

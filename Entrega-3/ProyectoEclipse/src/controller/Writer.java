@@ -7,11 +7,11 @@ import model.Carro;
 import model.Categoria;
 import model.Sede;
 
-// Esta clase traduce los objetos a string y viceversa, para la persistencia
+// Esta clase traduce los objetos a stringpara la persistencia
 public class Writer {
 /// SOLO METODOS
 	// PRIMER OBJETO: CARRO
-	//Writer
+	
 	public String comprimirCarro(Carro carro) {
 		String placa = carro.getPlaca();
 		String marca = carro.getmarca();
@@ -32,8 +32,18 @@ public class Writer {
 				+idAlquiler+";"+nombreCategoria+";"+nombreSede+";"+estado+";"
 				+fechaDisp;
 		return str;
+	
 	}
- {
+		// SEGUNDO OBJETO: ALQUILER
+		public String comprimirAlquiler(Alquiler alquiler) {
+			String id=String.valueOf(alquiler.getIDalquileres());
+			String usuarioCliente=alquiler.getCliente().getUsuario();
+			String sedeDevolucion =alquiler.getSedeDevolucion().getNombre();
+			String fechaDevolucion=alquiler.getFechaDeb();
+			String str =id+";"+usuarioCliente+";"+sedeDevolucion+";"+fechaDevolucion;
+			return str;
+		}
+		// TERCER OBJETO: CATEGORIA
 		
 	}
-	}
+	
