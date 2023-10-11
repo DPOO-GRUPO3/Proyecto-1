@@ -59,7 +59,14 @@ public class Writer {
 		return id+";"+fechaInicio+";"+fechaFin+";"+tarifa;
 		
 	}
-}
+// QUINTO OBJETO: SEDE
+public String comprimirSede(Sede sede) {
+	String nombre = sede.getNombre();
+	String direccion=sede.getUbicacion();
+	String inicio=sede.getInicio().toString();
+	String fin= sede.getFin().toString();
+	return nombre+";"+direccion+";"+inicio+";"+fin;
+}}
 	
 
 	
