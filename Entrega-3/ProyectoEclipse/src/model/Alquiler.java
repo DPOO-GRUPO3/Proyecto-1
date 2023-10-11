@@ -1,4 +1,5 @@
 package model;
+import java.time.LocalDate;
 import java.time.LocalTime;
 //
 import java.util.ArrayList;
@@ -6,10 +7,11 @@ import java.util.ArrayList;
 public class Alquiler {
 	// Métodos
 	
-<<<<<<< HEAD
+	private int id;
+	
 	private Cliente cliente;
 	
-	private LocalTime fechaDeb;
+	private LocalDate fechaDeb;
 	
 	private Sede sedeDevolucion;
 	
@@ -17,49 +19,91 @@ public class Alquiler {
 	
 	private ArrayList<Licencia> licencias;
 	
+	private Tarifa tarifaExcedente;
+	
+	private Temporada tarifa;
+	
+	private Seguro seguro;
+	
+	private Carro carro;
+	
 	
 
-	public Alquiler(Cliente cliente, LocalTime fechaDeb,Sede sedeRecoger, Sede sedeDevolucion) 
+	public Alquiler(int id,Cliente cliente, LocalDate fechaDeb,Sede sedeRecoger, Sede sedeDevolucion, Carro carro) 
 	{
+		this.id= id;
 		this.cliente = cliente;
 		this.fechaDeb = fechaDeb;
 		this.sedeDevolucion = sedeDevolucion;
 		this.sedeRecoger= sedeRecoger;
 		this.licencias = new ArrayList<Licencia>();
-=======
-	public Alquiler(Cliente cliente,String fechaDeb,Cede cedeDevolucion) {
-		this.cliente=cliente;
-		this.fechaDeb=fechaDeb;
-		this.sedeDevolucion=sedeDevolucion;
-		this.licenciasConductores = new ArrayList<Licencia>();
->>>>>>> branch 'main' of https://github.com/DPOO-GRUPO3/Proyecto-1.git
+		this.carro = carro;
 	}
+	
 
+	//getters
+	public int getAlquileresId()
+	{
+		return this.id;
+	}
+	
 	public Cliente getCliente() 
 	{
-		return cliente;
+		return this.cliente;
 	}
 
 	public Sede getSedeDevolucion() 
 	{
-		return sedeDevolucion;
+		return this.sedeDevolucion;
 	}
 	
 	public Sede getSedeRecoger() 
 	{
-		return sedeDevolucion;
+		return this.sedeDevolucion;
 	}
 
-	public LocalTime getFechaDeb() 
+	public LocalDate getFechaDeb() 
 	{
-		return fechaDeb;
+		return this.fechaDeb;
 	}
 
 	public ArrayList<Licencia> getLicencias() {
-		return licencias;
+		return this.licencias;
 	}
+	
+	public Tarifa getTarifaExcedente()
+	{
+		return this.tarifaExcedente;
+	}
+	
+	public Temporada getTarifa()
+	{
+		return this.tarifa;
+	}
+	
+	public Seguro getSeguro()
+	{
+		return this.seguro;
+	}
+	
+	//setters
 
 	public void setLicencia(Licencia licencia) {
 		this.licencias.add(licencia);
+	}
+	
+	public void setTarifaExcedente(Tarifa tarifaExcedente)
+	{
+		this.tarifaExcedente= tarifaExcedente;
+	}
+	
+	public void setTarifa(Temporada tarifa)
+	{
+		this.tarifa= tarifa;
+	}
+	
+	public void setSeguro(Seguro seguro)
+	{
+		this.seguro=seguro;
 	}
 }
