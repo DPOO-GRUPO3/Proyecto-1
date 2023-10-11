@@ -15,7 +15,9 @@ public class Sede {
 	
 	private LocalTime fin;
 	
-	private ArrayList<Carro> Carros;
+	private ArrayList<Carro> carros;
+	
+	private ArrayList<Usuario> usuarios;
 	
 	//Constructor
 	
@@ -25,7 +27,8 @@ public class Sede {
 		this.ubicacion= ubicacion;
 		this.inicio = inicio;
 		this.fin = fin;
-		this.Carros = new ArrayList<Carro>();
+		this.carros = new ArrayList<Carro>();
+		this.usuarios= new ArrayList<Usuario>();
 		
 	}
 	
@@ -59,15 +62,22 @@ public class Sede {
 	
 	public ArrayList<Carro> getCarro()
 	{ 
-		return this.Carros;
+		return this.carros;
 	}
 	
 	//setters
 	
 	public void setCarro(Carro carro)
 	{
-		
+		carros.add(carro);
 	}
+	
+	public void setUsuarios(Usuario usuario)
+	{
+		usuarios.add(usuario);
+	}
+	
+	
 	
 	
 	
