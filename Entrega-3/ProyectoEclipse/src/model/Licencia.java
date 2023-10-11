@@ -5,6 +5,7 @@ private String numero;
 private String pais;
 private String fechaVens;
 private String rutaImagen;
+private String alqu;
 
 public Licencia(String numero,String pais,String
 		fechaVens,String rutaImagen) {
@@ -12,7 +13,9 @@ public Licencia(String numero,String pais,String
 	this.fechaVens=fechaVens;
 	this.numero=numero;
 	this.pais=pais;
-	this.rutaImagen=rutaImagen;	
+	this.rutaImagen=rutaImagen;
+	this.alqu="-";
+	
 }
 
 public String getFechaVens() {
@@ -26,5 +29,11 @@ public String getPais() {
 }
 public String getRutaImagen() {
 	return rutaImagen;
+}
+public String getAlq() {
+	return alqu;
+}
+public void setAlq(String alq) {
+	this.alqu=alq;
 }
 }

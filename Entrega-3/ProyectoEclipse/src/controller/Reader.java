@@ -1,11 +1,17 @@
 package controller;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashMap;
+import java.util.Iterator;
 
+
+import model.Alquiler;
+import model.Carro;
 import model.Categoria;
 import model.Cliente;
 import model.Licencia;
+import model.Reserva;
 import model.Sede;
 import model.Tarjeta;
 import model.Temporada;
@@ -45,7 +51,9 @@ public Licencia descomprimirLicencia(String linea) {
 	String numero = partes[1];
 	String pais = partes[2];
 	String rutaImagen = partes[3];
+	String alq= partes[4];
 	Licencia lic=new Licencia(numero,pais,fechaVens,rutaImagen);
+	lic.setAlq(alq);
 	return lic;
 }
 // CUARTO OBJETO: CATEGORIA
@@ -77,7 +85,7 @@ public Cliente descomprimirCliente(String linea,HashMap<String, Licencia> mapaLi
 	cli.setTarjeta(mapaTar.get(numTarjeta));
 	return cli;
 }
-// SEXTA CATEGORÍA: SEDE
+// SEXTO OBJETO: SEDE
 public Sede descomprimirSede(String linea) {
 	String[] partes = linea.split(";");
 	String nombre = partes[0];
@@ -89,6 +97,73 @@ public Sede descomprimirSede(String linea) {
 	Sede s=new Sede(nombre, dir, in,  f);
 	return s;
 }
-// SEPTIMA CATEGORÍA: CARRO
-
+// SEPTIMO OBJETO: CARRO
+public Carro descomprimirCarro(String linea,HashMap<String, Sede> mapaSedes,
+		HashMap<String, Categoria> mapaCategorias) {
+	String[] partes = linea.split(";");
+	String placa = partes[0];
+	String marca = partes[1];
+	String modelo = partes[2];
+	String color=partes[3];
+	String trans=partes[4];
+	String nombrCateg=partes[5];
+	String nombreCede=partes[6];
+	String estado=partes[7];
+	String dispon=partes[8];
+	Carro car =new Carro(placa,marca, modelo,  color,trans);
+	car.setFechaDisponibleCons(Integer.parseInt(dispon));
+	car.setEstado(estado);
+	car.setCategoria(mapaCategorias.get(nombrCateg));
+	car.setCede(mapaSedes.get(nombreCede));
+	return car;
 }
+// OCTAVO OBJETO: RESERVA
+public Reserva descomprimirReserva(String linea,HashMap<String, Sede> mapaSedes,
+		HashMap<String, Categoria> mapaCategorias,
+		HashMap<String, Carro> mapaCar,HashMap<String, Cliente> mapaClientes) {
+	String[] partes = linea.split(";");
+	String id = partes[0];
+	String sedeFin= partes[1];
+	String sedeInicio = partes[2];
+	String placa=partes[3];
+	String categoria=partes[4];
+	String fechaF=partes[5];
+	String fechaIn=partes[6];
+	String usCliente=partes[7];
+	
+	Sede sFin=mapaSedes.get(sedeFin);
+	Sede sIn=mapaSedes.get(sedeInicio);
+	Categoria cat=mapaCategorias.get(categoria);
+	Carro carro=mapaCar.get(placa);
+	Cliente cliente=mapaClientes.get(usCliente);
+	double in=Double.parseDouble(fechaIn);
+	double fin=Double.parseDouble(fechaF);
+	
+	Reserva r =new Reserva(cliente, in, fin, cat, carro, sIn, sFin);
+	r.setNumReserva(Integer.parseInt(id));
+	return r;
+}
+// NOVENO OBJETO: ALQUILER
+public Alquiler descomprimirAlquiler(String linea,HashMap<String, Sede> mapaSedes,
+		HashMap<String, Categoria> mapaCategorias,HashMap<String, Licencia> mapaLic,
+		HashMap<String, Carro> mapaCar,HashMap<String, Cliente> mapaClientes) {
+	String[] partes = linea.split(";");
+	String id = partes[0];
+	String sedeFin= partes[1];
+	String sedeInicio = partes[2];
+	String placa=partes[3];
+	String fechaF=partes[4];
+	String fechaIn=partes[5];
+	String usCliente=partes[6];
+	
+	Alquiler alq=new Alquiler(mapaClientes.get(usCliente), 
+			LocalDate.parse(fechaF), LocalDate.parse(fechaIn), mapaSedes.get(sedeInicio),
+			mapaSedes.get(sedeFin), mapaCar.get(placa));
+	alq.setId(Integer.parseInt(id));
+	for(Licencia licencia:mapaLic.values()) {
+	if (licencia.getAlq().equals(alq.getAlquileresId())==true) {
+		alq.setLicencia(licencia);
+	}
+	
+}return alq;}}
+

@@ -24,7 +24,7 @@ public class Carro {
 	private int fechaDispCons;
 	
 	//Método constructor
-	public void carro(String placa,String marca,String modelo, String color,String tipoTransmision) {
+	public Carro(String placa,String marca,String modelo, String color,String tipoTransmision) {
 		this.placa = placa;
 		this.marca=marca;
 		this.modelo=modelo;

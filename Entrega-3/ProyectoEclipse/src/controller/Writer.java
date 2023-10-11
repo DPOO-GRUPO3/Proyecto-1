@@ -23,30 +23,28 @@ public class Writer {
 		String modelo =carro.getModelo();
 		String color =carro.getColor();
 		String tipoTransmision =carro.getTipoTransmision();
-		String idAlquiler ="";
-		if (carro.getUsoActual()==null){
-		}
-		else {
-			idAlquiler=String.valueOf(carro.getUsoActual().getIDalquileres());
-		}
+	
 		String nombreCategoria=carro.getCategoria().getNombre();
 		String nombreSede=carro.getSede().getNombre();
 		String estado =carro.getEstado();
 		String fechaDisp =String.valueOf(carro.getFechaDispCons());
 		String str = placa+";"+marca+";"+modelo+";"+color+";"+tipoTransmision+";"
-				+idAlquiler+";"+nombreCategoria+";"+nombreSede+";"+estado+";"
+				+";"+nombreCategoria+";"+nombreSede+";"+estado+";"
 				+fechaDisp;
 		return str;
 	
 	}
 		// SEGUNDO OBJETO: ALQUILER
 		public String comprimirAlquiler(Alquiler alquiler) {
-			String id=String.valueOf(alquiler.getIDalquileres());
+			String id=String.valueOf(alquiler.getAlquileresId());
+			String sedeFin=alquiler.getSedeDevolucion().getNombre();
+			String sedeInicio=alquiler.getSedeRecoger().getNombre();
+			String placa=alquiler.getCarro().getPlaca();
+			String fin =String.valueOf(alquiler.getFechaDeb());
+			String inicio =String.valueOf(alquiler.getFechaInicio());
 			String usuarioCliente=alquiler.getCliente().getUsuario();
-			String sedeDevolucion =alquiler.getSedeDevolucion().getNombre();
-			String fechaDevolucion=alquiler.getFechaDeb();
-			String str =id+";"+usuarioCliente+";"+sedeDevolucion+";"+fechaDevolucion;
-			return str;
+			return id+";"+sedeFin+";"+sedeInicio+";"+placa+";"+fin+";"+
+					inicio+";"+usuarioCliente;
 		}
 		// TERCER OBJETO: CATEGORIA
 		public String comprimirCategoria(Categoria categoria) {
@@ -87,8 +85,10 @@ public String comprimirLicencia(Licencia licencia) {
 	String numero=licencia.getNumero();
 	String pais=licencia.getPais();
 	String rutaImagen =licencia.getRutaImagen();
-	return fechaVens+";"+numero+";"+pais+";"+rutaImagen;
+	String idAlquiler=licencia.getAlq();
 
+	return fechaVens+";"+numero+";"+pais+";"+rutaImagen+";"+idAlquiler;
+	
 }
 // OCTAVO OBJETO: Cliente
 public String comprimirCliente(Cliente cliente) {

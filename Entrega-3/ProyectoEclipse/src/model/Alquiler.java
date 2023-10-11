@@ -8,10 +8,12 @@ public class Alquiler {
 	// Métodos
 	
 	private int id;
-	
+	public static int numAlqus;
 	private Cliente cliente;
 	
 	private LocalDate fechaDeb;
+	
+	private LocalDate fechaInicio;
 	
 	private Sede sedeDevolucion;
 	
@@ -29,15 +31,19 @@ public class Alquiler {
 	
 	
 
-	public Alquiler(int id,Cliente cliente, LocalDate fechaDeb,Sede sedeRecoger, Sede sedeDevolucion, Carro carro) 
-	{
-		this.id= id;
+	public Alquiler(Cliente cliente, LocalDate fechaDeb, LocalDate fechaInicio,
+			Sede sedeRecoger, Sede sedeDevolucion, Carro carro) 
+	{	
+		numAlqus++;
+		this.id=numAlqus;
 		this.cliente = cliente;
 		this.fechaDeb = fechaDeb;
 		this.sedeDevolucion = sedeDevolucion;
 		this.sedeRecoger= sedeRecoger;
 		this.licencias = new ArrayList<Licencia>();
 		this.carro = carro;
+		this.fechaInicio=fechaInicio;
+		
 	}
 	
 
@@ -90,8 +96,14 @@ public class Alquiler {
 	{
 		return this.carro;
 	}
+	public LocalDate getFechaInicio() {
+		return fechaInicio;
+	}
 	//setters
 
+	public void setId(int id) {
+		this.id=id;
+	}
 	public void setLicencia(Licencia licencia) {
 		this.licencias.add(licencia);
 	}

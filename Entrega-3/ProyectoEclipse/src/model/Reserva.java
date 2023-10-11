@@ -25,6 +25,9 @@ public Reserva(Cliente cliente,double fechaYHoraInicio,double fechaYHoraFin,
 	this.sedeFin=sedeFin;
 	
 }
+public void setNumReserva(int num) {
+	this.numeroReserva=num;
+}
 public static int getNumeroReservas() {
 	return numeroReservas;
 }
