@@ -2,28 +2,72 @@ package model;
 
 public class Cliente implements Usuario {
 
-	@Override
+	
+	//Atributos
+	//login
+	private String usuario;
+	private String contrasena;
+	//datos generales:
+	private String nombre;
+	private String email;
+	private String nacionalidad;
+	private String rutaImagenID;
+	private String cedula;
+	//licencia
+	private Licencia licencia;
+	//tarjeta
+	private Tarjeta tarjeta;
+	
+	
+	public Cliente(String usuario, String contrasena, String nombre,
+			String email, String nacionalidad, String rutaImagenID,
+			String cedula) {
+		this.cedula=cedula;
+		this.contrasena=contrasena;
+		this.email=email;
+		this.nacionalidad=nacionalidad;
+		this.nombre=nombre;
+		this.rutaImagenID=rutaImagenID;
+		this.usuario=usuario;
+		this.licencia=null;
+		this.tarjeta=null;
+	}
+	public void setLicencia(Licencia licencia) {
+		this.licencia=licencia;
+	}
+	public void setTarjeta(Tarjeta tarjeta) {
+		this.tarjeta=tarjeta;
+	}
 	public String getUsuario() {
-		// TODO Auto-generated method stub
-		return null;
+		return usuario;
 	}
 
-	@Override
-	public String getContraseña() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getContrasena() {
+
+		return contrasena;
 	}
 
-	@Override
-	public String getCedula() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public String getNombre() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
+		return nombre;
+	}
+	public String getCedula() {
+		return cedula;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public String getNacionalidad() {
+		return nacionalidad;
+		
+	}
+	public String getRutaImagenID() {
+		return rutaImagenID;
+}
+	public Licencia getLicencia() {
+		return licencia;
+	}
+	public Tarjeta getTarjeta() {
+		return tarjeta;
+	}
 }
