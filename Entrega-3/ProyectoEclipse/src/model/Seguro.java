@@ -24,9 +24,9 @@ public class Seguro {
 		return this.nombre;
 	}
 	
-	public String getId()
+	public int getId()
 	{
-		return this.getId();
+		return this.id;
 	}
 	
 	public double getPrecio()

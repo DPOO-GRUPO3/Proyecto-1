@@ -59,7 +59,7 @@ public class Alquiler {
 	
 	public Sede getSedeRecoger() 
 	{
-		return this.sedeDevolucion;
+		return this.sedeRecoger;
 	}
 
 	public LocalDate getFechaDeb() 
@@ -86,6 +86,10 @@ public class Alquiler {
 		return this.seguro;
 	}
 	
+	public Carro getCarro()
+	{
+		return this.carro;
+	}
 	//setters
 
 	public void setLicencia(Licencia licencia) {
