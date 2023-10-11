@@ -28,7 +28,7 @@ public class Sede {
 		this.inicio = inicio;
 		this.fin = fin;
 		this.carros = new ArrayList<Carro>();
-		this.usuarios= new ArrayList<Usuario>();
+		this.usuarios= new ArrayList<Usuario>();}
 		
 	
 	

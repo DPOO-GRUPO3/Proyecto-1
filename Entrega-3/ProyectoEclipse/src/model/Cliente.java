@@ -2,28 +2,36 @@ package model;
 
 public class Cliente implements Usuario {
 
-	@Override
+	
+	//Atributos
+	//login
+	private String usuario;
+	private String contrasena;
+	//datos generales:
+	private String nombre;
+	private String email;
+	private String nacionalidad;
+	private String rutaImagenID;
+	private String cedula;
+	//licencia
+	private Licencia licencia;
+	//tarjeta
+	private Tarjeta tarjeta;
+	
+	
+	public Cliente()
 	public String getUsuario() {
-		// TODO Auto-generated method stub
-		return null;
+		return usuario;
 	}
 
-	@Override
-	public String getContraseña() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getContrasena() {
+
+		return contrasena;
 	}
 
-	@Override
-	public String getCedula() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public String getNombre() {
-		// TODO Auto-generated method stub
-		return null;
+
+		return nombre;
 	}
 
 }
