@@ -516,5 +516,21 @@ public void deacargarTodoslosDatos() {
 	crearMapaTarifas();
 	
 }
+public void cargarTodosLosDatos() {
+	actualizarArchivoTarifas();
+	actualizarArchivoAlquileres();
+	actualizarArchivoCarros();
+	actualizarArchivoCategorias();
+	actualizarArchivoClientes();
+	actualizarArchivoEmpleados();
+
+	actualizarArchivoLicencias();
+	actualizarArchivoReservas();
+	actualizarArchivoSedes();
+	actualizarArchivoSeguros();
+	actualizarArchivoTarjetas();
+	actualizarArchivoTemporadas();
+	
+}
 }
 

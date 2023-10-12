@@ -30,7 +30,7 @@ public class InterfazCliente {
 
 				else if (opcion_seleccionada == 3)
 				{
-					actualizarDatos();
+					cargarDatos();
 					System.out.println("Saliendo de la aplicación ...");
 					continuar = false;
 				}
@@ -72,7 +72,7 @@ public class InterfazCliente {
 			System.out.println("3. LogOut");
 
 	}
-		public void login() {
+		private void login() {
 			String usuario =input("Usuario: ");
 			String contrasena =input("contraseña: ");
 			
@@ -84,4 +84,27 @@ public class InterfazCliente {
 				System.out.println("Error ingresando sesión");
 			}
 		}
+private void crearReserva() {
+	String nombreCat=input("Categoría: ");
+	String sedeRec=input("Sede alquiler: ");
+	String  sedeEntrega=input("Sede entrega: ");
+	String timeRecoger=input("Fecha-hora alquiler: ");
+	String sedeFin=input("sede entrega");
+	String timeFin=input("Fecha-hora entrega");
+	double cobro=elCliente.crearReserva(nombreCat, sedeRec, timeRecoger, sedeFin, timeFin);
+	
+	if(cobro!=0) {
+	System.out.println("Su reserva está lista, se le cobró el 30% correspondiente a"
+			+cobro );
+	}
+	else{
+		System.out.println("No hay carros disponibles, intente cambiar la categoría o las fechas");
+	}
+		
+	}
+private void cargarDatos() {
+	elCliente.actualizarDatos();
 }
+
+}
+

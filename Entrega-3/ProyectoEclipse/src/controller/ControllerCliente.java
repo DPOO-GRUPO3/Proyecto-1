@@ -1,6 +1,8 @@
 package controller;
 
 import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -87,7 +89,10 @@ public double crearReserva(String nombreCategoria, String sedeRec,
 		//calcular tarifa a partir de temporada
 		Temporada temp=encontrarTemporada(fechaPed1);
 		double tarifaTemp=temp.getTarifaTemporada();
-		return tarifaTemp+tarifaCateg;
+		//calcular diferencia en días
+		long diffDays=ChronoUnit.DAYS.between(fechaPed1, fechaPed2);
+		double difDias =(double) diffDays;
+		return difDias*(tarifaTemp+tarifaCateg)*0.3;
 		
 	}
 	}
@@ -152,5 +157,8 @@ private boolean hayFechaEnIntervalo(LocalDateTime fecha, LocalDateTime fecha1,
 	else {
 		return false;
 	}
+}
+public void actualizarDatos() {
+	datos.cargarTodosLosDatos();
 }
 }
