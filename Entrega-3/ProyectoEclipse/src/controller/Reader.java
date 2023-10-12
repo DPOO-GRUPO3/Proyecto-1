@@ -16,6 +16,7 @@ import model.Licencia;
 import model.Reserva;
 import model.Sede;
 import model.Seguro;
+import model.Tarifa;
 import model.Tarjeta;
 import model.Temporada;
 import model.Usuario;
@@ -203,6 +204,17 @@ public Seguro descomprimirSeguro(String linea)
 	return new Seguro(nombre, id,precio);
 }
 
+public Tarifa descomptimirTarifaExcedente(String linea) {
+	
+
+	String[] partes = linea.split(";");
+	int id = Integer.parseInt(partes[0]);
+	Double precio= Double.parseDouble(partes[1]);
+	LocalDate fechaInicio= LocalDate.parse(partes[2]);
+	LocalDate fechaFin = LocalDate.parse(partes[3]);
+	
+	return new Tarifa (id,precio,fechaInicio,fechaFin);
+}	
 
 }
 
