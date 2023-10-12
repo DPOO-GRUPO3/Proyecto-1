@@ -91,5 +91,9 @@ private void actualizarArchivoTemporadas() {
 	fichero.write(texto);
 	fichero.close();
 }
+public void deacargarTodoslosDatos() {
+	crearMapaTemporadas();
+	//terminen esto
+}
 }
 

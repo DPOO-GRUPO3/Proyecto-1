@@ -1,5 +1,9 @@
 package controller;
 
-public class ControllerCliente {
+import model.Cliente;
 
+public class ControllerCliente {
+private Cliente cliente;
+
+// Métosos
 }
