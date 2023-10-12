@@ -13,6 +13,8 @@ import model.Empleado;
 import model.Licencia;
 import model.Reserva;
 import model.Sede;
+import model.Seguro;
+import model.Tarifa;
 import model.Tarjeta;
 import model.Temporada;
 import controller.Writer;
@@ -25,6 +27,8 @@ private HashMap<String,Reserva> mapaReservas; //mapa reservas por id
 private HashMap<String,Categoria> mapaCategorias;//mapa categorias por nombre
 private HashMap<String,Temporada> mapaTemporadas;
 private HashMap<String,Sede> mapaSedes;//mapa sedes por nombre
+private HashMap<String,Seguro> mapaSeguros;//mapa seguros por id
+private HashMap<String,Tarifa> mapaTarifasExcedente;//mapa tarivas por id
 //USUARIOS
 private HashMap<String, Alquiler> mapaAlquileres;// mapa alquileres por id
 private HashMap<String,Cliente> mapaClientes; //mapa clientes por login

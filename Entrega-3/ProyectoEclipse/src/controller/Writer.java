@@ -6,9 +6,12 @@ import model.Alquiler;
 import model.Carro;
 import model.Categoria;
 import model.Cliente;
+import model.Empleado;
 import model.Licencia;
 import model.Reserva;
 import model.Sede;
+import model.Seguro;
+import model.Tarifa;
 import model.Tarjeta;
 import model.Temporada;
 
@@ -115,6 +118,38 @@ public String comprimirReserva(Reserva reserva) {
 	String UsuarioCliente=reserva.getCliente().getUsuario();
 	return idReserva+";"+sedeFin+";"+sedeInicio+";"+placa+";"+categoria
 			+";"+fin+";"+inicio+";"+UsuarioCliente;
+}
+
+//DECIMO OBJETO: EMPLEADO
+public String comprimirEmpleado(Empleado empleado)
+{
+	String id = empleado.getId();
+	String nombre = empleado.getNombre();
+	String usuario = empleado.getUsuario();
+	String contraseña = empleado.getContrasena();
+	String sede = empleado.getSede().getNombre();
+	
+	return id + ";"+ nombre +";" + usuario +";"+ contraseña +";"+ sede;
+}
+
+//UNDECIMO OBJETO: SEGURO
+public String comprimirSeguro(Seguro seguro) 
+{
+	String id = seguro.getId();
+	String nombre = seguro.getNombre();
+	String precio= String.valueOf(seguro.getPrecio());
+	return id + ";"+ nombre +";" + precio ;
+}
+
+//DOCEAVO OBJETO: TARIFA
+public String comprimirTarifa(Tarifa tarifa)
+{
+	String id = tarifa.getId();
+	String precio= String.valueOf(tarifa.getPrecioExcedente());
+	String fechaInicio= String.valueOf(tarifa.getFechaInicio());
+	String fechaFin = String.valueOf(tarifa.getFechaFin());
+	
+	return id + ";"+ precio +";" + fechaInicio +";"+ fechaFin;
 }
 }
 	

@@ -6,14 +6,17 @@ public class Seguro {
 	
 	private String nombre;
 	
-	private int id;
+	private String id;
+	
+	private int num;
 	
 	private double precio;
 	
-	public Seguro( String nombre, int id, double precio)
+	public Seguro( String nombre, double precio)
 	{
 		this.nombre= nombre;
-		this.id= id;
+		num++;
+		this.id= String.valueOf(num);
 		this.precio= precio;
 	}
 	
@@ -24,7 +27,7 @@ public class Seguro {
 		return this.nombre;
 	}
 	
-	public int getId()
+	public String getId()
 	{
 		return this.id;
 	}

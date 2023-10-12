@@ -153,7 +153,8 @@ public Reserva descomprimirReserva(String linea,HashMap<String, Sede> mapaSedes,
 // NOVENO OBJETO: ALQUILER
 public Alquiler descomprimirAlquiler(String linea,HashMap<String, Sede> mapaSedes,
 		HashMap<String, Categoria> mapaCategorias,HashMap<String, Licencia> mapaLic,
-		HashMap<String, Carro> mapaCar,HashMap<String, Cliente> mapaClientes) {
+		HashMap<String, Carro> mapaCar,HashMap<String, Cliente> mapaClientes, 
+		HashMap<String, Seguro> mapaSeguros,HashMap<String, Tarifa> mapaTarifaExcedente,HashMap<String, Temporada> mapaTarifa) {
 	String[] partes = linea.split(";");
 	String id = partes[0];
 	String sedeFin= partes[1];
@@ -162,6 +163,10 @@ public Alquiler descomprimirAlquiler(String linea,HashMap<String, Sede> mapaSede
 	String fechaF=partes[4];
 	String fechaIn=partes[5];
 	String usCliente=partes[6];
+	String tarifaExcedente = partes[7];
+	String temporada = partes[8];
+	String seguro = partes[9];
+	
 	
 	Alquiler alq=new Alquiler(mapaClientes.get(usCliente), 
 			LocalDateTime.parse(fechaF), LocalDateTime.parse(fechaIn), mapaSedes.get(sedeInicio),
@@ -173,6 +178,9 @@ public Alquiler descomprimirAlquiler(String linea,HashMap<String, Sede> mapaSede
 	}
 	}
 	
+	alq.setTarifaExcedente(mapaTarifaExcedente.get(tarifaExcedente));
+	alq.setTarifa(mapaTarifa.get(temporada));
+	alq.setSeguro(mapaSeguros.get(seguro));
 	return alq;}
 
 //DECIMO OBJETO: EMPLEADO
@@ -186,6 +194,7 @@ public Empleado descomprimirEmpleado(String linea, HashMap<String, Sede> mapaSed
 	String email = partes[4];
 	String nombreSede = partes[5];
 	
+	
 	Sede sede = mapaSedes.get(nombreSede);
 	
 	Empleado empleado= new Empleado(id,nombre,usuario,contraseña,email);
@@ -194,26 +203,26 @@ public Empleado descomprimirEmpleado(String linea, HashMap<String, Sede> mapaSed
 	return empleado;
 }
 
+//UNDECIMO OBJETO: SEGURO
 public Seguro descomprimirSeguro(String linea)
 {
 	String[] partes = linea.split(";");
-	String nombre = partes[1];
-	int id = Integer.parseInt(partes[1]);
-	Double precio= Double.parseDouble(partes[2]);
+	String nombre = partes[0];
+	Double precio= Double.parseDouble(partes[1]);
 	
-	return new Seguro(nombre, id,precio);
+	return new Seguro(nombre,precio);
 }
 
+//DOCEAVO OBJETO: TARIFA
 public Tarifa descomptimirTarifaExcedente(String linea) {
 	
 
 	String[] partes = linea.split(";");
-	int id = Integer.parseInt(partes[0]);
-	Double precio= Double.parseDouble(partes[1]);
-	LocalDate fechaInicio= LocalDate.parse(partes[2]);
-	LocalDate fechaFin = LocalDate.parse(partes[3]);
+	Double precio= Double.parseDouble(partes[0]);
+	LocalDate fechaInicio= LocalDate.parse(partes[1]);
+	LocalDate fechaFin = LocalDate.parse(partes[2]);
 	
-	return new Tarifa (id,precio,fechaInicio,fechaFin);
+	return new Tarifa (precio,fechaInicio,fechaFin);
 }	
 
 }
