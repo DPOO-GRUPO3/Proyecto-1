@@ -72,31 +72,31 @@ public class Cliente implements Usuario {
 	 * METODOS LOGIN CLIENTE 
 	*/
 	
-	private boolean sesionIniciada;
+	//private boolean sesionIniciada;
 	
-	public void iniciarSesion(String nombreUsuario, String contrasena) {
-        if (usuario.equals(this.usuario) && contrasena.equals(this.contrasena)) {
-            sesionIniciada = true;
-            System.out.println("Sesi�n iniciada para el Cliente: " + usuario);
-        } else {
-            System.out.println("Error: Nombre de usuario o contrase�a incorrectos.");
-        }
-    }
+	//public void iniciarSesion(String nombreUsuario, String contrasena) {
+        //if (usuario.equals(this.usuario) && contrasena.equals(this.contrasena)) {
+           // sesionIniciada = true;
+          //  System.out.println("Sesi�n iniciada para el Cliente: " + usuario);
+        //} else {
+          //  System.out.println("Error: Nombre de usuario o contrase�a incorrectos.");
+       // }
+   // }
 
-    @Override
-    public void cerrarSesion() {
-        sesionIniciada = false;
-        System.out.println("Sesi�n cerrada para el Cliente.");
-    }
+   // @Override
+    //public void cerrarSesion() {
+     //   sesionIniciada = false;
+       // System.out.println("Sesi�n cerrada para el Cliente.");
+   // }
 
-    @Override
-    public boolean estaSesionIniciada() {
-        return sesionIniciada;
-    }
+   // @Override
+   // public boolean estaSesionIniciada() {
+    //    return sesionIniciada;
+  //  }
     
-    public String getNombreUsuario() {
-        return usuario;
-    }
+    //public String getNombreUsuario() {
+     //   return usuario;
+   // }
 
 
 
@@ -107,35 +107,35 @@ public class Cliente implements Usuario {
       //  return nuevoCliente;
    // }
 
-    private static void guardarRegistro(Usuario usuario) {
-        try {
-            FileWriter writer = new FileWriter("clientes.txt", true);
-            writer.write(usuario.getUsuario() + "," + usuario.getContrasena() + "\n");
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+  //  private static void guardarRegistro(Usuario usuario) {
+        ////try {
+         //   FileWriter writer = new FileWriter("clientes.txt", true);
+         //   writer.write(usuario.getUsuario() + "," + usuario.getContrasena() + "\n");
+        //    writer.close();
+        //} catch (IOException e) {
+            //e.printStackTrace();
+        //}
+   // }
 
-    public static ArrayList<Usuario> cargarClientes() {
-        ArrayList<Usuario> clientes = new ArrayList<>();
-        try {
-            FileReader reader = new FileReader(".//clientes.txt");
-            BufferedReader br = new BufferedReader(reader);
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] data = line.split(",");
-                if (data.length == 2) {
-                    Cliente cliente = new Cliente(data[0], data[1], "", "", "", "");
-                    clientes.add(cliente);
-                }
-            }
-            br.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return clientes;
-    }
+   // public static ArrayList<Usuario> cargarClientes() {
+     //   ArrayList<Usuario> clientes = new ArrayList<>();
+      //  try {
+        //    FileReader reader = new FileReader(".//clientes.txt");
+         //   BufferedReader br = new BufferedReader(reader);
+          //  String line;
+           // while ((line = br.readLine()) != null) {
+           //     String[] data = line.split(",");
+             //   if (data.length == 2) {
+              //      Cliente cliente = new Cliente(data[0], data[1], "", "", "", "");
+              //      clientes.add(cliente);
+               // }
+            //}
+          //  br.close();
+       // } catch (IOException e) {
+        //    e.printStackTrace();
+        //}
+      //  return clientes;
+    
 }
 	
 	
