@@ -3,6 +3,7 @@ package controller;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -70,9 +71,10 @@ public Categoria descomprimirCategoria(String linea) {
 	Categoria cat=new Categoria(nombre,tarifa);
 	return cat;
 }
-// QUINTA CATEGORÍA: CLIENTE
-public Cliente descomprimirCliente(String linea,HashMap<String, Licencia> mapaLic,
-		HashMap<String, Tarjeta> mapaTar) {
+// QUINTA CATEGORÍA: CLIENTE 
+//REtornamos una lista de objetos porque necesitamos añadirle a cliente
+// una tarjeta y una licencia asociadas
+public ArrayList<Object> descomprimirCliente(String linea) {
 	String[] partes = linea.split(";");
 	String usuario = partes[0];
 	String contrasena = partes[1];
@@ -81,14 +83,14 @@ public Cliente descomprimirCliente(String linea,HashMap<String, Licencia> mapaLi
 	String nombre=partes[4];
 	String rutaImagen=partes[5];
 	String numLic=partes[6];
-	String numTarjeta=partes[7];
-	
-	
+	String numTar=partes[7];
 	Cliente cli=new Cliente( usuario, contrasena, nombre,
 			 email,  pais,  rutaImagen);
-	cli.setLicencia(mapaLic.get(numLic));
-	cli.setTarjeta(mapaTar.get(numTarjeta));
-	return cli;
+	ArrayList<Object>  lista=new ArrayList<Object>();
+	lista.add(cli);
+	lista.add(numLic);
+	lista.add(numTar);
+	return lista;
 }
 // SEXTO OBJETO: SEDE
 public Sede descomprimirSede(String linea) {

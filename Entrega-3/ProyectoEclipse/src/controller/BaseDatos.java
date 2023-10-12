@@ -3,6 +3,7 @@ import java.io.BufferedReader;
 
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import model.Alquiler;
@@ -74,7 +75,7 @@ public HashMap<String, Categoria> getMapaCateg(){
 public HashMap<String, Sede> getMapaSedes(){
 	return mapaSedes;
 }
-<<<<<<< HEAD
+//<<<<<<< HEAD
 
 public HashMap<String, Alquiler> getMapaAlquileres(){
 	return mapaAlquileres;
@@ -94,14 +95,14 @@ public HashMap<String, Seguro> getMapaSeguros(){
 
 
 
-=======
+//=======
 public HashMap<String, Reserva> getMapaReservas(){
 	return mapaReservas;
 }
 public HashMap<String, Temporada> getMapaTemporadas(){
 	return mapaTemporadas;
 }
->>>>>>> branch 'main' of https://github.com/DPOO-GRUPO3/Proyecto-1.git
+//>>>>>>> branch 'main' of https://github.com/DPOO-GRUPO3/Proyecto-1.git
 // PRIMER OBJETO: TEMPORADA:
 //READ: DEscargar todas las temporadas
 private void crearMapaTemporadas() {
@@ -253,8 +254,15 @@ String linea = br.readLine();
 while (linea != null) {
 	String[] partes = linea.split(";");
 	String usuario = partes[0];
-	Cliente cliente=reader.descomprimirCliente(linea, mapaLicencias, mapaTarjetas);
-	mapaClientes.put(usuario, cliente);
+	ArrayList<Object> lista=reader.descomprimirCliente(linea);
+	Cliente cliente =(Cliente) lista.get(1);
+	String numLic= (String) lista.get(2);
+	String numTar=(String) lista.get(3);
+	
+	//Añado los objetos anteriores a cliente
+	cliente.setLicencia(mapaLicencias.get(numLic));
+	cliente.setTarjeta(mapaTarjetas.get(numTar));
+	mapaClientes.put(usuario,cliente );
 	linea = br.readLine();
 }
 br.close();
@@ -524,11 +532,11 @@ private void actualizarArchivoTarifas() {
 //Descargar todos los datos
 
 public void deacargarTodoslosDatos() {
-	crearMapaTemporadas();
-	crearMapaTarjetas();
-	crearMapaLicencias();
-	crearMapaCategorias();
-	crearMapaClientes();
+	crearMapaTemporadas();// COMPLETO
+	crearMapaTarjetas();// COMPLETO
+	crearMapaLicencias();// COMPLETO
+	crearMapaCategorias();// COMPLETO
+	crearMapaClientes();// COMLETO ()Revisen este para hacer los siguientes.
 	crearMapaSedes();
 	crearMapaCarros();
 	crearMapaReservas();
