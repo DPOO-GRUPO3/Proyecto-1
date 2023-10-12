@@ -32,7 +32,7 @@ public class Aplicacion {
 					usarEmpleado;
 				else if (opcion_seleccionada == 4 ) {
 					InterfazCliente elCliente= new InterfazCliente();
-					
+					elCliente.correrCliente();
 					
 				}}
 				
