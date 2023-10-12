@@ -6,7 +6,9 @@ public class Tarifa {
 	
 	//Atributos
 	
-	private int id;
+	private String id;
+	
+	private int num=0;
 	
 	private double precioExcedente;
 
@@ -16,9 +18,10 @@ public class Tarifa {
 	
 	//Constructor
 	
-	public Tarifa (int id, double precioExcedente, LocalDate fechaInicio,LocalDate fechaFin )
+	public Tarifa ( double precioExcedente, LocalDate fechaInicio,LocalDate fechaFin )
 	{
-		this.id= id;
+		num++;
+		this.id= String.valueOf(num);
 		this.precioExcedente= precioExcedente;
 		this.fechaInicio= fechaInicio;
 		this.fechaFin= fechaFin;
@@ -26,7 +29,7 @@ public class Tarifa {
 	
 	//getters
 	
-	public int getId()
+	public String getId()
 	{
 		return this.id;
 	}
