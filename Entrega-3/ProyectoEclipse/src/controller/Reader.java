@@ -154,7 +154,8 @@ public Reserva descomprimirReserva(String linea,HashMap<String, Sede> mapaSedes,
 public Alquiler descomprimirAlquiler(String linea,HashMap<String, Sede> mapaSedes,
 		HashMap<String, Categoria> mapaCategorias,HashMap<String, Licencia> mapaLic,
 		HashMap<String, Carro> mapaCar,HashMap<String, Cliente> mapaClientes, 
-		HashMap<String, Seguro> mapaSeguros,HashMap<String, Tarifa> mapaTarifaExcedente,HashMap<String, Temporada> mapaTarifa) {
+		HashMap<String, Seguro> mapaSeguros,HashMap<String, Tarifa> mapaTarifaExcedente,
+		HashMap<String, Temporada> mapaTarifa,HashMap<String, Reserva> mapaReservas ) {
 	String[] partes = linea.split(";");
 	String id = partes[0];
 	String sedeFin= partes[1];
@@ -166,6 +167,7 @@ public Alquiler descomprimirAlquiler(String linea,HashMap<String, Sede> mapaSede
 	String tarifaExcedente = partes[7];
 	String temporada = partes[8];
 	String seguro = partes[9];
+	String reserva= partes[10];
 	
 	
 	Alquiler alq=new Alquiler(mapaClientes.get(usCliente), 
@@ -181,6 +183,7 @@ public Alquiler descomprimirAlquiler(String linea,HashMap<String, Sede> mapaSede
 	alq.setTarifaExcedente(mapaTarifaExcedente.get(tarifaExcedente));
 	alq.setTarifa(mapaTarifa.get(temporada));
 	alq.setSeguro(mapaSeguros.get(seguro));
+	alq.setReserva(mapaReservas.get(reserva));
 	return alq;}
 
 //DECIMO OBJETO: EMPLEADO

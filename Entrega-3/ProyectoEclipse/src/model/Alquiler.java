@@ -32,6 +32,8 @@ public class Alquiler {
 	
 	private Carro carro;
 	
+	private Reserva reserva;
+	
 	
 
 	public Alquiler(Cliente cliente, LocalDateTime fechaDeb, LocalDateTime fechaInicio,
@@ -124,5 +126,10 @@ public class Alquiler {
 	public void setSeguro(Seguro seguro)
 	{
 		this.seguro=seguro;
+	}
+	
+	public void setReserva(Reserva reserva)
+	{
+		this.reserva= reserva;
 	}
 }
