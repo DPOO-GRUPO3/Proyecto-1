@@ -8,6 +8,7 @@ import model.Carro;
 import model.Categoria;
 import model.Cliente;
 import model.Reserva;
+import model.Sede;
 
 public class ControllerCliente {
 private Cliente cliente;
@@ -65,10 +66,11 @@ public boolean crearReserva(String nombreCategoria, String sedeRec,
 			continue;
 		}
 		Categoria categoria=datos.getMapaCateg().get(nombreCategoria);
-		Sede sede1=datos
+		Sede sede1=datos.getMapaSedes().get(sedeRec);
+		Sede sede2=datos.getMapaSedes().get(sedeFin);
 		Reserva reserva=new Reserva(cliente, fechaPed1, fechaPed2,
 				
-				categoria, carro, null, null);
+				categoria, carro, sede1, sede2);
 	}}
 	
 

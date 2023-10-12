@@ -71,6 +71,9 @@ public HashMap<String, Cliente> getMapaClientes(){
 public HashMap<String, Categoria> getMapaCateg(){
 	return mapaCategorias;
 }
+public HashMap<String, Sede> getMapaSedes(){
+	return mapaSedes;
+}
 // PRIMER OBJETO: TEMPORADA:
 //READ: DEscargar todas las temporadas
 private void crearMapaTemporadas() {
