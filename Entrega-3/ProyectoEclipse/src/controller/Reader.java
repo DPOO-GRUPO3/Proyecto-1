@@ -29,8 +29,8 @@ public class Reader {
 public Temporada descomprimirTemporada(String linea) {
 	String[] partes = linea.split(";");
 	int id = Integer.parseInt(partes[0]);
-	int fecha1 = Integer.parseInt(partes[1]);
-	int fecha2 = Integer.parseInt(partes[2]);
+	LocalDateTime fecha1 = LocalDateTime.parse(partes[1]);
+	LocalDateTime fecha2 = LocalDateTime.parse(partes[2]);
 	double tarifa=Double.parseDouble(partes[3]);
 	Temporada temp=new Temporada(fecha1, fecha2, tarifa);
 	temp.setID(id);

@@ -74,6 +74,7 @@ public HashMap<String, Categoria> getMapaCateg(){
 public HashMap<String, Sede> getMapaSedes(){
 	return mapaSedes;
 }
+<<<<<<< HEAD
 
 public HashMap<String, Alquiler> getMapaAlquileres(){
 	return mapaAlquileres;
@@ -93,6 +94,14 @@ public HashMap<String, Seguro> getMapaSeguros(){
 
 
 
+=======
+public HashMap<String, Reserva> getMapaReservas(){
+	return mapaReservas;
+}
+public HashMap<String, Temporada> getMapaTemporadas(){
+	return mapaTemporadas;
+}
+>>>>>>> branch 'main' of https://github.com/DPOO-GRUPO3/Proyecto-1.git
 // PRIMER OBJETO: TEMPORADA:
 //READ: DEscargar todas las temporadas
 private void crearMapaTemporadas() {
@@ -527,6 +536,22 @@ public void deacargarTodoslosDatos() {
 	crearMapaEmpleados();
 	crearMapaSeguros();
 	crearMapaTarifas();
+	
+}
+public void cargarTodosLosDatos() {
+	actualizarArchivoTarifas();
+	actualizarArchivoAlquileres();
+	actualizarArchivoCarros();
+	actualizarArchivoCategorias();
+	actualizarArchivoClientes();
+	actualizarArchivoEmpleados();
+
+	actualizarArchivoLicencias();
+	actualizarArchivoReservas();
+	actualizarArchivoSedes();
+	actualizarArchivoSeguros();
+	actualizarArchivoTarjetas();
+	actualizarArchivoTemporadas();
 	
 }
 }
