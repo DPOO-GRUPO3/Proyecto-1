@@ -74,12 +74,34 @@ public HashMap<String, Categoria> getMapaCateg(){
 public HashMap<String, Sede> getMapaSedes(){
 	return mapaSedes;
 }
+<<<<<<< HEAD
+
+public HashMap<String, Alquiler> getMapaAlquileres(){
+	return mapaAlquileres;
+}
+
+public HashMap<String, Empleado> getMapaEmpleados(){
+	return mapaEmpleados;
+}
+
+public HashMap<String, Tarifa> getMapaTarifas(){
+	return mapaTarifasExcedente;
+}
+
+public HashMap<String, Seguro> getMapaSeguros(){
+	return mapaSeguros;
+}
+
+
+
+=======
 public HashMap<String, Reserva> getMapaReservas(){
 	return mapaReservas;
 }
 public HashMap<String, Temporada> getMapaTemporadas(){
 	return mapaTemporadas;
 }
+>>>>>>> branch 'main' of https://github.com/DPOO-GRUPO3/Proyecto-1.git
 // PRIMER OBJETO: TEMPORADA:
 //READ: DEscargar todas las temporadas
 private void crearMapaTemporadas() {
@@ -371,7 +393,7 @@ String linea = br.readLine();
 while (linea != null) {
 	String[] partes = linea.split(";");
 	String id = partes[0];
-	Alquiler alquiler = reader.descomprimirAlquiler(linea, mapaSedes, mapaCategorias, mapaLicencias, mapaCarros, mapaClientes, mapaSeguros, mapaTarifasExcedente, mapaTemporadas);
+	Alquiler alquiler = reader.descomprimirAlquiler(linea, mapaSedes, mapaCategorias, mapaLicencias, mapaCarros, mapaClientes, mapaSeguros, mapaTarifasExcedente, mapaTemporadas, mapaReservas);
 	mapaAlquileres.put(id, alquiler);
 	linea = br.readLine();
 }
@@ -405,9 +427,9 @@ String linea = br.readLine();
 
 while (linea != null) {
 	String[] partes = linea.split(";");
-	String id = partes[0];
+	String usuario = partes[2];
 	Empleado empleado = reader.descomprimirEmpleado(linea, mapaSedes, mapaEmpleados);
-	mapaEmpleados.put(id, empleado);
+	mapaEmpleados.put(usuario, empleado);
 	linea = br.readLine();
 }
 br.close();
