@@ -7,8 +7,8 @@ public class Cliente implements Usuario {
 	
 	//Atributos
 	//login
-	private static String usuario;
-	private static String contrasena;
+	private  String usuario;
+	private  String contrasena;
 	//datos generales:
 	private String nombre;
 	private String email;
@@ -101,11 +101,11 @@ public class Cliente implements Usuario {
 
 
 
-    public static Cliente registrar(String nombreUsuario, String contrasena) {
-        Cliente nuevoCliente = new Cliente(usuario, contrasena, "", "", "", "");
-        guardarRegistro(nuevoCliente);
-        return nuevoCliente;
-    }
+    //public static Cliente registrar(String nombreUsuario, String contrasena) {
+       // Cliente nuevoCliente = new Cliente(usuario, contrasena, "", "", "", "");
+        //guardarRegistro(nuevoCliente);
+      //  return nuevoCliente;
+   // }
 
     private static void guardarRegistro(Usuario usuario) {
         try {
