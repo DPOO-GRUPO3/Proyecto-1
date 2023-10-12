@@ -1,5 +1,6 @@
 package model;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 //
 import java.util.ArrayList;
@@ -7,13 +8,15 @@ import java.util.ArrayList;
 public class Alquiler {
 	// Métodos
 	
-	private int id;
+	private String id;
+	
 	public static int numAlqus;
+	
 	private Cliente cliente;
 	
-	private LocalDate fechaDeb;
+	private LocalDateTime fechaDeb;
 	
-	private LocalDate fechaInicio;
+	private LocalDateTime fechaInicio;
 	
 	private Sede sedeDevolucion;
 	
@@ -31,11 +34,11 @@ public class Alquiler {
 	
 	
 
-	public Alquiler(Cliente cliente, LocalDate fechaDeb, LocalDate fechaInicio,
+	public Alquiler(Cliente cliente, LocalDateTime fechaDeb, LocalDateTime fechaInicio,
 			Sede sedeRecoger, Sede sedeDevolucion, Carro carro) 
 	{	
 		numAlqus++;
-		this.id=numAlqus;
+		this.id=String.valueOf(numAlqus) ;
 		this.cliente = cliente;
 		this.fechaDeb = fechaDeb;
 		this.sedeDevolucion = sedeDevolucion;
@@ -48,7 +51,7 @@ public class Alquiler {
 	
 
 	//getters
-	public int getAlquileresId()
+	public String getAlquileresId()
 	{
 		return this.id;
 	}
@@ -68,7 +71,7 @@ public class Alquiler {
 		return this.sedeRecoger;
 	}
 
-	public LocalDate getFechaDeb() 
+	public LocalDateTime getFechaDeb() 
 	{
 		return this.fechaDeb;
 	}
@@ -96,12 +99,12 @@ public class Alquiler {
 	{
 		return this.carro;
 	}
-	public LocalDate getFechaInicio() {
+	public LocalDateTime getFechaInicio() {
 		return fechaInicio;
 	}
 	//setters
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id=id;
 	}
 	public void setLicencia(Licencia licencia) {

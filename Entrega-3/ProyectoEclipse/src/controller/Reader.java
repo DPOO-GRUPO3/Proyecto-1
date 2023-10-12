@@ -1,6 +1,7 @@
 package controller;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -10,11 +11,14 @@ import model.Alquiler;
 import model.Carro;
 import model.Categoria;
 import model.Cliente;
+import model.Empleado;
 import model.Licencia;
 import model.Reserva;
 import model.Sede;
+import model.Seguro;
 import model.Tarjeta;
 import model.Temporada;
+import model.Usuario;
 
 public class Reader {
 //Convierte String estandar en objeto. Va construyento el objeto.
@@ -115,6 +119,8 @@ public Carro descomprimirCarro(String linea,HashMap<String, Sede> mapaSedes,
 	car.setEstado(estado);
 	car.setCategoria(mapaCategorias.get(nombrCateg));
 	car.setCede(mapaSedes.get(nombreCede));
+	Sede sede= mapaSedes.get(nombreCede);
+	sede.setCarro(car);
 	return car;
 }
 // OCTAVO OBJETO: RESERVA
@@ -142,7 +148,7 @@ public Reserva descomprimirReserva(String linea,HashMap<String, Sede> mapaSedes,
 	Reserva r =new Reserva(cliente, in, fin, cat, carro, sIn, sFin);
 	r.setNumReserva(Integer.parseInt(id));
 	return r;
-}
+} 
 // NOVENO OBJETO: ALQUILER
 public Alquiler descomprimirAlquiler(String linea,HashMap<String, Sede> mapaSedes,
 		HashMap<String, Categoria> mapaCategorias,HashMap<String, Licencia> mapaLic,
@@ -157,13 +163,47 @@ public Alquiler descomprimirAlquiler(String linea,HashMap<String, Sede> mapaSede
 	String usCliente=partes[6];
 	
 	Alquiler alq=new Alquiler(mapaClientes.get(usCliente), 
-			LocalDate.parse(fechaF), LocalDate.parse(fechaIn), mapaSedes.get(sedeInicio),
+			LocalDateTime.parse(fechaF), LocalDateTime.parse(fechaIn), mapaSedes.get(sedeInicio),
 			mapaSedes.get(sedeFin), mapaCar.get(placa));
-	alq.setId(Integer.parseInt(id));
+	alq.setId(id);
 	for(Licencia licencia:mapaLic.values()) {
 	if (licencia.getAlq().equals(alq.getAlquileresId())==true) {
 		alq.setLicencia(licencia);
 	}
+	}
 	
-}return alq;}}
+	return alq;}
+
+//DECIMO OBJETO: EMPLEADO
+public Empleado descomprimirEmpleado(String linea, HashMap<String, Sede> mapaSedes, HashMap<String, Empleado> mapaEmpleados)
+{
+	String[] partes = linea.split(";");
+	String id = partes[0];
+	String nombre = partes[1];
+	String usuario = partes[2];
+	String contraseña = partes[3];
+	String email = partes[4];
+	String nombreSede = partes[5];
+	
+	Sede sede = mapaSedes.get(nombreSede);
+	
+	Empleado empleado= new Empleado(id,nombre,usuario,contraseña,email);
+	empleado.setSede(sede);
+	
+	return empleado;
+}
+
+public Seguro descomprimirSeguro(String linea)
+{
+	String[] partes = linea.split(";");
+	String nombre = partes[1];
+	int id = Integer.parseInt(partes[1]);
+	Double precio= Double.parseDouble(partes[2]);
+	
+	return new Seguro(nombre, id,precio);
+}
+
+
+}
+
 

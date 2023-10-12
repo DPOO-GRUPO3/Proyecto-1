@@ -9,6 +9,7 @@ import model.Alquiler;
 import model.Carro;
 import model.Categoria;
 import model.Cliente;
+import model.Empleado;
 import model.Licencia;
 import model.Reserva;
 import model.Sede;
