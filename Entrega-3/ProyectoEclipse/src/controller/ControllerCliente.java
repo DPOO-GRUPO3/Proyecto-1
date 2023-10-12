@@ -89,7 +89,9 @@ public double crearReserva(String nombreCategoria, String sedeRec,
 	}}
 	
 private Temporada encontrarTemporada(LocalDateTime fecha) {
-	for(temp:datos.)
+	for(Temporada temp:datos.getMapaTemporadas().values()) {
+		LOcatDateTime in=temp.get
+	}
 }
 private boolean hayReservasEnIntervalo(Carro carro,LocalDateTime fecha1,LocalDateTime fecha2) {
 	ArrayList<Reserva> reservas=carro.getReservas();

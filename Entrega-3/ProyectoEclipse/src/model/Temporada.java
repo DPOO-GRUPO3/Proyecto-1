@@ -1,15 +1,17 @@
 package model;
 
+import java.time.LocalDateTime;
+
 public class Temporada {
 	
 public static int numeroTemporadas;
 private int idTemporada;
-private int fechaInicio;
-private int fechaFin;
+private LocalDateTime fechaInicio;
+private LocalDateTime fechaFin;
 private double tarifaTemporada;
 
 
-public Temporada(int fechaInicio,int fechaFin,double tarifaTemporada) {
+public Temporada(LocalDateTime fechaInicio,LocalDateTime fechaFin,double tarifaTemporada) {
 	this.tarifaTemporada=tarifaTemporada;
 	this.fechaInicio=fechaInicio;
 	this.fechaFin=fechaFin;
@@ -21,10 +23,10 @@ public Temporada(int fechaInicio,int fechaFin,double tarifaTemporada) {
 public void setID(int id) {
 	this.idTemporada=id;
 }
-public int getInicioTemporada() {
+public LocalDateTime getInicioTemporada() {
 	return fechaInicio;
 }
-public int getFinTemporada() {
+public LocalDateTime getFinTemporada() {
 	return fechaFin;
 }
 public double getTarifaTemporada() {
