@@ -64,6 +64,9 @@ public HashMap<String, Carro> getMapaCarros(){
 public HashMap<String, Cliente> getMapaClientes(){
 	return mapaClientes;
 }
+public HashMap<String, Categoria> getMapaCateg(){
+	return mapaCategorias;
+}
 // PRIMER OBJETO: TEMPORADA:
 //READ: DEscargar todas las temporadas
 private void crearMapaTemporadas() {
