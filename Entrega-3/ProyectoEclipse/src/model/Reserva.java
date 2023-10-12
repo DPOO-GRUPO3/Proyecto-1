@@ -1,17 +1,19 @@
 package model;
 
+import java.time.LocalDateTime;
+
 public class Reserva {
 private Cliente cliente;
-private double fechaYHoraInicio;
-private double fechaYHoraFin;
+private LocalDateTime fechaYHoraInicio;
+private LocalDateTime fechaYHoraFin;
 private Categoria categoria;
 private Carro carroReservado;
 private Sede sedeInicio;
 private Sede sedeFin;
-private int numeroReserva;
+private  int numeroReserva;
 public static int numeroReservas;
 
-public Reserva(Cliente cliente,double fechaYHoraInicio,double fechaYHoraFin,
+public Reserva(Cliente cliente,LocalDateTime fechaYHoraInicio,LocalDateTime fechaYHoraFin,
 		Categoria categoria,Carro carroReservado,Sede sedeInicio,Sede sedeFin
 		) {
 	numeroReservas++;
@@ -34,10 +36,10 @@ public static int getNumeroReservas() {
 public Categoria getCategoria() {
 	return categoria;
 }
-public double getFechaYHoraInicio() {
+public LocalDateTime getFechaYHoraInicio() {
 	return fechaYHoraInicio;
 }
-public double getFechaYHoraFin() {
+public LocalDateTime getFechaYHoraFin() {
 	return fechaYHoraFin;
 }
 public int getNumReserva() {

@@ -1,5 +1,8 @@
 package controller;
 
+import java.util.HashMap;
+
+import model.Carro;
 import model.Cliente;
 
 public class ControllerCliente {
@@ -31,5 +34,16 @@ public void logIn(String usuario,String contrasena) {
 }
 
 }
-
+public boolean crearReserva(String nombreCategoria, String sedeRec,
+		String timeReco, String sedeFin, String timeFin) {
+	HashMap<String,Carro> mapaCarros=datos.getMapaCarros();
+	//Vamos a iterar el inventario hasta encontrar el primer
+	//carro que cumple las características y lo vamos a reservar
+	// si se hace la reserva retornamos true, si se itera toda la lista 
+	//sin éxito retornamos false
+	int fecha1pedida=Integer.parseInt(timeReco.replace(":","").replace(" ", ""));
+	for(Carro carro:mapaCarros.values()) {
+		
+	}
+}
 }

@@ -1,5 +1,6 @@
 package model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Carro {
@@ -21,7 +22,7 @@ public class Carro {
 	private String estado;
 	// Fecha en que el carro dejara de estar en limpieza o mantenimiento, si su estado
 	// disponible, su valor es null
-	private int fechaDispCons;
+	private LocalDateTime fechaDispCons;
 	
 	//Método constructor
 	public Carro(String placa,String marca,String modelo, String color,String tipoTransmision) {
@@ -34,7 +35,7 @@ public class Carro {
 		this.categoria =null;
 		this.sede=null;
 		this.reservas= new ArrayList<Reserva>();
-		this.fechaDispCons=0;
+		this.fechaDispCons=null;
 		this.usoActual=null;
 		this.estado=null;
 	}
@@ -60,7 +61,7 @@ public class Carro {
 	public Sede getSede() {
 		return sede;
 	}
-	public int getFechaDispCons() {
+	public LocalDateTime getFechaDispCons() {
 		return fechaDispCons;
 	}
 	public ArrayList<Reserva> getReservas() {
@@ -82,7 +83,7 @@ public class Carro {
 	public void agregarReserva(Reserva reserva){
 		this.reservas.add(reserva);
 	}
-	public void setFechaDisponibleCons(int fechaDispCons){
+	public void setFechaDisponibleCons(LocalDateTime fechaDispCons){
 		this.fechaDispCons = fechaDispCons;
 	}
 	public void setUsoActual(Alquiler usoActual) {
