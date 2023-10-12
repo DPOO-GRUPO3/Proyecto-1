@@ -9,7 +9,7 @@ public interface Usuario {
 	/*
 	 * METODOS LOGIN 
 	 * */
-    void iniciarSesion(String nombreUsuario, String contraseña);
+    void iniciarSesion(String nombreUsuario, String contrasena);
     void cerrarSesion();
     boolean estaSesionIniciada();
 

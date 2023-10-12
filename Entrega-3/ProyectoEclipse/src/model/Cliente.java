@@ -74,19 +74,19 @@ public class Cliente implements Usuario {
 	
 	private boolean sesionIniciada;
 	
-	public void iniciarSesion(String nombreUsuario, String contraseña) {
+	public void iniciarSesion(String nombreUsuario, String contrasena) {
         if (usuario.equals(this.usuario) && contrasena.equals(this.contrasena)) {
             sesionIniciada = true;
-            System.out.println("Sesión iniciada para el Cliente: " + usuario);
+            System.out.println("Sesiï¿½n iniciada para el Cliente: " + usuario);
         } else {
-            System.out.println("Error: Nombre de usuario o contraseña incorrectos.");
+            System.out.println("Error: Nombre de usuario o contraseï¿½a incorrectos.");
         }
     }
 
     @Override
     public void cerrarSesion() {
         sesionIniciada = false;
-        System.out.println("Sesión cerrada para el Cliente.");
+        System.out.println("Sesiï¿½n cerrada para el Cliente.");
     }
 
     @Override
@@ -101,7 +101,7 @@ public class Cliente implements Usuario {
 
 
 
-    public static Cliente registrar(String nombreUsuario, String contraseña) {
+    public static Cliente registrar(String nombreUsuario, String contrasena) {
         Cliente nuevoCliente = new Cliente(usuario, contrasena, "", "", "", "");
         guardarRegistro(nuevoCliente);
         return nuevoCliente;
@@ -142,4 +142,4 @@ public class Cliente implements Usuario {
 	
 	
 	
-}
+
