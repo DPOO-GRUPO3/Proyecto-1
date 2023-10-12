@@ -99,9 +99,410 @@ private void actualizarArchivoTemporadas() {
 	fichero.write(texto);
 	fichero.close();
 }
+
+
+
+//SEGUNDO OBJETO: TARJETA
+
+//READ: Descargar todas las tarjetas
+
+private void crearMapaTarjetas() {
+BufferedReader br = new BufferedReader(new FileReader("./data/tarjetas.txt"));
+
+String linea = br.readLine();
+
+while (linea != null) {
+	String[] partes = linea.split(";");
+	String numero = partes[0];
+	Tarjeta tarjeta=reader.descomprimirTarjeta(linea);
+	mapaTarjetas.put(numero, tarjeta);
+	linea = br.readLine();
+}
+br.close();
+}
+//Write: Actualizar archivo, reescribirlo.
+
+private String generarTextoTarjetas(){
+	String texto="";
+	for(Tarjeta tarjeta:mapaTarjetas.values()) {
+		texto+=writer.comprimirTarjeta(tarjeta);
+		texto+="\n";
+	}
+	return texto;
+}
+private void actualizarArchivoTarjetas() {
+	String texto=generarTextoTarjetas();
+	FileWriter fichero = new FileWriter("./data/tarjetas.txt");
+	fichero.write(texto);
+	fichero.close();
+}
+
+//TERCER OBJETO: LICENCIA
+
+//READ: Descargar todas las licencias
+
+private void crearMapaLicencias() {
+BufferedReader br = new BufferedReader(new FileReader("./data/licencias.txt"));
+
+String linea = br.readLine();
+
+while (linea != null) {
+	String[] partes = linea.split(";");
+	String numero = partes[1];
+	Licencia licencia=reader.descomprimirLicencia(linea);
+	mapaLicencias.put(numero, licencia);
+	linea = br.readLine();
+}
+br.close();
+}
+//Write: Actualizar archivo, reescribirlo.
+
+private String generarTextoLicencias(){
+	String texto="";
+	for(Licencia licencia:mapaLicencias.values()) {
+		texto+=writer.comprimirLicencia(licencia);
+		texto+="\n";
+	}
+	return texto;
+}
+private void actualizarArchivoLicencias() {
+	String texto=generarTextoLicencias();
+	FileWriter fichero = new FileWriter("./data/licencias.txt");
+	fichero.write(texto);
+	fichero.close();
+}
+
+//CUARTO OBJETO: CATEGORIA
+
+//READ: Descargar todas las categorias
+
+private void crearMapaCategorias() {
+BufferedReader br = new BufferedReader(new FileReader("./data/categorias.txt"));
+
+String linea = br.readLine();
+
+while (linea != null) {
+	String[] partes = linea.split(";");
+	String nombre = partes[0];
+	Categoria categoria=reader.descomprimirCategoria(linea);
+	mapaCategorias.put(nombre, categoria);
+	linea = br.readLine();
+}
+br.close();
+}
+//Write: Actualizar archivo, reescribirlo.
+
+private String generarTextoCategorias(){
+	String texto="";
+	for(Categoria categoria:mapaCategorias.values()) {
+		texto+=writer.comprimirCategoria(categoria);
+		texto+="\n";
+	}
+	return texto;
+}
+private void actualizarArchivoCategorias() {
+	String texto=generarTextoCategorias();
+	FileWriter fichero = new FileWriter("./data/categorias.txt");
+	fichero.write(texto);
+	fichero.close();
+}
+
+//QUINTA CATEGORÍA: CLIENTE
+
+//READ: Descargar todas las clientes
+
+private void crearMapaClientes() {
+BufferedReader br = new BufferedReader(new FileReader("./data/clientes.txt"));
+
+String linea = br.readLine();
+
+while (linea != null) {
+	String[] partes = linea.split(";");
+	String usuario = partes[0];
+	Cliente cliente=reader.descomprimirCliente(linea, mapaLicencias, mapaTarjetas);
+	mapaClientes.put(usuario, cliente);
+	linea = br.readLine();
+}
+br.close();
+}
+//Write: Actualizar archivo, reescribirlo.
+
+private String generarTextoClientes(){
+	String texto="";
+	for(Cliente cliente:mapaClientes.values()) {
+		texto+=writer.comprimirCliente(cliente);
+		texto+="\n";
+	}
+	return texto;
+}
+private void actualizarArchivoClientes() {
+	String texto=generarTextoClientes();
+	FileWriter fichero = new FileWriter("./data/clientes.txt");
+	fichero.write(texto);
+	fichero.close();
+}
+
+//SEXTO OBJETO: SEDE
+
+//READ: Descargar todas las sedes
+
+private void crearMapaSedes() {
+BufferedReader br = new BufferedReader(new FileReader("./data/sedes.txt"));
+
+String linea = br.readLine();
+
+while (linea != null) {
+	String[] partes = linea.split(";");
+	String nombre = partes[0];
+	Sede sede=reader.descomprimirSede(linea);
+	mapaSedes.put(nombre, sede);
+	linea = br.readLine();
+}
+br.close();
+}
+//Write: Actualizar archivo, reescribirlo.
+
+private String generarTextoSedes(){
+	String texto="";
+	for(Sede sede:mapaSedes.values()) {
+		texto+=writer.comprimirSede(sede);
+		texto+="\n";
+	}
+	return texto;
+}
+private void actualizarArchivoSedes() {
+	String texto=generarTextoSedes();
+	FileWriter fichero = new FileWriter("./data/sedes.txt");
+	fichero.write(texto);
+	fichero.close();
+}
+
+//SEPTIMO OBJETO: CARRO
+
+//READ: Descargar todas las reservas
+
+private void crearMapaCarros() {
+BufferedReader br = new BufferedReader(new FileReader("./data/carros.txt"));
+
+String linea = br.readLine();
+
+while (linea != null) {
+	String[] partes = linea.split(";");
+	String placa = partes[0];
+	Carro carro = reader.descomprimirCarro(linea, mapaSedes, mapaCategorias);
+	mapaCarros.put(placa,carro );
+	linea = br.readLine();
+}
+br.close();
+}
+//Write: Actualizar archivo, reescribirlo.
+
+private String generarTextoCarros(){
+	String texto="";
+	for(Carro carro:mapaCarros.values()) {
+		texto+=writer.comprimirCarro(carro);
+		texto+="\n";
+	}
+	return texto;
+}
+private void actualizarArchivoCarros() {
+	String texto=generarTextoCarros();
+	FileWriter fichero = new FileWriter("./data/carro.txt");
+	fichero.write(texto);
+	fichero.close();
+}
+
+//OCTAVO OBJETO: RESERVA
+
+//READ: Descargar todas las reservas
+
+private void crearMapaReservas() {
+BufferedReader br = new BufferedReader(new FileReader("./data/reservas.txt"));
+
+String linea = br.readLine();
+
+while (linea != null) {
+	String[] partes = linea.split(";");
+	String id = partes[0];
+	Reserva reserva = reader.descomprimirReserva(linea, mapaSedes, mapaCategorias, mapaCarros, mapaClientes);
+	mapaReservas.put(id, reserva);
+	linea = br.readLine();
+}
+br.close();
+}
+//Write: Actualizar archivo, reescribirlo.
+
+private String generarTextoReservas(){
+	String texto="";
+	for(Reserva reserva:mapaReservas.values()) {
+		texto+=writer.comprimirReserva(reserva);
+		texto+="\n";
+	}
+	return texto;
+}
+private void actualizarArchivoReservas() {
+	String texto=generarTextoReservas();
+	FileWriter fichero = new FileWriter("./data/reservas.txt");
+	fichero.write(texto);
+	fichero.close();
+}
+
+//NOVENO OBJETO: ALQUILER
+
+//READ: Descargar todas las alquileres
+
+private void crearMapaAlquileres() {
+BufferedReader br = new BufferedReader(new FileReader("./data/alquileres.txt"));
+
+String linea = br.readLine();
+
+while (linea != null) {
+	String[] partes = linea.split(";");
+	String id = partes[0];
+	Alquiler alquiler = reader.descomprimirAlquiler(linea, mapaSedes, mapaCategorias, mapaLicencias, mapaCarros, mapaClientes, mapaSeguros, mapaTarifasExcedente, mapaTemporadas);
+	mapaAlquileres.put(id, alquiler);
+	linea = br.readLine();
+}
+br.close();
+}
+//Write: Actualizar archivo, reescribirlo.
+
+private String generarTextoAlquileres(){
+	String texto="";
+	for(Alquiler alquiler:mapaAlquileres.values()) {
+		texto+=writer.comprimirAlquiler(alquiler);
+		texto+="\n";
+	}
+	return texto;
+}
+private void actualizarArchivoAlquileres() {
+	String texto=generarTextoAlquileres();
+	FileWriter fichero = new FileWriter("./data/alquileres.txt");
+	fichero.write(texto);
+	fichero.close();
+}
+
+//DECIMO OBJETO: EMPLEADO
+
+//READ: Descargar todas las alquileres
+
+private void crearMapaEmpleados() {
+BufferedReader br = new BufferedReader(new FileReader("./data/empleados.txt"));
+
+String linea = br.readLine();
+
+while (linea != null) {
+	String[] partes = linea.split(";");
+	String id = partes[0];
+	Empleado empleado = reader.descomprimirEmpleado(linea, mapaSedes, mapaEmpleados);
+	mapaEmpleados.put(id, empleado);
+	linea = br.readLine();
+}
+br.close();
+}
+//Write: Actualizar archivo, reescribirlo.
+
+private String generarTextoEmpleados(){
+	String texto="";
+	for(Empleado empleado:mapaEmpleados.values()) {
+		texto+=writer.comprimirEmpleado(empleado);
+		texto+="\n";
+	}
+	return texto;
+}
+private void actualizarArchivoEmpleados() {
+	String texto=generarTextoEmpleados();
+	FileWriter fichero = new FileWriter("./data/empleados.txt");
+	fichero.write(texto);
+	fichero.close();
+}
+
+//UNDECIMO OBJETO: SEGURO
+
+//READ: Descargar todas las seguros
+
+private void crearMapaSeguros() {
+BufferedReader br = new BufferedReader(new FileReader("./data/seguros.txt"));
+
+String linea = br.readLine();
+
+while (linea != null) {
+	String[] partes = linea.split(";");
+	String nombre = partes[0];
+	Seguro seguro = reader.descomprimirSeguro(linea);
+	mapaSeguros.put(nombre, seguro);
+	linea = br.readLine();
+}
+br.close();
+}
+//Write: Actualizar archivo, reescribirlo.
+
+private String generarTextoSeguros(){
+	String texto="";
+	for(Seguro seguro:mapaSeguros.values()) {
+		texto+=writer.comprimirSeguro(seguro);
+		texto+="\n";
+	}
+	return texto;
+}
+private void actualizarArchivoSeguros() {
+	String texto=generarTextoSeguros();
+	FileWriter fichero = new FileWriter("./data/seguros.txt");
+	fichero.write(texto);
+	fichero.close();
+}
+
+//DOCEAVO OBJETO: TARIFA
+
+//READ: Descargar todas las tarifas de excedentes
+
+private void crearMapaTarifas() {
+BufferedReader br = new BufferedReader(new FileReader("./data/tarifasExcedentes.txt"));
+
+String linea = br.readLine();
+
+while (linea != null) {
+	String[] partes = linea.split(";");
+	String id = partes[0];
+	Tarifa tarifa = reader.descomptimirTarifaExcedente(linea);
+	mapaTarifasExcedente.put(id, tarifa);
+	linea = br.readLine();
+}
+br.close();
+}
+//Write: Actualizar archivo, reescribirlo.
+
+private String generarTextoTarifas(){
+	String texto="";
+	for(Tarifa tarifa:mapaTarifasExcedente.values()) {
+		texto+=writer.comprimirTarifa(tarifa);
+		texto+="\n";
+	}
+	return texto;
+}
+private void actualizarArchivoTarifas() {
+	String texto=generarTextoTarifas();
+	FileWriter fichero = new FileWriter("./data/tarifasExcedentes.txt");
+	fichero.write(texto);
+	fichero.close();
+}
+
+//Descargar todos los datos
+
 public void deacargarTodoslosDatos() {
 	crearMapaTemporadas();
-	//terminen esto
+	crearMapaTarjetas();
+	crearMapaLicencias();
+	crearMapaCategorias();
+	crearMapaClientes();
+	crearMapaSedes();
+	crearMapaCarros();
+	crearMapaReservas();
+	crearMapaAlquileres();
+	crearMapaEmpleados();
+	crearMapaSeguros();
+	crearMapaTarifas();
+	
 }
 }
 
