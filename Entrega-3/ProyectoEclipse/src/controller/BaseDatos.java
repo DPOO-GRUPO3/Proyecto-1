@@ -61,6 +61,9 @@ public HashMap<String, Tarjeta> getMapaTarjetas(){
 public HashMap<String, Carro> getMapaCarros(){
 	return mapaCarros;
 }
+public HashMap<String, Cliente> getMapaClientes(){
+	return mapaClientes;
+}
 // PRIMER OBJETO: TEMPORADA:
 //READ: DEscargar todas las temporadas
 private void crearMapaTemporadas() {
@@ -91,6 +94,10 @@ private void actualizarArchivoTemporadas() {
 	FileWriter fichero = new FileWriter("./data/temporadas.txt");
 	fichero.write(texto);
 	fichero.close();
+}
+public void deacargarTodoslosDatos() {
+	crearMapaTemporadas();
+	//terminen esto
 }
 }
 
