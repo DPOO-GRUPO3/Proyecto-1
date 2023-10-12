@@ -9,6 +9,7 @@ import model.Categoria;
 import model.Cliente;
 import model.Reserva;
 import model.Sede;
+import model.Temporada;
 
 public class ControllerCliente {
 private Cliente cliente;
@@ -39,7 +40,7 @@ public void logIn(String usuario,String contrasena) {
 }
 
 }
-public boolean crearReserva(String nombreCategoria, String sedeRec,
+public double crearReserva(String nombreCategoria, String sedeRec,
 		String timeReco, String sedeFin, String timeFin) {
 	HashMap<String,Carro> mapaCarros=datos.getMapaCarros();
 	//Vamos a iterar el inventario hasta encontrar el primer
@@ -65,15 +66,31 @@ public boolean crearReserva(String nombreCategoria, String sedeRec,
 		if(hayReservasEnIntervalo(carro,fechaPed1,fechaPed2)==true) {
 			continue;
 		}
+		if(cliente.getTarjeta().getBloqueo()==false) {
 		Categoria categoria=datos.getMapaCateg().get(nombreCategoria);
 		Sede sede1=datos.getMapaSedes().get(sedeRec);
 		Sede sede2=datos.getMapaSedes().get(sedeFin);
 		Reserva reserva=new Reserva(cliente, fechaPed1, fechaPed2,
 				
 				categoria, carro, sede1, sede2);
+		//Pongo reserva en mapa reservas
+		String idReserva =String.valueOf(reserva.getNumReserva());
+		datos.getMapaReservas().put(idReserva, reserva);
+		//poner reserva en carro
+		carro.agregarReserva(reserva);
+		//guardar carro actualizado
+		datos.getMapaCarros().replace(carro.getPlaca(), carro);
+		//generar bloqueo de tarjeta
+		cliente.getTarjeta().bloquear();
+		//calcular tarifa, a partir de la fija en el dia pervisto para el alquiler
+		double tarifaCeteg =categoria.tarifaCat();
+		Temporada temp=
+		
 	}}
 	
-
+private Temporada encontrarTemporada(LocalDateTime fecha) {
+	for(temp:datos.)
+}
 private boolean hayReservasEnIntervalo(Carro carro,LocalDateTime fecha1,LocalDateTime fecha2) {
 	ArrayList<Reserva> reservas=carro.getReservas();
 	for (int i=0;i<reservas.size();i++) {
