@@ -77,6 +77,9 @@ public HashMap<String, Sede> getMapaSedes(){
 public HashMap<String, Reserva> getMapaReservas(){
 	return mapaReservas;
 }
+public HashMap<String, Temporada> getMapaTemporadas(){
+	return mapaTemporadas;
+}
 // PRIMER OBJETO: TEMPORADA:
 //READ: DEscargar todas las temporadas
 private void crearMapaTemporadas() {
