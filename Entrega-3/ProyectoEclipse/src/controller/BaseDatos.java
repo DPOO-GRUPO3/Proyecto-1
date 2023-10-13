@@ -289,7 +289,7 @@ private void actualizarArchivoClientes() throws IOException {
 //READ: Descargar todas las sedes
 
 private void crearMapaSedes() throws IOException {
-BufferedReader br = new BufferedReader(new FileReader("./data/sedes.txt"));
+BufferedReader br = new BufferedReader(new FileReader("/C:/Users/samis/OneDrive/Escritorio/DatosProyectoDPOO/sedes.txt"));
 
 String linea = br.readLine();
 
@@ -324,7 +324,7 @@ private void actualizarArchivoSedes() throws IOException {
 //READ: Descargar todas las reservas
 
 private void crearMapaCarros() throws IOException {
-BufferedReader br = new BufferedReader(new FileReader("./data/carros.txt"));
+BufferedReader br = new BufferedReader(new FileReader("/C:/Users/samis/OneDrive/Escritorio/DatosProyectoDPOO/carros.txt"));
 
 String linea = br.readLine();
 
@@ -359,7 +359,7 @@ private void actualizarArchivoCarros() throws IOException {
 //READ: Descargar todas las reservas
 
 private void crearMapaReservas() throws IOException {
-BufferedReader br = new BufferedReader(new FileReader("./data/reservas.txt"));
+BufferedReader br = new BufferedReader(new FileReader("/C:/Users/samis/OneDrive/Escritorio/DatosProyectoDPOO/reservas.txt"));
 
 String linea = br.readLine();
 
@@ -394,7 +394,7 @@ private void actualizarArchivoReservas() throws IOException {
 //READ: Descargar todas las alquileres
 
 private void crearMapaAlquileres() throws IOException {
-BufferedReader br = new BufferedReader(new FileReader("./data/alquileres.txt"));
+BufferedReader br = new BufferedReader(new FileReader("/C:/Users/samis/OneDrive/Escritorio/DatosProyectoDPOO/alquileres.txt"));
 
 String linea = br.readLine();
 
@@ -537,9 +537,9 @@ public void deacargarTodoslosDatos() throws IOException {
 	crearMapaLicencias();// COMPLETO
 	crearMapaCategorias();// COMPLETO
 	crearMapaClientes();// COMLETO ()Revisen este para hacer los siguientes.
-	//crearMapaSedes();
-	//crearMapaCarros();
-	//crearMapaReservas();
+	crearMapaSedes();
+	crearMapaCarros();
+	crearMapaReservas();
 	//crearMapaAlquileres();
 	//crearMapaEmpleados();
 	//crearMapaSeguros();
