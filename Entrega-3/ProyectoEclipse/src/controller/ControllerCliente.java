@@ -39,7 +39,12 @@ public void logIn(String usuario,String contrasena) {
 		if(contr.equals(contrasena)==true) {
 			this.cliente=cliente;
 		}
-		
+		else {
+			
+		}
+}	
+	else {
+	
 }
 
 }

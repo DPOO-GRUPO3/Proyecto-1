@@ -84,7 +84,7 @@ public ArrayList<Object> descomprimirCliente(String linea) {
 	String rutaImagen=partes[5];
 	String numLic=partes[6];
 	String numTar=partes[7];
-	Cliente cli=new Cliente( usuario, contrasena, nombre,
+	Cliente cli=new Cliente(usuario, contrasena, nombre,
 			 email,  pais,  rutaImagen);
 	ArrayList<Object>  lista=new ArrayList<Object>();
 	lista.add(cli);

@@ -106,7 +106,7 @@ public HashMap<String, Temporada> getMapaTemporadas(){
 // PRIMER OBJETO: TEMPORADA:
 //READ: DEscargar todas las temporadas
 private void crearMapaTemporadas() throws IOException {
-BufferedReader br = new BufferedReader(new FileReader("./data/temporadas.txt"));
+BufferedReader br = new BufferedReader(new FileReader("/C:/Users/samis/OneDrive/Escritorio/DatosProyectoDPOO/temporadas.txt"));
 
 String linea = br.readLine();
 
@@ -142,7 +142,7 @@ private void actualizarArchivoTemporadas() throws IOException {
 //READ: Descargar todas las tarjetas
 
 private void crearMapaTarjetas() throws IOException {
-BufferedReader br = new BufferedReader(new FileReader("./data/tarjetas.txt"));
+BufferedReader br = new BufferedReader(new FileReader("/C:/Users/samis/OneDrive/Escritorio/DatosProyectoDPOO/tarjetas.txt"));
 
 String linea = br.readLine();
 
@@ -177,7 +177,7 @@ private void actualizarArchivoTarjetas() throws IOException {
 //READ: Descargar todas las licencias
 
 private void crearMapaLicencias() throws IOException {
-BufferedReader br = new BufferedReader(new FileReader("./data/licencias.txt"));
+BufferedReader br = new BufferedReader(new FileReader("/C:/Users/samis/OneDrive/Escritorio/DatosProyectoDPOO/licencias.txt"));
 
 String linea = br.readLine();
 
@@ -212,7 +212,7 @@ private void actualizarArchivoLicencias() throws IOException {
 //READ: Descargar todas las categorias
 
 private void crearMapaCategorias() throws IOException {
-BufferedReader br = new BufferedReader(new FileReader("./data/categorias.txt"));
+BufferedReader br = new BufferedReader(new FileReader("/C:/Users/samis/OneDrive/Escritorio/DatosProyectoDPOO/categorias.txt"));
 
 String linea = br.readLine();
 
@@ -247,7 +247,7 @@ private void actualizarArchivoCategorias() throws IOException {
 //READ: Descargar todas las clientes
 
 private void crearMapaClientes() throws IOException {
-BufferedReader br = new BufferedReader(new FileReader("./data/clientes.txt"));
+BufferedReader br = new BufferedReader(new FileReader("/C:/Users/samis/OneDrive/Escritorio/DatosProyectoDPOO/clientes.txt"));
 
 String linea = br.readLine();
 
@@ -255,9 +255,9 @@ while (linea != null) {
 	String[] partes = linea.split(";");
 	String usuario = partes[0];
 	ArrayList<Object> lista=reader.descomprimirCliente(linea);
-	Cliente cliente =(Cliente) lista.get(1);
-	String numLic= (String) lista.get(2);
-	String numTar=(String) lista.get(3);
+	Cliente cliente =(Cliente) lista.get(0);
+	String numLic= (String) lista.get(1);
+	String numTar=(String) lista.get(2);
 	
 	//Añado los objetos anteriores a cliente
 	cliente.setLicencia(mapaLicencias.get(numLic));
@@ -537,13 +537,13 @@ public void deacargarTodoslosDatos() throws IOException {
 	crearMapaLicencias();// COMPLETO
 	crearMapaCategorias();// COMPLETO
 	crearMapaClientes();// COMLETO ()Revisen este para hacer los siguientes.
-	crearMapaSedes();
-	crearMapaCarros();
-	crearMapaReservas();
-	crearMapaAlquileres();
-	crearMapaEmpleados();
-	crearMapaSeguros();
-	crearMapaTarifas();
+	//crearMapaSedes();
+	//crearMapaCarros();
+	//crearMapaReservas();
+	//crearMapaAlquileres();
+	//crearMapaEmpleados();
+	//crearMapaSeguros();
+	//crearMapaTarifas();
 	
 }
 public void cargarTodosLosDatos() throws IOException {
