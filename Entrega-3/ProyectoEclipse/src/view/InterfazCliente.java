@@ -87,7 +87,6 @@ public class InterfazCliente {
 private void crearReserva() {
 	String nombreCat=input("Categoría: ");
 	String sedeRec=input("Sede alquiler: ");
-	String  sedeEntrega=input("Sede entrega: ");
 	String timeRecoger=input("Fecha-hora alquiler: ");
 	String sedeFin=input("sede entrega");
 	String timeFin=input("Fecha-hora entrega");
@@ -100,9 +99,9 @@ private void crearReserva() {
 	else{
 		System.out.println("No hay carros disponibles, intente cambiar la categoría o las fechas");
 	}
-		
+
 	}
-private void cargarDatos() {
+private void cargarDatos() throws IOException {
 	elCliente.actualizarDatos();
 }
 

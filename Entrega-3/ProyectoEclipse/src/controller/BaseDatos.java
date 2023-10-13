@@ -1,8 +1,8 @@
 package controller;
 import java.io.BufferedReader;
-
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -34,7 +34,7 @@ private HashMap<String,Tarifa> mapaTarifasExcedente;//mapa tarivas por id
 private HashMap<String, Alquiler> mapaAlquileres;// mapa alquileres por id
 private HashMap<String,Cliente> mapaClientes; //mapa clientes por login
 private HashMap<String,Empleado> mapaEmpleados; //mapa empleados por login
-private HashMap<String, Admin> mapaAdmins; //mapa administradpres
+//private HashMap<String, Admin> mapaAdmins; //mapa administradpres
 private HashMap<String, Licencia> mapaLicencias; //mapa licencias por numero de licencia
 private HashMap<String, Tarjeta> mapaTarjetas; //mapa tarjetas por número
 
@@ -45,7 +45,7 @@ private Writer writer=new Writer();
 private Reader reader =new Reader();
 //Metodos
 public BaseDatos() {
-	this.mapaAdmins=new HashMap<>();
+	//this.mapaAdmins=new HashMap<>();
 	this.mapaAlquileres= new HashMap<>();
 	this.mapaCarros= new HashMap<>();
 	this.mapaCategorias=new HashMap<>();
@@ -105,7 +105,7 @@ public HashMap<String, Temporada> getMapaTemporadas(){
 //>>>>>>> branch 'main' of https://github.com/DPOO-GRUPO3/Proyecto-1.git
 // PRIMER OBJETO: TEMPORADA:
 //READ: DEscargar todas las temporadas
-private void crearMapaTemporadas() {
+private void crearMapaTemporadas() throws IOException {
 BufferedReader br = new BufferedReader(new FileReader("./data/temporadas.txt"));
 
 String linea = br.readLine();
@@ -128,7 +128,7 @@ private String generarTextoTemporadas(){
 	}
 	return texto;
 }
-private void actualizarArchivoTemporadas() {
+private void actualizarArchivoTemporadas() throws IOException {
 	String texto=generarTextoTemporadas();
 	FileWriter fichero = new FileWriter("./data/temporadas.txt");
 	fichero.write(texto);
@@ -141,7 +141,7 @@ private void actualizarArchivoTemporadas() {
 
 //READ: Descargar todas las tarjetas
 
-private void crearMapaTarjetas() {
+private void crearMapaTarjetas() throws IOException {
 BufferedReader br = new BufferedReader(new FileReader("./data/tarjetas.txt"));
 
 String linea = br.readLine();
@@ -165,7 +165,7 @@ private String generarTextoTarjetas(){
 	}
 	return texto;
 }
-private void actualizarArchivoTarjetas() {
+private void actualizarArchivoTarjetas() throws IOException {
 	String texto=generarTextoTarjetas();
 	FileWriter fichero = new FileWriter("./data/tarjetas.txt");
 	fichero.write(texto);
@@ -176,7 +176,7 @@ private void actualizarArchivoTarjetas() {
 
 //READ: Descargar todas las licencias
 
-private void crearMapaLicencias() {
+private void crearMapaLicencias() throws IOException {
 BufferedReader br = new BufferedReader(new FileReader("./data/licencias.txt"));
 
 String linea = br.readLine();
@@ -200,7 +200,7 @@ private String generarTextoLicencias(){
 	}
 	return texto;
 }
-private void actualizarArchivoLicencias() {
+private void actualizarArchivoLicencias() throws IOException {
 	String texto=generarTextoLicencias();
 	FileWriter fichero = new FileWriter("./data/licencias.txt");
 	fichero.write(texto);
@@ -211,7 +211,7 @@ private void actualizarArchivoLicencias() {
 
 //READ: Descargar todas las categorias
 
-private void crearMapaCategorias() {
+private void crearMapaCategorias() throws IOException {
 BufferedReader br = new BufferedReader(new FileReader("./data/categorias.txt"));
 
 String linea = br.readLine();
@@ -235,7 +235,7 @@ private String generarTextoCategorias(){
 	}
 	return texto;
 }
-private void actualizarArchivoCategorias() {
+private void actualizarArchivoCategorias() throws IOException {
 	String texto=generarTextoCategorias();
 	FileWriter fichero = new FileWriter("./data/categorias.txt");
 	fichero.write(texto);
@@ -246,7 +246,7 @@ private void actualizarArchivoCategorias() {
 
 //READ: Descargar todas las clientes
 
-private void crearMapaClientes() {
+private void crearMapaClientes() throws IOException {
 BufferedReader br = new BufferedReader(new FileReader("./data/clientes.txt"));
 
 String linea = br.readLine();
@@ -277,7 +277,7 @@ private String generarTextoClientes(){
 	}
 	return texto;
 }
-private void actualizarArchivoClientes() {
+private void actualizarArchivoClientes() throws IOException {
 	String texto=generarTextoClientes();
 	FileWriter fichero = new FileWriter("./data/clientes.txt");
 	fichero.write(texto);
@@ -288,7 +288,7 @@ private void actualizarArchivoClientes() {
 
 //READ: Descargar todas las sedes
 
-private void crearMapaSedes() {
+private void crearMapaSedes() throws IOException {
 BufferedReader br = new BufferedReader(new FileReader("./data/sedes.txt"));
 
 String linea = br.readLine();
@@ -312,7 +312,7 @@ private String generarTextoSedes(){
 	}
 	return texto;
 }
-private void actualizarArchivoSedes() {
+private void actualizarArchivoSedes() throws IOException {
 	String texto=generarTextoSedes();
 	FileWriter fichero = new FileWriter("./data/sedes.txt");
 	fichero.write(texto);
@@ -323,7 +323,7 @@ private void actualizarArchivoSedes() {
 
 //READ: Descargar todas las reservas
 
-private void crearMapaCarros() {
+private void crearMapaCarros() throws IOException {
 BufferedReader br = new BufferedReader(new FileReader("./data/carros.txt"));
 
 String linea = br.readLine();
@@ -347,7 +347,7 @@ private String generarTextoCarros(){
 	}
 	return texto;
 }
-private void actualizarArchivoCarros() {
+private void actualizarArchivoCarros() throws IOException {
 	String texto=generarTextoCarros();
 	FileWriter fichero = new FileWriter("./data/carro.txt");
 	fichero.write(texto);
@@ -358,7 +358,7 @@ private void actualizarArchivoCarros() {
 
 //READ: Descargar todas las reservas
 
-private void crearMapaReservas() {
+private void crearMapaReservas() throws IOException {
 BufferedReader br = new BufferedReader(new FileReader("./data/reservas.txt"));
 
 String linea = br.readLine();
@@ -382,7 +382,7 @@ private String generarTextoReservas(){
 	}
 	return texto;
 }
-private void actualizarArchivoReservas() {
+private void actualizarArchivoReservas() throws IOException {
 	String texto=generarTextoReservas();
 	FileWriter fichero = new FileWriter("./data/reservas.txt");
 	fichero.write(texto);
@@ -393,7 +393,7 @@ private void actualizarArchivoReservas() {
 
 //READ: Descargar todas las alquileres
 
-private void crearMapaAlquileres() {
+private void crearMapaAlquileres() throws IOException {
 BufferedReader br = new BufferedReader(new FileReader("./data/alquileres.txt"));
 
 String linea = br.readLine();
@@ -417,7 +417,7 @@ private String generarTextoAlquileres(){
 	}
 	return texto;
 }
-private void actualizarArchivoAlquileres() {
+private void actualizarArchivoAlquileres() throws IOException {
 	String texto=generarTextoAlquileres();
 	FileWriter fichero = new FileWriter("./data/alquileres.txt");
 	fichero.write(texto);
@@ -428,7 +428,7 @@ private void actualizarArchivoAlquileres() {
 
 //READ: Descargar todas las alquileres
 
-private void crearMapaEmpleados() {
+private void crearMapaEmpleados() throws IOException {
 BufferedReader br = new BufferedReader(new FileReader("./data/empleados.txt"));
 
 String linea = br.readLine();
@@ -452,7 +452,7 @@ private String generarTextoEmpleados(){
 	}
 	return texto;
 }
-private void actualizarArchivoEmpleados() {
+private void actualizarArchivoEmpleados() throws IOException {
 	String texto=generarTextoEmpleados();
 	FileWriter fichero = new FileWriter("./data/empleados.txt");
 	fichero.write(texto);
@@ -463,7 +463,7 @@ private void actualizarArchivoEmpleados() {
 
 //READ: Descargar todas las seguros
 
-private void crearMapaSeguros() {
+private void crearMapaSeguros() throws IOException {
 BufferedReader br = new BufferedReader(new FileReader("./data/seguros.txt"));
 
 String linea = br.readLine();
@@ -487,7 +487,7 @@ private String generarTextoSeguros(){
 	}
 	return texto;
 }
-private void actualizarArchivoSeguros() {
+private void actualizarArchivoSeguros() throws IOException {
 	String texto=generarTextoSeguros();
 	FileWriter fichero = new FileWriter("./data/seguros.txt");
 	fichero.write(texto);
@@ -498,7 +498,7 @@ private void actualizarArchivoSeguros() {
 
 //READ: Descargar todas las tarifas de excedentes
 
-private void crearMapaTarifas() {
+private void crearMapaTarifas() throws IOException {
 BufferedReader br = new BufferedReader(new FileReader("./data/tarifasExcedentes.txt"));
 
 String linea = br.readLine();
@@ -522,7 +522,7 @@ private String generarTextoTarifas(){
 	}
 	return texto;
 }
-private void actualizarArchivoTarifas() {
+private void actualizarArchivoTarifas() throws IOException {
 	String texto=generarTextoTarifas();
 	FileWriter fichero = new FileWriter("./data/tarifasExcedentes.txt");
 	fichero.write(texto);
@@ -531,7 +531,7 @@ private void actualizarArchivoTarifas() {
 
 //Descargar todos los datos
 
-public void deacargarTodoslosDatos() {
+public void deacargarTodoslosDatos() throws IOException {
 	crearMapaTemporadas();// COMPLETO
 	crearMapaTarjetas();// COMPLETO
 	crearMapaLicencias();// COMPLETO
@@ -546,7 +546,7 @@ public void deacargarTodoslosDatos() {
 	crearMapaTarifas();
 	
 }
-public void cargarTodosLosDatos() {
+public void cargarTodosLosDatos() throws IOException {
 	actualizarArchivoTarifas();
 	actualizarArchivoAlquileres();
 	actualizarArchivoCarros();

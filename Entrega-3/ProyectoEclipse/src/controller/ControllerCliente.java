@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.temporal.ChronoUnit;
@@ -158,7 +159,7 @@ private boolean hayFechaEnIntervalo(LocalDateTime fecha, LocalDateTime fecha1,
 		return false;
 	}
 }
-public void actualizarDatos() {
+public void actualizarDatos() throws IOException {
 	datos.cargarTodosLosDatos();
 }
 }

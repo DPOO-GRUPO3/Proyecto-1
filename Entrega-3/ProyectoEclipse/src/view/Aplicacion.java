@@ -1,11 +1,12 @@
 package view;
 
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import consola.Aplicacion;
+
 import controller.BaseDatos;
 
 
@@ -24,12 +25,13 @@ public class Aplicacion {
 				cargarDatos();
 				mostrarMenu();
 				int opcion_seleccionada = Integer.parseInt(input("Por favor seleccione una opción"));
+				Object usarEmpleado;
 				if (opcion_seleccionada == 1) {
 					usarAdminGeneral();}
 				else if (opcion_seleccionada == 2)
-					usarAdminSede();
+					usarAdminGeneral();
 				else if (opcion_seleccionada == 3 )
-					usarEmpleado;
+					usarAdminGeneral();
 				else if (opcion_seleccionada == 4 ) {
 					InterfazCliente elCliente= new InterfazCliente();
 					elCliente.correrCliente(datos);
@@ -42,6 +44,10 @@ public class Aplicacion {
 			}
 		
 		}}
+		private void usarAdminGeneral() {
+		// TODO Auto-generated method stub
+		
+	}
 		public void mostrarMenu()
 		{
 			System.out.println("\nOpciones de la aplicación\n");
@@ -66,7 +72,7 @@ public class Aplicacion {
 			}
 			return null;
 		}
-private void cargarDatos() {
+private void cargarDatos() throws IOException {
 	System.out.println("Descargando datos: ");
 
 		datos = new BaseDatos();

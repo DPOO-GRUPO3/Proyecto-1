@@ -202,7 +202,7 @@ public Empleado descomprimirEmpleado(String linea, HashMap<String, Sede> mapaSed
 	
 	Sede sede = mapaSedes.get(nombreSede);
 	
-	Empleado empleado= new Empleado(id,nombre,usuario,contraseña,email);
+	Empleado empleado= new Empleado(id,nombre);
 	empleado.setSede(sede);
 	
 	return empleado;
