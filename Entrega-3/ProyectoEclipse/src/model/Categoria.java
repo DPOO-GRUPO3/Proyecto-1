@@ -6,14 +6,16 @@ public class Categoria {
 // Atributos
 	private String nombreCat;
 	private double tarifaCat;
-	private Temporada tarifa;
-	private Tarifa tarifaExcedente;
+	private ArrayList<Temporada> tarifas;
+	private ArrayList<Tarifa>  tarifasExcedente;
 	private ArrayList<Carro> carros;
 	
 	public Categoria(String nombreCat, double tarifaAsociada) {
 		this.nombreCat=nombreCat;
 		this.tarifaCat=tarifaAsociada;
 		this.carros= new ArrayList<Carro>();
+		this.tarifasExcedente = new ArrayList<Tarifa>();
+		
 	}
 	
 	//getters
@@ -25,14 +27,14 @@ public class Categoria {
 		return tarifaCat;
 	}
 	
-	public Tarifa getTarifaExcedente()
+	public ArrayList<Tarifa> getTarifaExcedente()
 	{
-		return this.tarifaExcedente;
+		return this.tarifasExcedente;
 	}
 	
-	public Temporada getTarifa()
+	public ArrayList<Temporada> getTarifa()
 	{
-		return this.tarifa;
+		return this.tarifas;
 	}
 	
 	public ArrayList<Carro> getCarros()
@@ -45,12 +47,12 @@ public class Categoria {
 	
 	public void setTarifa(Temporada tarifa)
 	{
-		this.tarifa=tarifa;
+		this.tarifas.add(tarifa);
 	}
 	
 	public void setTarifaExcedente(Tarifa tarifaExcedente)
 	{
-		this.tarifaExcedente=tarifaExcedente;
+		this.tarifasExcedente.add(tarifaExcedente);
 	}
 	
 	public void setCarro(Carro carro)

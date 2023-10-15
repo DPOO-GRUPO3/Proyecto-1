@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Tarifa {
 	
@@ -12,13 +13,13 @@ public class Tarifa {
 	
 	private double precioExcedente;
 
-	private LocalDate fechaInicio;
+	private LocalDateTime fechaInicio;
 	
-	private LocalDate fechaFin;
+	private LocalDateTime fechaFin;
 	
 	//Constructor
 	
-	public Tarifa ( double precioExcedente, LocalDate fechaInicio,LocalDate fechaFin )
+	public Tarifa ( double precioExcedente, LocalDateTime fechaInicio,LocalDateTime fechaFin )
 	{
 		num++;
 		this.id= String.valueOf(num);
@@ -39,12 +40,12 @@ public class Tarifa {
 		return this.precioExcedente;
 	}
 	
-	public LocalDate getFechaInicio()
+	public LocalDateTime getFechaInicio()
 	{
 		return this.fechaInicio;
 	}
 	
-	public LocalDate getFechaFin()
+	public LocalDateTime getFechaFin()
 	{
 		return this.fechaFin;
 	}

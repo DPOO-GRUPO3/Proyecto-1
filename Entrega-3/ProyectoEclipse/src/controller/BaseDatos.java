@@ -11,6 +11,7 @@ import model.Carro;
 import model.Categoria;
 import model.Cliente;
 import model.Empleado;
+import model.Factura;
 import model.Licencia;
 import model.Reserva;
 import model.Sede;
@@ -30,6 +31,7 @@ private HashMap<String,Temporada> mapaTemporadas;
 private HashMap<String,Sede> mapaSedes;//mapa sedes por nombre
 private HashMap<String,Seguro> mapaSeguros;//mapa seguros por id
 private HashMap<String,Tarifa> mapaTarifasExcedente;//mapa tarivas por id
+private HashMap<String, Factura> mapaFacturas; //mapa factura por id
 //USUARIOS
 private HashMap<String, Alquiler> mapaAlquileres;// mapa alquileres por id
 private HashMap<String,Cliente> mapaClientes; //mapa clientes por login
@@ -75,11 +77,7 @@ public HashMap<String, Categoria> getMapaCateg(){
 public HashMap<String, Sede> getMapaSedes(){
 	return mapaSedes;
 }
-<<<<<<< HEAD
 
-=======
-//<<<<<<< HEAD
->>>>>>> branch 'main' of https://github.com/DPOO-GRUPO3/Proyecto-1.git
 
 public HashMap<String, Alquiler> getMapaAlquileres(){
 	return mapaAlquileres;
@@ -98,23 +96,19 @@ public HashMap<String, Seguro> getMapaSeguros(){
 }
 
 
-
-<<<<<<< HEAD
-
-=======
-//=======
->>>>>>> branch 'main' of https://github.com/DPOO-GRUPO3/Proyecto-1.git
 public HashMap<String, Reserva> getMapaReservas(){
 	return mapaReservas;
 }
 public HashMap<String, Temporada> getMapaTemporadas(){
 	return mapaTemporadas;
 }
-<<<<<<< HEAD
 
-=======
-//>>>>>>> branch 'main' of https://github.com/DPOO-GRUPO3/Proyecto-1.git
->>>>>>> branch 'main' of https://github.com/DPOO-GRUPO3/Proyecto-1.git
+public HashMap<String, Factura> getMapaFacturas(){
+	return mapaFacturas;
+}
+
+
+
 // PRIMER OBJETO: TEMPORADA:
 //READ: DEscargar todas las temporadas
 private void crearMapaTemporadas() throws IOException {
@@ -493,6 +487,7 @@ br.close();
 
 private String generarTextoSeguros(){
 	String texto="";
+	
 	for(Seguro seguro:mapaSeguros.values()) {
 		texto+=writer.comprimirSeguro(seguro);
 		texto+="\n";
@@ -552,10 +547,10 @@ public void deacargarTodoslosDatos() throws IOException {
 	crearMapaSedes();
 	crearMapaCarros();
 	crearMapaReservas();
-	//crearMapaAlquileres();
-	//crearMapaEmpleados();
-	//crearMapaSeguros();
-	//crearMapaTarifas();
+	crearMapaAlquileres();
+	crearMapaEmpleados();
+	crearMapaSeguros();
+	crearMapaTarifas();
 	
 }
 public void cargarTodosLosDatos() throws IOException {

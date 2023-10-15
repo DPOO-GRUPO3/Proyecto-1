@@ -4,11 +4,15 @@ public class Factura {
 	
 	//Atributos
 	
-	private int id;
+	private String id;
 	
-	private double pagoAnticipado;
+	private static int numF;
+	
+	private double pagoAnticipado = 0;
 	
 	private double total;
+	
+	private double precioLicencias;
 	
 	private Cliente cliente;
 	
@@ -18,9 +22,10 @@ public class Factura {
 	
 	//Constructor
 	
-	public Factura (int id, Cliente cliente, Alquiler alquiler)
+	public Factura ( Cliente cliente, Alquiler alquiler)
 	{
-		this.id=id;
+		this.numF++;
+		this.id=String.valueOf(numF);
 		this.cliente= cliente;
 		this.alquiler= alquiler;
 		calcularTotal(alquiler);
@@ -30,7 +35,7 @@ public class Factura {
 	
 	//getters
 	
-	public int getId()
+	public String getId()
 	{
 		return this.id;
 	}
@@ -55,6 +60,23 @@ public class Factura {
 		return this.alquiler;
 	}
 	
+	public double getPrecioLicencias()
+	{
+		return this.precioLicencias;
+	}
+	
+	//setters
+	
+	public void setPagoAnticipado()
+	{
+		this.pagoAnticipado= this.total * 0.3;
+	}
+	
+	public void setPrecioLicencias(int num)
+	{
+		this.precioLicencias= 500*num;
+	}
+	
 	
 	//Metódo para calcular total
 	
@@ -74,13 +96,16 @@ public class Factura {
 		
 		if (!(alquiler.getSeguro().equals(null)))
 		{
-			 precioSeguro= alquiler.getSeguro().getPrecio();
+			for (Seguro seguro: alquiler.getSeguro()) 
+				{
+					precioSeguro += seguro.getPrecio();
+				
+				}
 			
 		} 
 		
-		this.total= precioTarifa + precioExcedente + precioSeguro;
+		this.total= precioTarifa + precioExcedente + precioSeguro + this.precioLicencias;
 		
-		this.pagoAnticipado= total* 0.3;
 		
 	}
 

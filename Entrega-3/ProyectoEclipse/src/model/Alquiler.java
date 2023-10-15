@@ -26,13 +26,15 @@ public class Alquiler {
 	
 	private Tarifa tarifaExcedente;
 	
-	private Temporada tarifa;
+	private Temporada tarifas;
 	
-	private Seguro seguro;
+	private ArrayList<Seguro> seguros;
 	
 	private Carro carro;
 	
 	private Reserva reserva;
+	
+	private Factura factura;
 	
 	
 
@@ -48,6 +50,7 @@ public class Alquiler {
 		this.licencias = new ArrayList<Licencia>();
 		this.carro = carro;
 		this.fechaInicio=fechaInicio;
+		this.seguros = new ArrayList<Seguro>();
 		
 		
 	}
@@ -90,12 +93,12 @@ public class Alquiler {
 	
 	public Temporada getTarifa()
 	{
-		return this.tarifa;
+		return this.tarifas;
 	}
 	
-	public Seguro getSeguro()
+	public ArrayList<Seguro> getSeguro()
 	{
-		return this.seguro;
+		return this.seguros;
 	}
 	
 	public Carro getCarro()
@@ -109,6 +112,11 @@ public class Alquiler {
 	public Reserva getReserva()
 	{
 		return this.reserva;
+	}
+	
+	public Factura getFactura()
+	{
+		return this.factura;
 	}
 	//setters
 
@@ -126,16 +134,21 @@ public class Alquiler {
 	
 	public void setTarifa(Temporada tarifa)
 	{
-		this.tarifa= tarifa;
+		this.tarifas= tarifa;
 	}
 	
 	public void setSeguro(Seguro seguro)
 	{
-		this.seguro=seguro;
+		this.seguros.add(seguro);
 	}
 	
 	public void setReserva(Reserva reserva)
 	{
 		this.reserva= reserva;
+	}
+	
+	public void setFactura(Factura factura)
+	{
+		this.factura= factura;
 	}
 }
