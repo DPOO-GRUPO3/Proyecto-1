@@ -17,6 +17,8 @@ public class Tarifa {
 	
 	private LocalDateTime fechaFin;
 	
+	private Categoria categoria;
+	
 	//Constructor
 	
 	public Tarifa ( double precioExcedente, LocalDateTime fechaInicio,LocalDateTime fechaFin )
@@ -29,6 +31,11 @@ public class Tarifa {
 	}
 	
 	//getters
+	
+	public Categoria getCategoria()
+	{
+		return this.categoria;
+	}
 	
 	public String getId()
 	{
@@ -49,6 +56,12 @@ public class Tarifa {
 	{
 		return this.fechaFin;
 	}
+	
+	public void setCategoria(Categoria categoria)
+	{
+		this.categoria=categoria;
+	}
+	
 	
 	
 }

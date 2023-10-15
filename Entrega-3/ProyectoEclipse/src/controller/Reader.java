@@ -13,6 +13,7 @@ import model.Carro;
 import model.Categoria;
 import model.Cliente;
 import model.Empleado;
+import model.Factura;
 import model.Licencia;
 import model.Reserva;
 import model.Sede;
@@ -27,14 +28,19 @@ public class Reader {
 //IMPORTANTE EL ORDEN EN QUE SE CARGAN LOS DATOS.
 
 //PRIMER OBJETO: TEMPORADA
-public Temporada descomprimirTemporada(String linea) {
+public Temporada descomprimirTemporada(String linea, HashMap<String,Categoria> mapaCategorias) {
 	String[] partes = linea.split(";");
 	int id = Integer.parseInt(partes[0]);
 	LocalDateTime fecha1 = LocalDateTime.parse(partes[1]);
 	LocalDateTime fecha2 = LocalDateTime.parse(partes[2]);
 	double tarifa=Double.parseDouble(partes[3]);
+	String categoria = partes[5];
+	Categoria objCategoria = mapaCategorias.get(categoria);
 	Temporada temp=new Temporada(fecha1, fecha2, tarifa);
 	temp.setID(id);
+	temp.setCategoria(objCategoria);
+	objCategoria.setTarifa(temp);
+	
 	return temp;
 }
 //SEGUNDO OBJETO: TARJETA
@@ -123,12 +129,13 @@ public Carro descomprimirCarro(String linea,HashMap<String, Sede> mapaSedes,
 	}
 	
 
-	
+	Categoria categoria = mapaCategorias.get(nombrCateg);
 	car.setEstado(estado);
 	car.setCategoria(mapaCategorias.get(nombrCateg));
 	car.setCede(mapaSedes.get(nombreCede));
 	Sede sede= mapaSedes.get(nombreCede);
 	sede.setCarro(car);
+	categoria.setCarro(car);
 	return car;
 }
 // OCTAVO OBJETO: RESERVA
@@ -208,8 +215,7 @@ public Empleado descomprimirEmpleado(String linea, HashMap<String, Sede> mapaSed
 	
 	Sede sede = mapaSedes.get(nombreSede);
 	
-	Empleado empleado= new Empleado(id,nombre);
-	empleado.setSede(sede);
+	Empleado empleado= new Empleado(id, nombre, usuario, contraseña, email,sede);
 	
 	return empleado;
 }
@@ -225,16 +231,46 @@ public Seguro descomprimirSeguro(String linea)
 }
 
 //DOCEAVO OBJETO: TARIFA
-public Tarifa descomptimirTarifaExcedente(String linea) {
+public Tarifa descomptimirTarifaExcedente(String linea,HashMap<String,Categoria> mapaCategorias) {
 	
 
 	String[] partes = linea.split(";");
-	Double precio= Double.parseDouble(partes[0]);
-	LocalDateTime fechaInicio= LocalDateTime.parse(partes[1]);
-	LocalDateTime fechaFin = LocalDateTime.parse(partes[2]);
+	String id = partes[0];
+	Double precio= Double.parseDouble(partes[1]);
+	LocalDateTime fechaInicio= LocalDateTime.parse(partes[2]);
+	LocalDateTime fechaFin = LocalDateTime.parse(partes[3]);
+	String categoria = partes[4];
+	Categoria objCategoria = mapaCategorias.get(categoria);
+	Tarifa tarifa = new Tarifa (precio,fechaInicio,fechaFin);
+	objCategoria.setTarifaExcedente(tarifa);
+	tarifa.setCategoria(objCategoria);
 	
-	return new Tarifa (precio,fechaInicio,fechaFin);
+	objCategoria.setTarifaExcedente(tarifa);
+	
+	return tarifa;
 }	
+
+//TRECEAVO OBJETO: Factura
+public Factura descomptimirFactura(String linea,HashMap<String,Cliente> mapaClientes,HashMap<String, Alquiler> mapaAlquileres) {
+	
+
+	String[] partes = linea.split(";");
+	String id = partes[0];
+	Double pagoAnticipado= Double.parseDouble(partes[1]);
+	int licencias = Integer.parseInt(partes[2]);
+	Double total= Double.parseDouble(partes[3]);
+	String usuario = partes[4];
+	String idAlquiler = partes[5];
+	
+	Factura factura = new Factura(mapaClientes.get(usuario), mapaAlquileres.get(idAlquiler));
+	
+	factura.setPagoAnticipado();
+	factura.setTotal(total);
+	factura.setPrecioLicencias(licencias);
+	
+	
+	return factura;
+}
 
 }
 

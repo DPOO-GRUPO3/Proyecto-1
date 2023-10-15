@@ -513,7 +513,7 @@ String linea = br.readLine();
 while (linea != null) {
 	String[] partes = linea.split(";");
 	String id = partes[0];
-	Tarifa tarifa = reader.descomptimirTarifaExcedente(linea);
+	Tarifa tarifa = reader.descomptimirTarifaExcedente(linea,mapaCategorias);
 	mapaTarifasExcedente.put(id, tarifa);
 	linea = br.readLine();
 }
@@ -536,24 +536,62 @@ private void actualizarArchivoTarifas() throws IOException {
 	fichero.close();
 }
 
+//TRECEAVO OBJETO: facturas
+
+//READ: Descargar todas las facturas
+
+private void crearMapaFacturas() throws IOException {
+BufferedReader br = new BufferedReader(new FileReader("./data/tarifasExcedentes.txt"));
+
+String linea = br.readLine();
+
+while (linea != null) {
+	String[] partes = linea.split(";");
+	String id = partes[0];
+	Factura factura = reader.descomptimirFactura(linea, mapaClientes, mapaAlquileres);
+	mapaFacturas.put(id, factura);
+	linea = br.readLine();
+}
+br.close();
+}
+//Write: Actualizar archivo, reescribirlo.
+
+private String generarTextoFacturas(){
+	String texto="";
+	for(Factura factura:mapaFacturas.values()) {
+		texto+=writer.comprimirFactura(factura);
+		texto+="\n";
+	}
+	return texto;
+}
+private void actualizarArchivoFacturas() throws IOException {
+	String texto=generarTextoFacturas();
+	FileWriter fichero = new FileWriter("./data/tarifasExcedentes.txt");
+	fichero.write(texto);
+	fichero.close();
+}
+
 //Descargar todos los datos
 
 public void deacargarTodoslosDatos() throws IOException {
+	crearMapaSeguros();
+	crearMapaTarifas();
+	crearMapaCategorias();// COMPLETO
 	crearMapaTemporadas();// COMPLETO
 	crearMapaTarjetas();// COMPLETO
 	crearMapaLicencias();// COMPLETO
-	crearMapaCategorias();// COMPLETO
 	crearMapaClientes();// COMLETO ()Revisen este para hacer los siguientes.
 	crearMapaSedes();
 	crearMapaCarros();
 	crearMapaReservas();
 	crearMapaAlquileres();
 	crearMapaEmpleados();
-	crearMapaSeguros();
-	crearMapaTarifas();
+	crearMapaFacturas();
+	
 	
 }
 public void cargarTodosLosDatos() throws IOException {
+	
 	actualizarArchivoTarifas();
 	actualizarArchivoAlquileres();
 	actualizarArchivoCarros();
@@ -567,6 +605,7 @@ public void cargarTodosLosDatos() throws IOException {
 	actualizarArchivoSeguros();
 	actualizarArchivoTarjetas();
 	actualizarArchivoTemporadas();
+	actualizarArchivoFacturas();
 	
 }
 }

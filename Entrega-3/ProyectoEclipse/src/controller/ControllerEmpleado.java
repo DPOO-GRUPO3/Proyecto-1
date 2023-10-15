@@ -174,6 +174,7 @@ public class ControllerEmpleado {
 		mapaFacturas.put(factura.getId(), factura);
 		alquiler.setFactura(factura);
 		mapaAlquileres.put(alquiler.getAlquileresId(), alquiler);
+		carro.setEstado("alquilado");
 		return alquiler;
 		
 	}
@@ -205,6 +206,7 @@ public class ControllerEmpleado {
 		factura.setPagoAnticipado();
 		alquiler.setFactura(factura);
 		mapaFacturas.put(factura.getId(), factura);
+		carro.setEstado("alquilado");
 		
 		
 		return alquiler;
@@ -288,6 +290,7 @@ public class ControllerEmpleado {
 		{
 			Carro carro = mapaCarros.get(placa);
 			carro.setFechaDisponibleCons(fechaHoy.plusDays(dias));
+			carro.setEstado("Limpieza o Mantenimiento");
 		}
 		
 // Revisar que carros ya cumplieron con la fecha de mantenimientos o limpieza
@@ -298,6 +301,7 @@ public class ControllerEmpleado {
 				if (fechaHoy.isAfter(carro.getFechaDispCons()))
 				{
 					carro.setFechaDisponibleCons(null);
+					carro.setEstado("Disponible");
 				}
 			
 			

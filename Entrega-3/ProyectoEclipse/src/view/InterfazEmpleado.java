@@ -125,10 +125,9 @@ private static void crearAlquiler()
 	String reserva = input("¿El cliente tiene una reserva? (SI/NO)");
 	String cliente = input("Ingrese el usuario del cliente");
 	String sedeDevolución = input("Ingrese la sede en donde se desea devolver el vehículo");
-	String sedeRecoger = input("Ingrese la sede en donde se recoge el vehículo");
-    DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy'T'HH:mm:ss"); 
-	LocalDateTime fechaDeb = LocalDateTime.parse(input("Ingrese fecha de devolución del vehículo (dd-MM-yyyy'T'HH:mm:ss)"),formato);
-	LocalDateTime fechaInicio = LocalDateTime.parse(input("Ingrese fecha para recoger vehículo (dd-MM-yyyy'T'HH:mm:ss)"),formato);
+	String sedeRecoger = input("Ingrese la sede en donde se recoge el vehículo"); 
+	LocalDateTime fechaDeb = LocalDateTime.parse(input("Ingrese fecha de devolución del vehículo (yyyy-MM-dd'T'HH:mm:ss)"));
+	LocalDateTime fechaInicio = LocalDateTime.parse(input("Ingrese fecha para recoger vehículo (yyyy-MM-dd'T'HH:mm:ss)"));
 	String categoria = input("Digite la categoría del vehículo deseada: ");
 	
 	//Verificar si ya existe reserva

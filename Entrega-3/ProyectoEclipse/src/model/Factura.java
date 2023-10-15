@@ -10,9 +10,9 @@ public class Factura {
 	
 	private double pagoAnticipado = 0;
 	
-	private double total;
-	
 	private double precioLicencias;
+	
+	private double total;
 	
 	private Cliente cliente;
 	
@@ -75,6 +75,11 @@ public class Factura {
 	public void setPrecioLicencias(int num)
 	{
 		this.precioLicencias= 500*num;
+	}
+	
+	public void setTotal(double total)
+	{
+		this.total= total;
 	}
 	
 	

@@ -16,7 +16,7 @@ public class Empleado implements Usuario {
 	
 	private Sede sede;
 	
-	public Empleado(String id, String nombre, String usuario, String contrasena, String email)
+	public Empleado(String id, String nombre, String usuario, String contrasena, String email, Sede sede)
 	{
 		this.id= id;
 		this.nombre=nombre;

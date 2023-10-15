@@ -9,6 +9,7 @@ private int idTemporada;
 private LocalDateTime fechaInicio;
 private LocalDateTime fechaFin;
 private double tarifaTemporada;
+private Categoria categoria;
 
 
 public Temporada(LocalDateTime fechaInicio,LocalDateTime fechaFin,double tarifaTemporada) {
@@ -34,6 +35,15 @@ public double getTarifaTemporada() {
 }
 public int getIdTemporada() {
 	return idTemporada;
+}
+
+public void setCategoria(Categoria categoria)
+{
+	this.categoria=categoria;
+}
+public Categoria getCategoria()
+{
+	return categoria;
 }
 
 }
