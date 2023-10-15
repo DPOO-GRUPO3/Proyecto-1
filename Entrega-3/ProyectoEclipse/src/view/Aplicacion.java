@@ -63,7 +63,6 @@ public class Aplicacion {
 		public void mostrarMenu()
 		{
 			System.out.println("\nOpciones de la aplicación\n");
-			System.out.println("1. Cargar Datos");
 			System.out.println("2. ingresar como cliente");
 			System.out.println("3. ngresar como cliente");
 			System.out.println("4. ngresar como cliente");
