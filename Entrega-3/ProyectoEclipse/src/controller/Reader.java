@@ -167,6 +167,7 @@ public Alquiler descomprimirAlquiler(String linea,HashMap<String, Sede> mapaSede
 	String tarifaExcedente = partes[7];
 	String temporada = partes[8];
 	String seguro = partes[9];
+	//si no hay reserva hay espacio para null
 	String reserva= partes[10];
 	
 	

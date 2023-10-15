@@ -49,6 +49,7 @@ public class Alquiler {
 		this.carro = carro;
 		this.fechaInicio=fechaInicio;
 		
+		
 	}
 	
 
@@ -103,6 +104,11 @@ public class Alquiler {
 	}
 	public LocalDateTime getFechaInicio() {
 		return fechaInicio;
+	}
+	
+	public Reserva getReserva()
+	{
+		return this.reserva;
 	}
 	//setters
 

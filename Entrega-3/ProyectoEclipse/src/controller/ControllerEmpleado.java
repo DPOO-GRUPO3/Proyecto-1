@@ -2,6 +2,8 @@ package controller;
 
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import model.Alquiler;
@@ -36,7 +38,6 @@ public class ControllerEmpleado {
 	private HashMap<String, Alquiler> mapaAlquileres;// mapa alquileres por id
 	private HashMap<String,Cliente> mapaClientes; //mapa clientes por login
 	private HashMap<String,Empleado> mapaEmpleados; //mapa empleados por login
-	private HashMap<String, Admin> mapaAdmins; //mapa administradpres
 	private HashMap<String, Licencia> mapaLicencias; //mapa licencias por numero de licencia
 	private HashMap<String, Tarjeta> mapaTarjetas; //mapa tarjetas por número
 	
@@ -74,8 +75,46 @@ public class ControllerEmpleado {
 		return r;
 	}
 	
-	private Carro Disponibilidad(Sede sede,Categoria categoria, LocalDate fechaInicio, LocalDate fechaFin)
+	private Carro Disponibilidad(Sede sede,Categoria categoria, LocalDateTime fechaInicio, LocalDateTime fechaFin)
 	{
+		for (Carro carro:categoria.getCarros())
+		{
+			LocalDateTime fechaDisponibilidad = carro.getFechaDispCons();
+			ArrayList<Reserva> reservas = carro.getReservas();
+			
+			for (Reserva reserva:reservas)
+			{
+				if (!(fechaDisponibilidad.equals(null)))
+					{
+						
+					}
+			}
+			
+		}
+		
+	}
+	
+	public void CrearAlquiler(String id, String usuario, String sedeDevolucion, String sedeRecoger,
+			String fechaDeb, String fechaInicio, String categoria)
+	{
+		Cliente objCliente= mapaClientes.get(usuario);
+		Sede objSedeDevolucion=mapaSedes.get(sedeDevolucion);
+		Sede objSedeRecoger=mapaSedes.get(sedeDevolucion);
+		LocalDateTime objFechInicio = LocalDateTime.parse(fechaInicio);
+		LocalDateTime objFechDeb = LocalDateTime.parse(fechaDeb);
+		Categoria objCategoria = mapaCategorias.get(categoria);
+		Temporada tarifa = objCategoria.getTarifa();
+		Tarifa tarifaExcedente= null;
+		
+		
+		if (!(sedeDevolucion.equals(sedeRecoger)))
+		{
+			tarifaExcedente= objCategoria.getTarifaExcedente();
+		}
+		
+		Carro carro = Disponibilidad(objSedeRecoger, objCategoria, fechaInicio, fechaDeb);
+		
+		
 		
 	}
 	
