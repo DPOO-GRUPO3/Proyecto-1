@@ -119,7 +119,7 @@ String linea = br.readLine();
 while (linea != null) {
 	String[] partes = linea.split(";");
 	String id = partes[0];
-	Temporada temp=reader.descomprimirTemporada(linea);
+	Temporada temp=reader.descomprimirTemporada(linea,mapaCategorias);
 	mapaTemporadas.put(id, temp);
 	linea = br.readLine();
 }

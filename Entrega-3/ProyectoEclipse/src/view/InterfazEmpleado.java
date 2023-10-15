@@ -1,8 +1,5 @@
 package view;
 
-<<<<<<< HEAD
-public class InterfazEmpleado {
-=======
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -244,6 +241,6 @@ public static void mostrarMenu()
 }
 
 
->>>>>>> dcc02bb4fb743a6aca9ea7caaf397c0354cf91be
+
 
 }
