@@ -1,6 +1,7 @@
 package controller;
 
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import model.Carro;
 import model.Categoria;
 import model.Cliente;
 import model.Empleado;
+import model.Factura;
 import model.Licencia;
 import model.Reserva;
 import model.Sede;
@@ -34,6 +36,7 @@ public class ControllerEmpleado {
 	private HashMap<String,Sede> mapaSedes;//mapa sedes por nombre
 	private HashMap<String,Seguro> mapaSeguros;//mapa seguros por id
 	private HashMap<String,Tarifa> mapaTarifasExcedente;//mapa tarivas por id
+	private HashMap<String, Factura> mapaFacturas; //mapa factura por id
 	//USUARIOS
 	private HashMap<String, Alquiler> mapaAlquileres;// mapa alquileres por id
 	private HashMap<String,Cliente> mapaClientes; //mapa clientes por login
@@ -51,6 +54,15 @@ public class ControllerEmpleado {
 		this.mapaCarros= datos.getMapaCarros();
 		this.mapaAlquileres= datos.getMapaAlquileres();
 		this.mapaEmpleados=datos.getMapaEmpleados();
+		this.mapaLicencias= datos.getMapaLicencias();
+		this.mapaSeguros= datos.getMapaSeguros();
+		this.mapaFacturas = datos.getMapaFacturas();
+	}
+	
+	
+	public BaseDatos getDatos()
+	{
+		return this.datos;
 	}
 	
 	
@@ -77,47 +89,249 @@ public class ControllerEmpleado {
 	
 	private Carro Disponibilidad(Sede sede,Categoria categoria, LocalDateTime fechaInicio, LocalDateTime fechaFin)
 	{
+		boolean disponible= false;
+		
 		for (Carro carro:categoria.getCarros())
 		{
-			LocalDateTime fechaDisponibilidad = carro.getFechaDispCons();
 			ArrayList<Reserva> reservas = carro.getReservas();
 			
 			for (Reserva reserva:reservas)
 			{
-				if (!(fechaDisponibilidad.equals(null)))
-					{
-						
-					}
+				disponible = hayInterseccionIntervaloReservaConFechas( reserva, fechaInicio,fechaFin);
+				
 			}
 			
+			if (disponible && sede.equals(carro.getSede()))
+			{
+				return carro;
+			}	
 		}
 		
+		return null;	
 	}
 	
-	public void CrearAlquiler(String id, String usuario, String sedeDevolucion, String sedeRecoger,
-			String fechaDeb, String fechaInicio, String categoria)
+	private boolean hayInterseccionIntervaloReservaConFechas(Reserva reserva,
+			LocalDateTime fecha1,LocalDateTime fecha2) {
+		LocalDateTime in=reserva.getFechaYHoraInicio();
+		// anadimos 2 días a fin
+		LocalDateTime fin=reserva.getFechaYHoraFin().plusDays(2);
+		//deben pasar 4 cosas y cumplirse siempre
+		//1 el inicio del intervalo no debe estar en el intervaloReserva
+		if(hayFechaEnIntervalo(fecha1,in,fin)==true) {
+			return true;
+		}
+		//2 el fin del intervalo no debe estar en el intervaloReserva
+		if(hayFechaEnIntervalo(fecha2,in,fin)==true) {
+			return true;}
+
+	// 3 el inicio del intervaloReserva no debe estar en el intervalo
+		if(hayFechaEnIntervalo(in,fecha1,fecha2)==true) {
+			return true;
+		}
+		// 4 el fin del intervaloReserva no debe estar en el intervalo
+		if(hayFechaEnIntervalo(fin,fecha1,fecha2)==true) {
+			return true;
+			
+		}
+		else {
+			return false;
+		}
+	}
+	
+	private boolean hayFechaEnIntervalo(LocalDateTime fecha, LocalDateTime fecha1,
+			LocalDateTime fecha2) {
+		if(fecha.isAfter(fecha1) && fecha.isBefore(fecha2)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	//Para crear un alquiler donde no exista reserva
+	
+	public Alquiler CrearAlquiler( String usuario, String sedeDevolucion, String sedeRecoger,
+			LocalDateTime fechaDeb, LocalDateTime fechaInicio, String categoria)
 	{
 		Cliente objCliente= mapaClientes.get(usuario);
 		Sede objSedeDevolucion=mapaSedes.get(sedeDevolucion);
-		Sede objSedeRecoger=mapaSedes.get(sedeDevolucion);
-		LocalDateTime objFechInicio = LocalDateTime.parse(fechaInicio);
-		LocalDateTime objFechDeb = LocalDateTime.parse(fechaDeb);
+		Sede objSedeRecoger=mapaSedes.get(sedeRecoger);
 		Categoria objCategoria = mapaCategorias.get(categoria);
-		Temporada tarifa = objCategoria.getTarifa();
+		Temporada tarifa = tarifa(objCategoria, fechaInicio);
 		Tarifa tarifaExcedente= null;
 		
+		Carro carro = Disponibilidad(objSedeRecoger, objCategoria,fechaInicio, fechaDeb);
+		
+		Alquiler alquiler= new Alquiler(objCliente, fechaDeb, fechaInicio, objSedeRecoger, objSedeDevolucion, carro);
+		alquiler.setTarifa(tarifa);
 		
 		if (!(sedeDevolucion.equals(sedeRecoger)))
 		{
-			tarifaExcedente= objCategoria.getTarifaExcedente();
+			tarifaExcedente= tarifaExcedente(objCategoria, fechaInicio);
+			alquiler.setTarifaExcedente(tarifaExcedente);
 		}
-		
-		Carro carro = Disponibilidad(objSedeRecoger, objCategoria, fechaInicio, fechaDeb);
-		
-		
+		Factura factura= new Factura(objCliente,alquiler);
+		mapaFacturas.put(factura.getId(), factura);
+		alquiler.setFactura(factura);
+		mapaAlquileres.put(alquiler.getAlquileresId(), alquiler);
+		return alquiler;
 		
 	}
 	
+// Crear alquiler para una reserva existente
 	
+	public Alquiler crearAlquilerReserva(String categoriaId, String usuario, LocalDateTime fechaInicio, LocalDateTime fechaFin)
+	{
+		Cliente cliente= mapaClientes.get(usuario);
+		Categoria categoria = mapaCategorias.get(categoriaId);
+		Reserva reserva = verificarReserva(categoria, cliente, fechaInicio, fechaFin);
+		Sede sedeRecoger= reserva.getSedeInicio();
+		Sede sedeDevolucion= reserva.getSedeFin();
+		Temporada tarifa = tarifa(categoria, fechaInicio);
+		Tarifa tarifaExcedente= null;
+		Carro carro = reserva.getCarroReservado();
+		
+		Alquiler alquiler= new Alquiler(cliente, fechaFin, fechaInicio, sedeRecoger, sedeDevolucion, carro);
+		alquiler.setTarifa(tarifa);
+		
+		if (!(sedeDevolucion.equals(sedeRecoger)))
+		{
+			tarifaExcedente = tarifaExcedente(categoria, fechaInicio);
+			alquiler.setTarifaExcedente(tarifaExcedente);
+		}
+		
+		mapaAlquileres.put(alquiler.getAlquileresId(), alquiler);
+		Factura factura = new Factura(cliente, alquiler);
+		factura.setPagoAnticipado();
+		alquiler.setFactura(factura);
+		mapaFacturas.put(factura.getId(), factura);
+		
+		
+		return alquiler;
+		
+	}
+		
+		
+		
+// Verificar si existe una reserva 
+		private Reserva verificarReserva(Categoria categoria, Cliente cliente, LocalDateTime fechaInicio, LocalDateTime fechaFin)
+		{
+			
+			for (Carro carro: categoria.getCarros())
+			{
+				for (Reserva reserva: carro.getReservas())
+				{
+					LocalDateTime inicio= reserva.getFechaYHoraInicio();
+					LocalDateTime fin= reserva.getFechaYHoraFin();
+					
+					if (fechaInicio.isEqual(inicio) && fechaFin.isEqual(fin) && cliente.equals(reserva.getCliente()))
+					{
+						return reserva;
+					}	
+				}
+			}
+			
+			return null;
+			
+		}
+		
+//Saber tarifa correspondiente según fecha y categoria
+		
+		private Temporada tarifa(Categoria categoria, LocalDateTime fechaInicio)
+		{
+			for (Temporada tarifa: categoria.getTarifa())
+			{
+				LocalDateTime inicio = tarifa.getInicioTemporada();
+				LocalDateTime fin = tarifa.getInicioTemporada();
+				
+				if (inicio.isEqual(fechaInicio) || fin.isAfter(fechaInicio))
+				{
+					return tarifa;
+				}
+			}
+			
+			return null;
+		}
+		
+		private Tarifa tarifaExcedente(Categoria categoria, LocalDateTime fechaInicio)
+		{
+			for (Tarifa tarifa: categoria.getTarifaExcedente())
+			{
+				LocalDateTime inicio = tarifa.getFechaInicio();
+				LocalDateTime fin = tarifa.getFechaFin();
+				
+				if (inicio.isEqual(fechaInicio) || fin.isAfter(fechaInicio))
+				{
+					return tarifa;
+				}
+			}
+			
+			return null;
+		}
+		
+// Agregar las licencias al alquiler
+		
+		public void agregarLicencias(Alquiler alquiler, String idLicencia)
+		{
+			
+				Licencia licencia = mapaLicencias.get(idLicencia);
+				alquiler.setLicencia(licencia);
+		}
+		
+		
 
+
+		
+// Poner fecha en que un carro saldra de mantenimiento o de limpieza
+		
+		public void ActualizarCarro ( String placa, LocalDateTime fechaHoy, int dias)
+		{
+			Carro carro = mapaCarros.get(placa);
+			carro.setFechaDisponibleCons(fechaHoy.plusDays(dias));
+		}
+		
+// Revisar que carros ya cumplieron con la fecha de mantenimientos o limpieza
+		
+		public void cumplimientoFechaCarro( LocalDateTime fechaHoy)
+		{
+			for (Carro carro: mapaCarros.values())
+				if (fechaHoy.isAfter(carro.getFechaDispCons()))
+				{
+					carro.setFechaDisponibleCons(null);
+				}
+			
+			
+		}
+		
+
+//generar texto factura 
+		
+		public void generarFactura(Factura factura)
+		{
+			String id = "Id: "+ factura.getId() + "\n";
+			String pagoAnticipado = "Pago Anticipado: "+ String.valueOf(factura.getPagoAnticipado())+ "\n";
+			String total = "Total: " + String.valueOf(factura.getTotal())+ "\n";
+			String cliente = "Cliente: " +  factura.getCliente().getNombre() + "\n";
+			String alquiler = "Id alquiler: " + factura.getAlquiler().getAlquileresId() + "\n";
+			String licencias = "Licencias";
+			for (Licencia licencia: factura.getAlquiler().getLicencias())
+			{
+				licencias += licencia.getNumero() + "  ";
+			}
+			
+			System.out.println(id+pagoAnticipado+total+cliente+alquiler+ licencias + "\n");
+		}
+
+		
+//Actualizar Dtaos
+		
+		public void actualizarDatos() throws IOException {
+			datos.cargarTodosLosDatos();
+		}
+		
+		
+		
+
+		
+		
 }

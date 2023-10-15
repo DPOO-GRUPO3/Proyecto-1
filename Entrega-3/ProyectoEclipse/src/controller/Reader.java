@@ -230,8 +230,8 @@ public Tarifa descomptimirTarifaExcedente(String linea) {
 
 	String[] partes = linea.split(";");
 	Double precio= Double.parseDouble(partes[0]);
-	LocalDate fechaInicio= LocalDate.parse(partes[1]);
-	LocalDate fechaFin = LocalDate.parse(partes[2]);
+	LocalDateTime fechaInicio= LocalDateTime.parse(partes[1]);
+	LocalDateTime fechaFin = LocalDateTime.parse(partes[2]);
 	
 	return new Tarifa (precio,fechaInicio,fechaFin);
 }	

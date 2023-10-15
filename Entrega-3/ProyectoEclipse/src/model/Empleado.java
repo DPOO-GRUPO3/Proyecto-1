@@ -10,18 +10,18 @@ public class Empleado implements Usuario {
 	
 	private String usuario;
 	
-	private String contraseña;
+	private String contrasena;
 	
 	private String email;
 	
 	private Sede sede;
 	
-	public Empleado(String id, String nombre, String usuario, String contraseña, String email)
+	public Empleado(String id, String nombre, String usuario, String contrasena, String email)
 	{
 		this.id= id;
 		this.nombre=nombre;
 		this.usuario= usuario;
-		this.contraseña=contraseña;
+		this.contrasena=contrasena;
 		this.email=email;
 				
 	}
@@ -46,7 +46,7 @@ public class Empleado implements Usuario {
 	
 	public String getContrasena()
 	{
-		return this.contraseña;
+		return this.contrasena;
 	}
 	
 	public Sede getSede()
@@ -65,31 +65,31 @@ public class Empleado implements Usuario {
 	 * */ 
 	
     //private String usuario;
-    //private String contraseña;
+    //private String contraseï¿½a;
     private boolean sesionIniciada;
 
-    public Empleado(String usuario, String contraseña) {
+    public Empleado(String usuario, String contrasena) {
         this.usuario = usuario;
-        this.contraseña = contraseña;
+        this.contrasena = contrasena;
     }
 
-    @Override
-    public void iniciarSesion(String nombreUsuario, String contraseña) {
-        if (usuario.equals(this.usuario) && contraseña.equals(this.contraseña)) {
+    
+    public void iniciarSesion(String nombreUsuario, String contrasena) {
+        if (usuario.equals(this.usuario) && contrasena.equals(this.contrasena)) {
             sesionIniciada = true;
-            System.out.println("Sesión iniciada para el empleado: " + usuario);
+            System.out.println("Sesiï¿½n iniciada para el empleado: " + usuario);
         } else {
-            System.out.println("Error: Nombre de usuario o contraseña incorrectos.");
+            System.out.println("Error: Nombre de usuario o contraseï¿½a incorrectos.");
         }
     }
 
-    @Override
+    
     public void cerrarSesion() {
         sesionIniciada = false;
-        System.out.println("Sesión cerrada para el empleado.");
+        System.out.println("SesiÃ³n cerrada para el empleado.");
     }
 
-    @Override
+    
     public boolean estaSesionIniciada() {
         return sesionIniciada;
     }
