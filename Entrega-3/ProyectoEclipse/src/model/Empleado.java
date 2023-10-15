@@ -10,18 +10,18 @@ public class Empleado implements Usuario {
 	
 	private String usuario;
 	
-	private String contraseÃ±a;
+	private String contraseña;
 	
 	private String email;
 	
 	private Sede sede;
 	
-	public Empleado(String id, String nombre, String usuario, String contraseÃ±a, String email)
+	public Empleado(String id, String nombre, String usuario, String contraseña, String email)
 	{
 		this.id= id;
 		this.nombre=nombre;
 		this.usuario= usuario;
-		this.contraseÃ±a=contraseÃ±a;
+		this.contraseña=contraseña;
 		this.email=email;
 				
 	}
@@ -46,7 +46,7 @@ public class Empleado implements Usuario {
 	
 	public String getContrasena()
 	{
-		return this.contraseÃ±a;
+		return this.contraseña;
 	}
 	
 	public Sede getSede()
@@ -60,7 +60,38 @@ public class Empleado implements Usuario {
 		this.sede= sede;
 	}
 
+	/*
+	 * Metodos inicio de sesion
+	 * */ 
 	
-	
+    //private String usuario;
+    //private String contraseña;
+    private boolean sesionIniciada;
 
+    public Empleado(String usuario, String contraseña) {
+        this.usuario = usuario;
+        this.contraseña = contraseña;
+    }
+
+    @Override
+    public void iniciarSesion(String nombreUsuario, String contraseña) {
+        if (usuario.equals(this.usuario) && contraseña.equals(this.contraseña)) {
+            sesionIniciada = true;
+            System.out.println("Sesión iniciada para el empleado: " + usuario);
+        } else {
+            System.out.println("Error: Nombre de usuario o contraseña incorrectos.");
+        }
+    }
+
+    @Override
+    public void cerrarSesion() {
+        sesionIniciada = false;
+        System.out.println("Sesión cerrada para el empleado.");
+    }
+
+    @Override
+    public boolean estaSesionIniciada() {
+        return sesionIniciada;
+    }
 }
+	

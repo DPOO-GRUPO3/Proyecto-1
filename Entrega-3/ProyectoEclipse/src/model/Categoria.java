@@ -10,7 +10,7 @@ public class Categoria {
 	private Tarifa tarifaExcedente;
 	private ArrayList<Carro> carros;
 	
-	public Categoria(String nombreCat, Double tarifaAsociada) {
+	public Categoria(String nombreCat, double tarifaAsociada) {
 		this.nombreCat=nombreCat;
 		this.tarifaCat=tarifaAsociada;
 		this.carros= new ArrayList<Carro>();

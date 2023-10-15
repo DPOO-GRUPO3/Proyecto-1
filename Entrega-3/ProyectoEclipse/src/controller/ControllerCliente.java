@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.temporal.ChronoUnit;
@@ -38,7 +39,12 @@ public void logIn(String usuario,String contrasena) {
 		if(contr.equals(contrasena)==true) {
 			this.cliente=cliente;
 		}
-		
+		else {
+			
+		}
+}	
+	else {
+	
 }
 
 }
@@ -54,7 +60,7 @@ public double crearReserva(String nombreCategoria, String sedeRec,
 	
 	for(Carro carro:mapaCarros.values()) {
 		LocalDateTime fechadisp=carro.getFechaDispCons();
-		if(fechadisp.equals(null)==false && fechadisp.isAfter(fechaPed1)) {
+		if(fechadisp.equals(null)==false && fechadisp.plusDays(2).isAfter(fechaPed1)) {
 			continue; //descartamos el carro por fecha disponibilidad
 		}
 	
@@ -126,7 +132,8 @@ private boolean hayReservasEnIntervalo(Carro carro,LocalDateTime fecha1,LocalDat
 private boolean hayInterseccionIntervaloReservaConFechas(Reserva reserva,
 		LocalDateTime fecha1,LocalDateTime fecha2) {
 	LocalDateTime in=reserva.getFechaYHoraInicio();
-	LocalDateTime fin=reserva.getFechaYHoraFin();
+	// anadimos 2 días a fin
+	LocalDateTime fin=reserva.getFechaYHoraFin().plusDays(2);
 	//deben pasar 4 cosas y cumplirse siempre
 	//1 el inicio del intervalo no debe estar en el intervaloReserva
 	if(hayFechaEnIntervalo(fecha1,in,fin)==true) {
@@ -158,7 +165,7 @@ private boolean hayFechaEnIntervalo(LocalDateTime fecha, LocalDateTime fecha1,
 		return false;
 	}
 }
-public void actualizarDatos() {
+public void actualizarDatos() throws IOException {
 	datos.cargarTodosLosDatos();
 }
 }

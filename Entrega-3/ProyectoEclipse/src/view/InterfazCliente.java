@@ -8,8 +8,8 @@ import controller.BaseDatos;
 import controller.ControllerCliente;
 
 public class InterfazCliente {
-	private ControllerCliente elCliente;
-	public void correrCliente(BaseDatos datos) throws IOException
+	public static ControllerCliente elCliente;
+	public static void correrCliente(BaseDatos datos) throws IOException
 	{
 		System.out.println("Bienvenido cliente");
 		elCliente= new ControllerCliente();
@@ -50,7 +50,7 @@ public class InterfazCliente {
 		}
 	}
 
-	public String input(String mensaje)
+	public static String input(String mensaje)
 	{
 		try
 		{
@@ -64,7 +64,7 @@ public class InterfazCliente {
 			e.printStackTrace();
 		}
 		return null;}
-		public void mostrarMenu()
+		public static void mostrarMenu()
 		{
 			System.out.println("\nOpciones de la aplicación\n");
 			System.out.println("1. LogIn");
@@ -72,22 +72,22 @@ public class InterfazCliente {
 			System.out.println("3. LogOut");
 
 	}
-		private void login() {
+		public static void login() {
 			String usuario =input("Usuario: ");
 			String contrasena =input("contraseña: ");
 			
 			elCliente.logIn(usuario, contrasena);
-			if(elCliente.getCliente().equals(null)==true) {
-				System.out.println("Ingresado correctamente");	
+			if(elCliente.getCliente().equals(null)) {
+				System.out.println("Error ingresando sesión");
+				
 			}
 			else {
-				System.out.println("Error ingresando sesión");
+				System.out.println("Ingresado correctamente");	
 			}
 		}
-private void crearReserva() {
+public static void crearReserva() {
 	String nombreCat=input("Categoría: ");
 	String sedeRec=input("Sede alquiler: ");
-	String  sedeEntrega=input("Sede entrega: ");
 	String timeRecoger=input("Fecha-hora alquiler: ");
 	String sedeFin=input("sede entrega");
 	String timeFin=input("Fecha-hora entrega");
@@ -100,9 +100,9 @@ private void crearReserva() {
 	else{
 		System.out.println("No hay carros disponibles, intente cambiar la categoría o las fechas");
 	}
-		
+
 	}
-private void cargarDatos() {
+public static void cargarDatos() throws IOException {
 	elCliente.actualizarDatos();
 }
 
