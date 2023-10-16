@@ -3,47 +3,43 @@ package model;
 public class Administrador implements Usuario {
 	
     private String nombreUsuario;
-    private String contraseña;
+    private String contrasena;
     private boolean sesionIniciada;
 
-    public Administrador(String nombreUsuario, String contraseña) {
+    public Administrador(String nombreUsuario, String contrasena) {
         this.nombreUsuario = nombreUsuario;
-        this.contraseña = contraseña;
+        this.contrasena = contrasena;
     }
     
-	public void añadirEmpleado(String login, String password) throws Exception {
-		añadirEmpleado(login, password);
-	}
-	
-	public void añadirVehiculo(String placa, String marca, String modelo,String color, String tipoTransmision) throws Exception {
-		añadirVehiculo(placa, marca, modelo, color,tipoTransmision);
-	}
-	
     
+	public String getId()
+	{
+		return this.id;
+	}
+	
+	public String getNombre()
+	{
+		return this.nombre;
+	}
+	
+	public String getUsuario()
+	{
+		return this.usuario;
+		
+	}
+	
+	public Sede getSede()
+	{
+		return this.sede;
+				
+	}
+
+
     /*
      * Inicion de sesion
      * */
 
-    @Override
-    public void iniciarSesion(String nombreUsuario, String contraseña) {
-        if (nombreUsuario.equals(this.nombreUsuario) && contraseña.equals(this.contraseña)) {
-            sesionIniciada = true;
-            System.out.println("Sesión iniciada para el administrador: " + nombreUsuario);
-        } else {
-            System.out.println("Error: Nombre de usuario o contraseña incorrectos.");
-        }
-    }
-
-    @Override
-    public void cerrarSesion() {
-        sesionIniciada = false;
-        System.out.println("Sesión cerrada para el administrador.");
-    }
-
-    @Override
-    public boolean estaSesionIniciada() {
-        return sesionIniciada;
-    }
+    
 }
 
 

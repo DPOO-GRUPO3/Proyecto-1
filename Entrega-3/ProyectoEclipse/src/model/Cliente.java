@@ -31,6 +31,8 @@ public class Cliente implements Usuario {
 		this.licencia=null;
 		this.tarjeta=null;
 	}
+	
+	
 	public void setLicencia(Licencia licencia) {
 		this.licencia=licencia;
 	}

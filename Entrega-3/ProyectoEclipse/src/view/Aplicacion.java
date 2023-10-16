@@ -13,36 +13,30 @@ import view.InterfazCliente;
 public class Aplicacion {
 	private BaseDatos datos;
 
-	public void ejecutarAplicacion() throws IOException
+	public void ejecutarAplicacion() throws Exception
 	{
 		System.out.println("RamenAutos");
 
 		boolean continuar = true;
+		cargarDatos();
 		while (continuar)
 		{
 			try
 			{
 				mostrarMenu();
+				
 				int opcion_seleccionada = Integer.parseInt(input("Por favor seleccione una opción"));
 				if (opcion_seleccionada == 1)
-					cargarDatos();
+					InterfazCliente.correrCliente(datos);
 				else if (opcion_seleccionada == 2 && datos != null)
-					InterfazCliente.correrCliente(datos);
-				else if (opcion_seleccionada == 3 && datos != null)
 					InterfazEmpleado.correrEmpleado(datos);
-				else if (opcion_seleccionada == 4 && datos != null)
-					InterfazCliente.correrCliente(datos);
-				else if (opcion_seleccionada == 5 && datos != null)
-					InterfazCliente.correrCliente(datos);
-
-				else if (opcion_seleccionada == 6)
+				else if (opcion_seleccionada == 3 && datos != null)
+					InterfazAdministrador.correrAdministrador(datos);
+					
+				else if (opcion_seleccionada == 4)
 				{
 					System.out.println("Saliendo de la aplicación ...");
 					continuar = false;
-				}
-				else if (datos == null)
-				{
-					System.out.println("Para poder ejecutar esta opción primero debe cargar un archivo de atletas.");
 				}
 				else
 				{
@@ -56,23 +50,13 @@ public class Aplicacion {
 		}
 	}
 
-		private void usarAdminGeneral() {
-		// TODO Auto-generated method stub
-		
-	}
 		public void mostrarMenu()
 		{
 			System.out.println("\nOpciones de la aplicación\n");
-<<<<<<< HEAD
-			System.out.println("2. ingresar como cliente");
-			System.out.println("3. ngresar como cliente");
-			System.out.println("4. ngresar como cliente");
-=======
-			System.out.println("1. Cargar Datos");
-			System.out.println("2. Ingresar como cliente");
-			System.out.println("3. Ingresar como empleado");
-			System.out.println("4. Ingresar como cliente");
->>>>>>> dcc02bb4fb743a6aca9ea7caaf397c0354cf91be
+			System.out.println("1. Ingresar como cliente");
+			System.out.println("2. Ingresar como empleado");
+			System.out.println("3. Ingresar como cliente");
+
 
 	}
 		public String input(String mensaje)
@@ -111,10 +95,10 @@ public class Aplicacion {
 				System.out.println(e.getMessage());
 			}
 		}
-public static void main(String[] args) throws IOException {
+  public static void main(String[] args) throws Exception {
 	
-	Aplicacion consola = new Aplicacion();
-	consola.ejecutarAplicacion();
-}
+	  Aplicacion consola = new Aplicacion();
+	  consola.ejecutarAplicacion();
+  }
 }
 

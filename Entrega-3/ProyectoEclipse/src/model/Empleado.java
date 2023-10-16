@@ -23,7 +23,7 @@ public class Empleado implements Usuario {
 		this.usuario= usuario;
 		this.contrasena=contrasena;
 		this.email=email;
-				
+	
 	}
 	
 	//getters

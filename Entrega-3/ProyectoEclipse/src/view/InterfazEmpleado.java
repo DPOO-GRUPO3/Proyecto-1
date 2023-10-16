@@ -1,8 +1,5 @@
 package view;
 
-<<<<<<< HEAD
-public class InterfazEmpleado {
-=======
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -127,7 +124,7 @@ private static void crearAlquiler()
 	Alquiler alquiler;
 	String reserva = input("¿El cliente tiene una reserva? (SI/NO)");
 	String cliente = input("Ingrese el usuario del cliente");
-	String sedeDevolución = input("Ingrese la sede en donde se desea devolver el vehículo");
+	String sedeDevolucion = input("Ingrese la sede en donde se desea devolver el vehículo");
 	String sedeRecoger = input("Ingrese la sede en donde se recoge el vehículo");
     DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd-MM-yyyy'T'HH:mm:ss"); 
 	LocalDateTime fechaDeb = LocalDateTime.parse(input("Ingrese fecha de devolución del vehículo (dd-MM-yyyy'T'HH:mm:ss)"),formato);
@@ -142,7 +139,7 @@ private static void crearAlquiler()
 	
 	else 
 	{
-		alquiler = elEmpleado.CrearAlquiler(cliente, sedeDevolución, sedeRecoger, fechaDeb, fechaInicio, categoria);
+		alquiler = elEmpleado.CrearAlquiler(cliente, sedeDevolucion, sedeRecoger, fechaDeb, fechaInicio, categoria);
 	}
 	
 	// Agregar seguros si es posible crear el alquiler
@@ -243,8 +240,5 @@ public static void mostrarMenu()
 		System.out.println("3. LogOut");
 
 }
-
-
->>>>>>> dcc02bb4fb743a6aca9ea7caaf397c0354cf91be
-
 }
+
