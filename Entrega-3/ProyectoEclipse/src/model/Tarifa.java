@@ -9,7 +9,7 @@ public class Tarifa {
 	
 	private String id;
 	
-	private int num=0;
+	private static int num=0;
 	
 	private double precioExcedente;
 

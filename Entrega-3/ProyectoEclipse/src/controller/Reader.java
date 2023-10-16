@@ -30,7 +30,7 @@ public class Reader {
 //PRIMER OBJETO: TEMPORADA
 public Temporada descomprimirTemporada(String linea, HashMap<String,Categoria> mapaCategorias) {
 	String[] partes = linea.split(";");
-	int id = Integer.parseInt(partes[0]);
+	String id = partes[0];
 	LocalDateTime fecha1 = LocalDateTime.parse(partes[1]);
 	LocalDateTime fecha2 = LocalDateTime.parse(partes[2]);
 	double tarifa=Double.parseDouble(partes[3]);
