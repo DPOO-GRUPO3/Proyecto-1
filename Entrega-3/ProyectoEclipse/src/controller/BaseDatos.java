@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import model.Administrador;
 import model.Alquiler;
 import model.Carro;
 import model.Categoria;
@@ -35,6 +36,7 @@ private HashMap<String, Factura> mapaFacturas; //mapa factura por id
 //USUARIOS
 private HashMap<String, Alquiler> mapaAlquileres;// mapa alquileres por id
 private HashMap<String,Cliente> mapaClientes; //mapa clientes por login
+private HashMap<String,Administrador> mapaAdministradores;
 private HashMap<String,Empleado> mapaEmpleados; //mapa empleados por login
 //private HashMap<String, Admin> mapaAdmins; //mapa administradpres
 private HashMap<String, Licencia> mapaLicencias; //mapa licencias por numero de licencia
@@ -53,6 +55,7 @@ public BaseDatos() {
 	this.mapaCategorias=new HashMap<>();
 	this.mapaClientes=new HashMap<>();
 	this.mapaEmpleados=new HashMap<>();
+	this.mapaAdministradores= new HashMap<>();
 	this.mapaLicencias=new HashMap<>();
 	this.mapaReservas=new HashMap<>();
 	this.mapaSedes=new HashMap<>();
@@ -74,6 +77,7 @@ public HashMap<String, Carro> getMapaCarros(){
 public HashMap<String, Cliente> getMapaClientes(){
 	return mapaClientes;
 }
+
 public HashMap<String, Categoria> getMapaCateg(){
 	return mapaCategorias;
 }
@@ -90,6 +94,10 @@ public HashMap<String, Empleado> getMapaEmpleados(){
 	return mapaEmpleados;
 }
 
+public HashMap<String, Administrador> getMapaAdministradores(){
+	return mapaAdministradores;
+}
+
 public HashMap<String, Tarifa> getMapaTarifas(){
 	return mapaTarifasExcedente;
 }
@@ -97,7 +105,6 @@ public HashMap<String, Tarifa> getMapaTarifas(){
 public HashMap<String, Seguro> getMapaSeguros(){
 	return mapaSeguros;
 }
-
 
 public HashMap<String, Reserva> getMapaReservas(){
 	return mapaReservas;
@@ -293,6 +300,8 @@ private void actualizarArchivoClientes() throws IOException {
 	fichero.close();
 }
 
+
+
 //SEXTO OBJETO: SEDE
 
 //READ: Descargar todas las sedes
@@ -468,6 +477,31 @@ private void actualizarArchivoEmpleados() throws IOException {
 	fichero.close();
 }
 
+
+// EL WRITE DE LOS ADMIN'S
+
+private String generarTextoAdministradores(){
+	String texto="";
+	for(Administrador administrador:mapaAdministradores.values()) {
+		texto+=writer.comprimirAdministrador(administrador);
+		texto+="\n";
+	}
+	return texto;
+}
+
+
+private void actualizarArchivoAdministradores() throws IOException {
+	String texto=generarTextoAdministradores();
+	FileWriter fichero = new FileWriter("data/administradores.txt");
+	fichero.write(texto);
+	fichero.close();
+}
+
+
+
+
+//////////////////////////////////////////////////
+
 //UNDECIMO OBJETO: SEGURO
 
 //READ: Descargar todas las seguros
@@ -567,6 +601,7 @@ private String generarTextoFacturas(){
 	}
 	return texto;
 }
+
 private void actualizarArchivoFacturas() throws IOException {
 	String texto=generarTextoFacturas();
 	FileWriter fichero = new FileWriter("data/facturas.txt");
@@ -602,7 +637,7 @@ public void cargarTodosLosDatos() throws IOException {
 	actualizarArchivoClientes();
 	actualizarArchivoSedes();
 	actualizarArchivoEmpleados();
-
+	actualizarArchivoAdministradores();
 	actualizarArchivoLicencias();
 	actualizarArchivoReservas();
 	actualizarArchivoSeguros();

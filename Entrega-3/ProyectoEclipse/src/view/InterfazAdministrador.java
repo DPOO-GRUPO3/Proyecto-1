@@ -110,8 +110,8 @@ public class InterfazAdministrador {
 		}
 		
 		public static void login() {
-			String usuario =input("Usuario: ");
-			String contrasena =input("contraseña: ");
+			String usuario =input("Usuario ");
+			String contrasena =input("contraseña ");
 			
 			elAdministrador.logIn(usuario, contrasena);
 			if(elAdministrador.getAdministrador().equals(null)) {

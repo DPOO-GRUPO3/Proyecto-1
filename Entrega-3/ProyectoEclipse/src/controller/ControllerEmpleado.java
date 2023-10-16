@@ -83,10 +83,10 @@ public class ControllerEmpleado {
 		else {System.out.println("No se encuentra este usuario");}
 	}
 	
-	public boolean verificarContraseña(String contraseña)
+	public boolean verificarContrasena(String contrasena)
 	{
 		boolean r= false;
-		if(empleado.getContrasena().equals(contraseña))
+		if(empleado.getContrasena().equals(contrasena))
 		{
 			r= true;
 		}

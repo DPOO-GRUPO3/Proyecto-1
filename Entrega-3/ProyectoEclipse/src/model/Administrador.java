@@ -2,13 +2,22 @@ package model;
 
 public class Administrador implements Usuario {
 	
-    private String nombreUsuario;
-    private String contrasena;
-    private boolean sesionIniciada;
+	private String id;
+	
+	private String nombre;
+	
+	private String usuario;
+	
+	private String contrasena;
+	
+	private Sede sede;
 
-    public Administrador(String nombreUsuario, String contrasena) {
-        this.nombreUsuario = nombreUsuario;
+    public Administrador(String id, String nombreUsuario, String contrasena, String nombre) {
+    	this.id = id;
+        this.usuario = nombreUsuario;
         this.contrasena = contrasena;
+        this.nombre = nombre;
+        
     }
     
     
@@ -27,6 +36,13 @@ public class Administrador implements Usuario {
 		return this.usuario;
 		
 	}
+	
+	public String getContrasena()
+	{
+		return this.contrasena;
+		
+	}
+	
 	
 	public Sede getSede()
 	{

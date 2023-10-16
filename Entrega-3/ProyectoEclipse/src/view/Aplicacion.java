@@ -54,8 +54,8 @@ public class Aplicacion {
 		{
 			System.out.println("\nOpciones de la aplicación\n");
 
-			System.out.println("1. Ingresar como cliente");
-			System.out.println("2. Ingresar como empleado");
+			System.out.println("1. Ingresar como Cliente");
+			System.out.println("2. Ingresar como Empleado");
 			System.out.println("3. Ingresar como Administrador");
 
 

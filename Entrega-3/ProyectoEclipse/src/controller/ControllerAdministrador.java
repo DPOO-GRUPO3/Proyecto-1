@@ -1,16 +1,37 @@
 package controller;
 
+import model.Administrador;
+
 public class ControllerAdministrador {
-
+	private Administrador administrador;
+	private BaseDatos datos;
+	
 	public void setDatos(BaseDatos datos) {
-		// TODO Auto-generated method stub
-		
+		this.datos=datos;
 	}
+	
+	public void LogIn(String usuario,String contrasena) {
+		Administrador administrador = datos.getMapaAdministradores().get(usuario);
+		if(administrador.equals(null)==false) {
+			String contr=administrador.getContrasena();
+			if(contr.equals(contrasena)==true) {
+				this.administrador=administrador;
+			}
+			else {
+				
+			}
+	}	
+		else {
+			System.out.println("Error al ingresar");
+		}
+	}
+		
+		
+	/*
+	 * setters 
+	 * */
 
-	public void logIn(String usuario, String contrasena) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	public Object getAdministrador() {
 		// TODO Auto-generated method stub

@@ -2,6 +2,7 @@ package controller;
 
 import java.util.HashMap;
 
+import model.Administrador;
 import model.Alquiler;
 import model.Carro;
 import model.Categoria;
@@ -126,6 +127,15 @@ public class Writer {
 		return usuario + ";" + contrasena + ";" + email + ";" + pais + ";" + nombre + ";" + rutaImagen + ";"
 				+ numLicencia + ";" + numTarjeta;
 	}
+	
+// ADMINISTRADOR
+	public String comprimirAdministrador(Administrador administrador) {
+		String documento = administrador.getId();
+		String usuario = administrador.getUsuario();
+		String contrasena = administrador.getContrasena();
+		String nombre = administrador.getNombre();
+		return documento + ";" + usuario + ";" + contrasena + ";" + nombre;
+	}
 
 //NOVENO OBJETO: Reserva
 	public String comprimirReserva(Reserva reserva) {
@@ -146,10 +156,10 @@ public class Writer {
 		String id = empleado.getId();
 		String nombre = empleado.getNombre();
 		String usuario = empleado.getUsuario();
-		String contraseña = empleado.getContrasena();
+		String contrasena = empleado.getContrasena();
 		String sede = empleado.getSede().getNombre();
 
-		return id + ";" + nombre + ";" + usuario + ";" + contraseña + ";" + sede;
+		return id + ";" + nombre + ";" + usuario + ";" + contrasena + ";" + sede;
 	}
 
 //UNDECIMO OBJETO: SEGURO
