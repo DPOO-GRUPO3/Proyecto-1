@@ -1,0 +1,9 @@
+ABC123;renault;45;azul;a;familiares;centro;alquilado;2023-12-01T12:45:00
+DEF123;mazda;10;plateado;b;familiares;norte;Disponible;null
+GHI123;twingo;7;plateado;b;familiares;sur;Disponible;null
+ABJ123;ferrari;45;azul;a;lujoso;centro;Disponible;null
+DEK123;buggati;10;plateado;b;lujoso;norte;Disponible;null
+GHIL23;mclaren;7;plateado;b;lujoso;sur;Disponible;null
+LBJ123;toyota;45;azul;a;todoterreno;centro;Disponible;null
+NEK123;chevrolet;10;plateado;b;todoterreno;norte;Disponible;null
+MHIL23;mercedes;7;negro;b;todoterreno;sur;Disponible;null

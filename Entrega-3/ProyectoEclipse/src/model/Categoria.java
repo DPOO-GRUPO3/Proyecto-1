@@ -15,6 +15,7 @@ public class Categoria {
 		this.tarifaCat=tarifaAsociada;
 		this.carros= new ArrayList<Carro>();
 		this.tarifasExcedente = new ArrayList<Tarifa>();
+		this.tarifas = new ArrayList<Temporada>();
 		
 	}
 	

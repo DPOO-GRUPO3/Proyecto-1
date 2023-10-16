@@ -10,9 +10,9 @@ public class Factura {
 	
 	private double pagoAnticipado = 0;
 	
-	private double total;
-	
 	private double precioLicencias;
+	
+	private double total;
 	
 	private Cliente cliente;
 	
@@ -77,6 +77,11 @@ public class Factura {
 		this.precioLicencias= 500*num;
 	}
 	
+	public void setTotal(double total)
+	{
+		this.total= total;
+	}
+	
 	
 	//Metódo para calcular total
 	
@@ -85,8 +90,8 @@ public class Factura {
 		double precioTarifa= alquiler.getTarifa().getTarifaTemporada();
 		
 		double precioExcedente=0;
-		
-		if (!(alquiler.getTarifaExcedente().equals(null)))
+		Tarifa tarifa = alquiler.getTarifaExcedente();
+		if ((tarifa!= null))
 		{
 			 precioExcedente= alquiler.getTarifaExcedente().getPrecioExcedente();
 			
@@ -94,7 +99,8 @@ public class Factura {
 		
 		double precioSeguro=0;
 		
-		if (!(alquiler.getSeguro().equals(null)))
+		
+		if (!(alquiler.getSeguro().isEmpty()))
 		{
 			for (Seguro seguro: alquiler.getSeguro()) 
 				{
