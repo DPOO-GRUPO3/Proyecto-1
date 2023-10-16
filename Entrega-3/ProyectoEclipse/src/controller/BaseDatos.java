@@ -38,7 +38,7 @@ private HashMap<String,Cliente> mapaClientes; //mapa clientes por login
 private HashMap<String,Empleado> mapaEmpleados; //mapa empleados por login
 //private HashMap<String, Admin> mapaAdmins; //mapa administradpres
 private HashMap<String, Licencia> mapaLicencias; //mapa licencias por numero de licencia
-private HashMap<String, Tarjeta> mapaTarjetas; //mapa tarjetas por número
+private HashMap<String, Tarjeta> mapaTarjetas; //mapa tarjetas por nÃºmero
 
 // writer
 private Writer writer=new Writer();
@@ -251,7 +251,7 @@ private void actualizarArchivoCategorias() throws IOException {
 	fichero.close();
 }
 
-//QUINTA CATEGORÍA: CLIENTE
+//QUINTA CATEGORÃ�A: CLIENTE
 
 //READ: Descargar todas las clientes
 
@@ -268,7 +268,7 @@ while (linea != null) {
 	String numLic= (String) lista.get(1);
 	String numTar=(String) lista.get(2);
 	
-	//Añado los objetos anteriores a cliente
+	//AÃ±ado los objetos anteriores a cliente
 	cliente.setLicencia(mapaLicencias.get(numLic));
 	cliente.setTarjeta(mapaTarjetas.get(numTar));
 	mapaClientes.put(usuario,cliente );
@@ -576,11 +576,10 @@ private void actualizarArchivoFacturas() throws IOException {
 
 //Descargar todos los datos
 
-public void deacargarTodoslosDatos() throws IOException {
+public void descargarTodoslosDatos() throws IOException {
 	crearMapaCategorias();
 	crearMapaSeguros();
 	crearMapaTarifas();
-
 	crearMapaTemporadas();// COMPLETO
 	crearMapaTarjetas();// COMPLETO
 	crearMapaLicencias();// COMPLETO

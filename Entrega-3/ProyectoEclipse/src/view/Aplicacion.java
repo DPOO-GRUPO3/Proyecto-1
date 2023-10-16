@@ -56,7 +56,7 @@ public class Aplicacion {
 
 			System.out.println("1. Ingresar como cliente");
 			System.out.println("2. Ingresar como empleado");
-			System.out.println("3. Ingresar como cliente");
+			System.out.println("3. Ingresar como Administrador");
 
 
 
@@ -83,7 +83,7 @@ public class Aplicacion {
 			try
 			{
 				datos = new BaseDatos();
-				datos.deacargarTodoslosDatos();
+				datos.descargarTodoslosDatos();
 				System.out.println("Se actualizaron los datos");
 				
 			}

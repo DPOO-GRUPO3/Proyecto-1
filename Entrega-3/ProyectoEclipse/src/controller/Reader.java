@@ -77,8 +77,8 @@ public Categoria descomprimirCategoria(String linea) {
 	Categoria cat=new Categoria(nombre,tarifa);
 	return cat;
 }
-// QUINTA CATEGORÍA: CLIENTE 
-//REtornamos una lista de objetos porque necesitamos añadirle a cliente
+// QUINTA CATEGORÃ�A: CLIENTE 
+//REtornamos una lista de objetos porque necesitamos aÃ±adirle a cliente
 // una tarjeta y una licencia asociadas
 public ArrayList<Object> descomprimirCliente(String linea) {
 	String[] partes = linea.split(";");
@@ -207,14 +207,14 @@ public Empleado descomprimirEmpleado(String linea, HashMap<String, Sede> mapaSed
 	String id = partes[0];
 	String nombre = partes[1];
 	String usuario = partes[2];
-	String contraseña = partes[3];
+	String contrasena = partes[3];
 	String email = partes[4];
 	String nombreSede = partes[5];
 	
 	
 	Sede sede = mapaSedes.get(nombreSede);
 	
-	Empleado empleado= new Empleado(id, nombre, usuario, contraseña, email,sede);
+	Empleado empleado= new Empleado(id, nombre, usuario, contrasena, email,sede);
 	
 	return empleado;
 }
