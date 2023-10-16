@@ -36,7 +36,7 @@ private HashMap<String, Factura> mapaFacturas; //mapa factura por id
 //USUARIOS
 private HashMap<String, Alquiler> mapaAlquileres;// mapa alquileres por id
 private HashMap<String,Cliente> mapaClientes; //mapa clientes por login
-private HashMap<String,Administrador> mapaAdministradores;
+private HashMap<String, Administrador> mapaAdministradores;
 private HashMap<String,Empleado> mapaEmpleados; //mapa empleados por login
 //private HashMap<String, Admin> mapaAdmins; //mapa administradpres
 private HashMap<String, Licencia> mapaLicencias; //mapa licencias por numero de licencia
@@ -490,6 +490,7 @@ private String generarTextoAdministradores(){
 }
 
 
+
 private void actualizarArchivoAdministradores() throws IOException {
 	String texto=generarTextoAdministradores();
 	FileWriter fichero = new FileWriter("data/administradores.txt");
@@ -497,6 +498,20 @@ private void actualizarArchivoAdministradores() throws IOException {
 	fichero.close();
 }
 
+private void crearMapaAdministradores() throws IOException {
+	BufferedReader br = new BufferedReader(new FileReader("data/administradores.txt"));
+	String linea = br.readLine();
+	while (linea != null) {
+		String[] partes = linea.split(";");
+		String id = partes[0];
+		
+		ArrayList<Object> lista = reader.descomprimirAdministrador(linea);
+		Administrador administrador = (Administrador) lista.get(0);
+		mapaAdministradores.put(id, administrador);
+		linea = br.readLine();
+	}
+    br.close();
+  }
 
 
 
@@ -624,6 +639,7 @@ public void descargarTodoslosDatos() throws IOException {
 	crearMapaReservas();
 	crearMapaAlquileres();
 	crearMapaEmpleados();
+	crearMapaAdministradores();
 	crearMapaFacturas();
 	
 	

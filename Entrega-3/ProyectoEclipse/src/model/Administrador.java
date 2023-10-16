@@ -4,17 +4,17 @@ public class Administrador implements Usuario {
 	
 	private String id;
 	
-	private String nombre;
-	
 	private String usuario;
 	
 	private String contrasena;
 	
-	private Sede sede;
+	private String nombre;
+	
+	//private Sede sede;
 
-    public Administrador(String id, String nombreUsuario, String contrasena, String nombre) {
+    public Administrador(String id, String usuario, String contrasena, String nombre) {
     	this.id = id;
-        this.usuario = nombreUsuario;
+        this.usuario = usuario;
         this.contrasena = contrasena;
         this.nombre = nombre;
         
@@ -23,32 +23,26 @@ public class Administrador implements Usuario {
     
 	public String getId()
 	{
-		return this.id;
+		return id;
 	}
 	
 	public String getNombre()
 	{
-		return this.nombre;
+		return nombre;
 	}
 	
 	public String getUsuario()
 	{
-		return this.usuario;
+		return usuario;
 		
 	}
 	
 	public String getContrasena()
 	{
-		return this.contrasena;
+		return contrasena;
 		
 	}
 	
-	
-	public Sede getSede()
-	{
-		return this.sede;
-				
-	}
 
 
     /*

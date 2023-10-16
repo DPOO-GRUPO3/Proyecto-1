@@ -6,7 +6,8 @@ import java.io.InputStreamReader;
 
 import controller.BaseDatos;
 import controller.ControllerAdministrador;
-import controller.ControllerCliente;
+
+
 
 public class InterfazAdministrador {
 	public static ControllerAdministrador elAdministrador;
@@ -25,7 +26,7 @@ public class InterfazAdministrador {
 				mostrarMenu();
 				int opcion_seleccionada = Integer.parseInt(input("Por favor seleccione una opción"));
 				if (opcion_seleccionada == 1) {
-					login();
+					LogIn();
 				    boolean continuar2 = true;
 					while (continuar2) 
 					{
@@ -109,11 +110,11 @@ public class InterfazAdministrador {
 			System.out.println("2. Registrar Empleado nuevo");
 		}
 		
-		public static void login() {
+		public static void LogIn() {
 			String usuario =input("Usuario ");
 			String contrasena =input("contraseña ");
 			
-			elAdministrador.logIn(usuario, contrasena);
+			elAdministrador.LogIn(usuario, contrasena);
 			if(elAdministrador.getAdministrador().equals(null)) {
 				System.out.println("Error ingresando sesión");
 				
@@ -122,23 +123,7 @@ public class InterfazAdministrador {
 				System.out.println("Ingresado correctamente");	
 			}
 		}
-  public static void crearReserva() {
-	  String nombreCat=input("Categoria: ");
-	  String sedeRec=input("Sede alquiler: ");
-	  String timeRecoger=input("Fecha-hora alquiler: ");
-	  String sedeFin=input("sede entrega");
-	  String timeFin=input("Fecha-hora entrega");
-	  double cobro=elAdministrador.crearReserva(nombreCat, sedeRec, timeRecoger, sedeFin, timeFin);
-	
-	  if(cobro!=0) {
-	  System.out.println("Su reserva está lista, se le cobró el 30% correspondiente a"
-			  +cobro );
-	  }
-	  else{
-		  System.out.println("No hay carros disponibles, intente cambiar la categoría o las fechas");
-	  }
 
-	}
   
   public static void cargarDatos() throws IOException {
 	  elAdministrador.actualizarDatos();

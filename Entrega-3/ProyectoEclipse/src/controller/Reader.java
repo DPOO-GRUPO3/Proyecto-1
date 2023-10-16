@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
-
+import model.Administrador;
 import model.Alquiler;
 import model.Carro;
 import model.Categoria;
@@ -218,6 +218,25 @@ public Empleado descomprimirEmpleado(String linea, HashMap<String, Sede> mapaSed
 	
 	return empleado;
 }
+
+// ADMINISTRADOR
+
+
+
+public ArrayList<Object> descomprimirAdministrador(String linea) {
+	String[] partes = linea.split(";");
+	String id = partes[0];
+	String usuario = partes[1];
+	String contrasena = partes[2];
+	String nombre=partes[3];
+
+	Administrador admin=new Administrador(id,usuario, contrasena, nombre);
+	ArrayList<Object> lista = new ArrayList<Object>();
+	lista.add(admin);
+	
+	return lista;
+}
+////////////////////////////////////////////////
 
 //UNDECIMO OBJETO: SEGURO
 public Seguro descomprimirSeguro(String linea)
