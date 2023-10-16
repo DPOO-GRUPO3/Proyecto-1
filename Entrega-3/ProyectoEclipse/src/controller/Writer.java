@@ -51,7 +51,17 @@ public class Writer {
 		String fin = String.valueOf(alquiler.getFechaDeb());
 		String inicio = String.valueOf(alquiler.getFechaInicio());
 		String usuarioCliente = alquiler.getCliente().getUsuario();
-		return id + ";" + sedeFin + ";" + sedeInicio + ";" + placa + ";" + fin + ";" + inicio + ";" + usuarioCliente;
+		String tarifaExcedente = "null";
+		if (alquiler.getTarifaExcedente()!= null)
+		{tarifaExcedente = alquiler.getTarifaExcedente().getId();}
+		
+		String temporada = String.valueOf(alquiler.getTarifa().getIdTemporada());
+		
+		String reserva = "null";
+		if (alquiler.getReserva()!= null)
+		{reserva = String.valueOf(alquiler.getReserva().getNumReserva());}
+		return id + ";" + sedeFin + ";" + sedeInicio + ";" + placa + ";" + fin + ";" + inicio + ";" + usuarioCliente + 
+				";"+ tarifaExcedente + ";" + temporada  + ";" + reserva;
 	}
 
 // TERCER OBJETO: CATEGORIA
@@ -156,8 +166,9 @@ public class Writer {
 		String precio = String.valueOf(tarifa.getPrecioExcedente());
 		String fechaInicio = String.valueOf(tarifa.getFechaInicio());
 		String fechaFin = String.valueOf(tarifa.getFechaFin());
+		String categoria = tarifa.getCategoria().getNombre();
 
-		return id + ";" + precio + ";" + fechaInicio + ";" + fechaFin;
+		return id + ";" + precio + ";" + fechaInicio + ";" + fechaFin + ";" + categoria;
 	}
 
 //TRECEAVO OBJETO: Factura

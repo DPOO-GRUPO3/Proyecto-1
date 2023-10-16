@@ -8,7 +8,7 @@ public class Seguro {
 	
 	private String id;
 	
-	private int num;
+	private int num=0;
 	
 	private double precio;
 	

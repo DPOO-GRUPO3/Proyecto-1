@@ -34,7 +34,7 @@ public Temporada descomprimirTemporada(String linea, HashMap<String,Categoria> m
 	LocalDateTime fecha1 = LocalDateTime.parse(partes[1]);
 	LocalDateTime fecha2 = LocalDateTime.parse(partes[2]);
 	double tarifa=Double.parseDouble(partes[3]);
-	String categoria = partes[5];
+	String categoria = partes[4];
 	Categoria objCategoria = mapaCategorias.get(categoria);
 	Temporada temp=new Temporada(fecha1, fecha2, tarifa);
 	temp.setID(id);
@@ -124,7 +124,7 @@ public Carro descomprimirCarro(String linea,HashMap<String, Sede> mapaSedes,
 	String estado=partes[7];
 	String dispon=partes[8];
 	Carro car =new Carro(placa,marca, modelo,  color,trans);
-	if(dispon.equals("-")==false) {
+	if(dispon.equals("null")==false) {
 		car.setFechaDisponibleCons(LocalDateTime.parse(dispon));
 	}
 	
@@ -180,9 +180,9 @@ public Alquiler descomprimirAlquiler(String linea,HashMap<String, Sede> mapaSede
 	String usCliente=partes[6];
 	String tarifaExcedente = partes[7];
 	String temporada = partes[8];
-	String seguro = partes[9];
+	
 	//si no hay reserva hay espacio para null
-	String reserva= partes[10];
+	String reserva= partes[9];
 	
 	
 	Alquiler alq=new Alquiler(mapaClientes.get(usCliente), 
@@ -197,7 +197,6 @@ public Alquiler descomprimirAlquiler(String linea,HashMap<String, Sede> mapaSede
 	
 	alq.setTarifaExcedente(mapaTarifaExcedente.get(tarifaExcedente));
 	alq.setTarifa(mapaTarifa.get(temporada));
-	alq.setSeguro(mapaSeguros.get(seguro));
 	alq.setReserva(mapaReservas.get(reserva));
 	return alq;}
 
@@ -244,8 +243,7 @@ public Tarifa descomptimirTarifaExcedente(String linea,HashMap<String,Categoria>
 	Tarifa tarifa = new Tarifa (precio,fechaInicio,fechaFin);
 	objCategoria.setTarifaExcedente(tarifa);
 	tarifa.setCategoria(objCategoria);
-	
-	objCategoria.setTarifaExcedente(tarifa);
+
 	
 	return tarifa;
 }	

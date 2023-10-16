@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 public class Temporada {
 	
 public static int numeroTemporadas;
-private int idTemporada;
+private String idTemporada;
 private LocalDateTime fechaInicio;
 private LocalDateTime fechaFin;
 private double tarifaTemporada;
@@ -17,11 +17,11 @@ public Temporada(LocalDateTime fechaInicio,LocalDateTime fechaFin,double tarifaT
 	this.fechaInicio=fechaInicio;
 	this.fechaFin=fechaFin;
 	numeroTemporadas++;
-	this.idTemporada=numeroTemporadas;
+	this.idTemporada= String.valueOf(numeroTemporadas);
 			
 	
 }
-public void setID(int id) {
+public void setID(String id) {
 	this.idTemporada=id;
 }
 public LocalDateTime getInicioTemporada() {
@@ -33,7 +33,7 @@ public LocalDateTime getFinTemporada() {
 public double getTarifaTemporada() {
 	return tarifaTemporada;
 }
-public int getIdTemporada() {
+public String getIdTemporada() {
 	return idTemporada;
 }
 

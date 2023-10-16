@@ -58,6 +58,9 @@ public BaseDatos() {
 	this.mapaSedes=new HashMap<>();
 	this.mapaTarjetas=new HashMap<>();
 	this.mapaTemporadas=new HashMap<>();
+	this.mapaSeguros=new HashMap<>();
+	this.mapaTarifasExcedente = new HashMap<>();
+	this.mapaFacturas= new HashMap<>();
 }
 public HashMap<String, Licencia> getMapaLicencias(){
 	return mapaLicencias;
@@ -112,7 +115,7 @@ public HashMap<String, Factura> getMapaFacturas(){
 // PRIMER OBJETO: TEMPORADA:
 //READ: DEscargar todas las temporadas
 private void crearMapaTemporadas() throws IOException {
-BufferedReader br = new BufferedReader(new FileReader("/C:/Users/samis/OneDrive/Escritorio/DatosProyectoDPOO/temporadas.txt"));
+BufferedReader br = new BufferedReader(new FileReader("data/temporadas.txt"));
 
 String linea = br.readLine();
 
@@ -136,7 +139,7 @@ private String generarTextoTemporadas(){
 }
 private void actualizarArchivoTemporadas() throws IOException {
 	String texto=generarTextoTemporadas();
-	FileWriter fichero = new FileWriter("./data/temporadas.txt");
+	FileWriter fichero = new FileWriter("data/temporadas.txt");
 	fichero.write(texto);
 	fichero.close();
 }
@@ -148,7 +151,7 @@ private void actualizarArchivoTemporadas() throws IOException {
 //READ: Descargar todas las tarjetas
 
 private void crearMapaTarjetas() throws IOException {
-BufferedReader br = new BufferedReader(new FileReader("/C:/Users/samis/OneDrive/Escritorio/DatosProyectoDPOO/tarjetas.txt"));
+BufferedReader br = new BufferedReader(new FileReader("data/tarjetas.txt"));
 
 String linea = br.readLine();
 
@@ -173,7 +176,7 @@ private String generarTextoTarjetas(){
 }
 private void actualizarArchivoTarjetas() throws IOException {
 	String texto=generarTextoTarjetas();
-	FileWriter fichero = new FileWriter("./data/tarjetas.txt");
+	FileWriter fichero = new FileWriter("data/tarjetas.txt");
 	fichero.write(texto);
 	fichero.close();
 }
@@ -183,7 +186,7 @@ private void actualizarArchivoTarjetas() throws IOException {
 //READ: Descargar todas las licencias
 
 private void crearMapaLicencias() throws IOException {
-BufferedReader br = new BufferedReader(new FileReader("/C:/Users/samis/OneDrive/Escritorio/DatosProyectoDPOO/licencias.txt"));
+BufferedReader br = new BufferedReader(new FileReader("data/licencias.txt"));
 
 String linea = br.readLine();
 
@@ -208,7 +211,7 @@ private String generarTextoLicencias(){
 }
 private void actualizarArchivoLicencias() throws IOException {
 	String texto=generarTextoLicencias();
-	FileWriter fichero = new FileWriter("./data/licencias.txt");
+	FileWriter fichero = new FileWriter("data/licencias.txt");
 	fichero.write(texto);
 	fichero.close();
 }
@@ -218,7 +221,7 @@ private void actualizarArchivoLicencias() throws IOException {
 //READ: Descargar todas las categorias
 
 private void crearMapaCategorias() throws IOException {
-BufferedReader br = new BufferedReader(new FileReader("/C:/Users/samis/OneDrive/Escritorio/DatosProyectoDPOO/categorias.txt"));
+BufferedReader br = new BufferedReader(new FileReader("data/categorias.txt"));
 
 String linea = br.readLine();
 
@@ -243,7 +246,7 @@ private String generarTextoCategorias(){
 }
 private void actualizarArchivoCategorias() throws IOException {
 	String texto=generarTextoCategorias();
-	FileWriter fichero = new FileWriter("./data/categorias.txt");
+	FileWriter fichero = new FileWriter("data/categorias.txt");
 	fichero.write(texto);
 	fichero.close();
 }
@@ -253,7 +256,7 @@ private void actualizarArchivoCategorias() throws IOException {
 //READ: Descargar todas las clientes
 
 private void crearMapaClientes() throws IOException {
-BufferedReader br = new BufferedReader(new FileReader("/C:/Users/samis/OneDrive/Escritorio/DatosProyectoDPOO/clientes.txt"));
+BufferedReader br = new BufferedReader(new FileReader("data/clientes.txt"));
 
 String linea = br.readLine();
 
@@ -285,7 +288,7 @@ private String generarTextoClientes(){
 }
 private void actualizarArchivoClientes() throws IOException {
 	String texto=generarTextoClientes();
-	FileWriter fichero = new FileWriter("./data/clientes.txt");
+	FileWriter fichero = new FileWriter("data/clientes.txt");
 	fichero.write(texto);
 	fichero.close();
 }
@@ -295,7 +298,7 @@ private void actualizarArchivoClientes() throws IOException {
 //READ: Descargar todas las sedes
 
 private void crearMapaSedes() throws IOException {
-BufferedReader br = new BufferedReader(new FileReader("/C:/Users/samis/OneDrive/Escritorio/DatosProyectoDPOO/sedes.txt"));
+BufferedReader br = new BufferedReader(new FileReader("data/sedes.txt"));
 
 String linea = br.readLine();
 
@@ -320,7 +323,7 @@ private String generarTextoSedes(){
 }
 private void actualizarArchivoSedes() throws IOException {
 	String texto=generarTextoSedes();
-	FileWriter fichero = new FileWriter("./data/sedes.txt");
+	FileWriter fichero = new FileWriter("data/sedes.txt");
 	fichero.write(texto);
 	fichero.close();
 }
@@ -330,7 +333,7 @@ private void actualizarArchivoSedes() throws IOException {
 //READ: Descargar todas las reservas
 
 private void crearMapaCarros() throws IOException {
-BufferedReader br = new BufferedReader(new FileReader("/C:/Users/samis/OneDrive/Escritorio/DatosProyectoDPOO/carros.txt"));
+BufferedReader br = new BufferedReader(new FileReader("data/carros.txt"));
 
 String linea = br.readLine();
 
@@ -355,7 +358,7 @@ private String generarTextoCarros(){
 }
 private void actualizarArchivoCarros() throws IOException {
 	String texto=generarTextoCarros();
-	FileWriter fichero = new FileWriter("./data/carro.txt");
+	FileWriter fichero = new FileWriter("data/carro.txt");
 	fichero.write(texto);
 	fichero.close();
 }
@@ -365,7 +368,7 @@ private void actualizarArchivoCarros() throws IOException {
 //READ: Descargar todas las reservas
 
 private void crearMapaReservas() throws IOException {
-BufferedReader br = new BufferedReader(new FileReader("/C:/Users/samis/OneDrive/Escritorio/DatosProyectoDPOO/reservas.txt"));
+BufferedReader br = new BufferedReader(new FileReader("data/reservas.txt"));
 
 String linea = br.readLine();
 
@@ -390,7 +393,7 @@ private String generarTextoReservas(){
 }
 private void actualizarArchivoReservas() throws IOException {
 	String texto=generarTextoReservas();
-	FileWriter fichero = new FileWriter("./data/reservas.txt");
+	FileWriter fichero = new FileWriter("data/reservas.txt");
 	fichero.write(texto);
 	fichero.close();
 }
@@ -400,7 +403,7 @@ private void actualizarArchivoReservas() throws IOException {
 //READ: Descargar todas las alquileres
 
 private void crearMapaAlquileres() throws IOException {
-BufferedReader br = new BufferedReader(new FileReader("/C:/Users/samis/OneDrive/Escritorio/DatosProyectoDPOO/alquileres.txt"));
+BufferedReader br = new BufferedReader(new FileReader("data/alquileres.txt"));
 
 String linea = br.readLine();
 
@@ -425,7 +428,7 @@ private String generarTextoAlquileres(){
 }
 private void actualizarArchivoAlquileres() throws IOException {
 	String texto=generarTextoAlquileres();
-	FileWriter fichero = new FileWriter("./data/alquileres.txt");
+	FileWriter fichero = new FileWriter("data/alquileres.txt");
 	fichero.write(texto);
 	fichero.close();
 }
@@ -435,7 +438,7 @@ private void actualizarArchivoAlquileres() throws IOException {
 //READ: Descargar todas las alquileres
 
 private void crearMapaEmpleados() throws IOException {
-BufferedReader br = new BufferedReader(new FileReader("./data/empleados.txt"));
+BufferedReader br = new BufferedReader(new FileReader("data/empleados.txt"));
 
 String linea = br.readLine();
 
@@ -460,7 +463,7 @@ private String generarTextoEmpleados(){
 }
 private void actualizarArchivoEmpleados() throws IOException {
 	String texto=generarTextoEmpleados();
-	FileWriter fichero = new FileWriter("./data/empleados.txt");
+	FileWriter fichero = new FileWriter("data/empleados.txt");
 	fichero.write(texto);
 	fichero.close();
 }
@@ -470,7 +473,7 @@ private void actualizarArchivoEmpleados() throws IOException {
 //READ: Descargar todas las seguros
 
 private void crearMapaSeguros() throws IOException {
-BufferedReader br = new BufferedReader(new FileReader("./data/seguros.txt"));
+BufferedReader br = new BufferedReader(new FileReader("data/seguros.txt"));
 
 String linea = br.readLine();
 
@@ -496,7 +499,7 @@ private String generarTextoSeguros(){
 }
 private void actualizarArchivoSeguros() throws IOException {
 	String texto=generarTextoSeguros();
-	FileWriter fichero = new FileWriter("./data/seguros.txt");
+	FileWriter fichero = new FileWriter("data/seguros.txt");
 	fichero.write(texto);
 	fichero.close();
 }
@@ -506,7 +509,7 @@ private void actualizarArchivoSeguros() throws IOException {
 //READ: Descargar todas las tarifas de excedentes
 
 private void crearMapaTarifas() throws IOException {
-BufferedReader br = new BufferedReader(new FileReader("./data/tarifasExcedentes.txt"));
+BufferedReader br = new BufferedReader(new FileReader("data/tarifasExcedente.txt"));
 
 String linea = br.readLine();
 
@@ -531,7 +534,7 @@ private String generarTextoTarifas(){
 }
 private void actualizarArchivoTarifas() throws IOException {
 	String texto=generarTextoTarifas();
-	FileWriter fichero = new FileWriter("./data/tarifasExcedentes.txt");
+	FileWriter fichero = new FileWriter("data/tarifasExcedente.txt");
 	fichero.write(texto);
 	fichero.close();
 }
@@ -541,7 +544,7 @@ private void actualizarArchivoTarifas() throws IOException {
 //READ: Descargar todas las facturas
 
 private void crearMapaFacturas() throws IOException {
-BufferedReader br = new BufferedReader(new FileReader("./data/tarifasExcedentes.txt"));
+BufferedReader br = new BufferedReader(new FileReader("data/facturas.txt"));
 
 String linea = br.readLine();
 
@@ -566,7 +569,7 @@ private String generarTextoFacturas(){
 }
 private void actualizarArchivoFacturas() throws IOException {
 	String texto=generarTextoFacturas();
-	FileWriter fichero = new FileWriter("./data/tarifasExcedentes.txt");
+	FileWriter fichero = new FileWriter("data/facturas.txt");
 	fichero.write(texto);
 	fichero.close();
 }
@@ -574,9 +577,10 @@ private void actualizarArchivoFacturas() throws IOException {
 //Descargar todos los datos
 
 public void deacargarTodoslosDatos() throws IOException {
+	crearMapaCategorias();
 	crearMapaSeguros();
 	crearMapaTarifas();
-	crearMapaCategorias();// COMPLETO
+
 	crearMapaTemporadas();// COMPLETO
 	crearMapaTarjetas();// COMPLETO
 	crearMapaLicencias();// COMPLETO
@@ -597,11 +601,11 @@ public void cargarTodosLosDatos() throws IOException {
 	actualizarArchivoCarros();
 	actualizarArchivoCategorias();
 	actualizarArchivoClientes();
+	actualizarArchivoSedes();
 	actualizarArchivoEmpleados();
 
 	actualizarArchivoLicencias();
 	actualizarArchivoReservas();
-	actualizarArchivoSedes();
 	actualizarArchivoSeguros();
 	actualizarArchivoTarjetas();
 	actualizarArchivoTemporadas();

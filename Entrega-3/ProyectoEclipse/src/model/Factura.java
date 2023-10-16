@@ -90,8 +90,8 @@ public class Factura {
 		double precioTarifa= alquiler.getTarifa().getTarifaTemporada();
 		
 		double precioExcedente=0;
-		
-		if (!(alquiler.getTarifaExcedente().equals(null)))
+		Tarifa tarifa = alquiler.getTarifaExcedente();
+		if ((tarifa!= null))
 		{
 			 precioExcedente= alquiler.getTarifaExcedente().getPrecioExcedente();
 			
@@ -99,7 +99,8 @@ public class Factura {
 		
 		double precioSeguro=0;
 		
-		if (!(alquiler.getSeguro().equals(null)))
+		
+		if (!(alquiler.getSeguro().isEmpty()))
 		{
 			for (Seguro seguro: alquiler.getSeguro()) 
 				{

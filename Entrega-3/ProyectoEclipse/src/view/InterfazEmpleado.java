@@ -18,11 +18,12 @@ public class InterfazEmpleado {
 	public static ControllerEmpleado elEmpleado;
 	private static BaseDatos datos;
 	
+	
 	public static void correrEmpleado(BaseDatos datos) throws IOException
 	{
 		System.out.println("Bienvenido cliente");
 		elEmpleado= new ControllerEmpleado(datos);
-		datos = elEmpleado.getDatos();
+		InterfazEmpleado.datos = elEmpleado.getDatos();
 		boolean inicializacion = false;
 		
 		boolean continuar = true;
@@ -88,7 +89,7 @@ public static void actualizarCarro()
 private static void cumplimientoFechaCarro()
 {
 	LocalDateTime fecha = LocalDateTime.now();
-	elEmpleado.cumplimientoFechaCarro(fecha);;
+	elEmpleado.cumplimientoFechaCarro(fecha);
 	
 }
 
@@ -101,9 +102,9 @@ public static boolean login()
 	String contrasena = input ("Ingrese contraseña: ");
 	
 	
-	if (!(datos.getMapaEmpleados().get(usuario).equals(null)))
+	if ((InterfazEmpleado.datos.getMapaEmpleados().get(usuario)!= null))
 	{
-		Empleado empleado= datos.getMapaEmpleados().get(usuario);
+		Empleado empleado= InterfazEmpleado.datos.getMapaEmpleados().get(usuario);
 		
 		if (empleado.getUsuario().equals(usuario)&& empleado.getContrasena().equals(contrasena))
 		{
@@ -133,7 +134,7 @@ private static void crearAlquiler()
 	//Verificar si ya existe reserva
 	if (reserva.equals("SI"))
 	{
-		alquiler = elEmpleado.crearAlquilerReserva(categoria, cliente, fechaInicio, fechaInicio);	
+		alquiler = elEmpleado.crearAlquilerReserva(categoria, cliente, fechaInicio, fechaDeb);	
 	}
 	
 	else 
@@ -164,7 +165,7 @@ private static void crearAlquiler()
 			}
 		}
 		
-		alquiler.setLicencia( datos.getMapaClientes().get(cliente).getLicencia());
+		alquiler.setLicencia( InterfazEmpleado.datos.getMapaClientes().get(cliente).getLicencia());
 		
 		//Crear las licencias que necesite el cliente
 		String licencia = input("Desea añadir más licencias");
@@ -176,7 +177,7 @@ private static void crearAlquiler()
 			while (condicion) {
 				contador++;
 				String lic = input("Ingrese número de licencia");
-				alquiler.setLicencia(datos.getMapaLicencias().get(lic));
+				alquiler.setLicencia(InterfazEmpleado.datos.getMapaLicencias().get(lic));
 
 				String continuar = input("Desea añadir más licencias (SI/NO)");
 
@@ -197,7 +198,7 @@ private static void crearAlquiler()
 
 private static Seguro menuSeguros()
 {
-	for (Seguro seg:datos.getMapaSeguros().values())
+	for (Seguro seg:InterfazEmpleado.datos.getMapaSeguros().values())
 	{
 		String id = seg.getId();
 		String nombre = seg.getNombre();
@@ -206,7 +207,7 @@ private static Seguro menuSeguros()
 	}
 	
 	String idSeguro = input("Digite el id del seguro que desea");
-	return datos.getMapaSeguros().get(idSeguro);
+	return InterfazEmpleado.datos.getMapaSeguros().get(idSeguro);
 }
 	
 public static String input(String mensaje)
@@ -236,7 +237,8 @@ public static void mostrarMenu()
 		System.out.println("1. LogIn");
 		System.out.println("2. Crear un Alquiler");
 		System.out.println("3. Modificar fecha de finalización de limpieza o mantenimiento");
-		System.out.println("3. LogOut");
+		System.out.println("4. Cambiar fecha de vehículos que ya completaron limpieza");
+		System.out.println("5. LogOut");
 
 }
 

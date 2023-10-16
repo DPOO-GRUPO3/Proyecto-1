@@ -57,6 +57,13 @@ public class ControllerEmpleado {
 		this.mapaLicencias= datos.getMapaLicencias();
 		this.mapaSeguros= datos.getMapaSeguros();
 		this.mapaFacturas = datos.getMapaFacturas();
+		this.mapaClientes = datos.getMapaClientes();
+		this.mapaCategorias= datos.getMapaCateg();
+		this.mapaSedes=datos.getMapaSedes();
+		this.mapaSeguros = datos.getMapaSeguros();
+		this.mapaTarifasExcedente= datos.getMapaTarifas();
+		this.mapaTemporadas=datos.getMapaTemporadas();
+		this.mapaTarjetas = datos.getMapaTarjetas();
 	}
 	
 	
@@ -95,11 +102,14 @@ public class ControllerEmpleado {
 		{
 			ArrayList<Reserva> reservas = carro.getReservas();
 			
+			if (reservas.isEmpty())
+			{disponible = true;}
+			else {
 			for (Reserva reserva:reservas)
 			{
 				disponible = hayInterseccionIntervaloReservaConFechas( reserva, fechaInicio,fechaFin);
 				
-			}
+			}}
 			
 			if (disponible && sede.equals(carro.getSede()))
 			{
@@ -241,10 +251,11 @@ public class ControllerEmpleado {
 		
 		private Temporada tarifa(Categoria categoria, LocalDateTime fechaInicio)
 		{
-			for (Temporada tarifa: categoria.getTarifa())
+			ArrayList <Temporada> hola = categoria.getTarifa();
+			for (Temporada tarifa:categoria.getTarifa())
 			{
 				LocalDateTime inicio = tarifa.getInicioTemporada();
-				LocalDateTime fin = tarifa.getInicioTemporada();
+				LocalDateTime fin = tarifa.getFinTemporada();
 				
 				if (inicio.isEqual(fechaInicio) || fin.isAfter(fechaInicio))
 				{
@@ -298,11 +309,12 @@ public class ControllerEmpleado {
 		public void cumplimientoFechaCarro( LocalDateTime fechaHoy)
 		{
 			for (Carro carro: mapaCarros.values())
-				if (fechaHoy.isAfter(carro.getFechaDispCons()))
+				if ((carro.getFechaDispCons()!= null))
+				{if (fechaHoy.isAfter(carro.getFechaDispCons()))
 				{
 					carro.setFechaDisponibleCons(null);
 					carro.setEstado("Disponible");
-				}
+				}}
 			
 			
 		}
@@ -317,7 +329,7 @@ public class ControllerEmpleado {
 			String total = "Total: " + String.valueOf(factura.getTotal())+ "\n";
 			String cliente = "Cliente: " +  factura.getCliente().getNombre() + "\n";
 			String alquiler = "Id alquiler: " + factura.getAlquiler().getAlquileresId() + "\n";
-			String licencias = "Licencias";
+			String licencias = "Licencias ";
 			for (Licencia licencia: factura.getAlquiler().getLicencias())
 			{
 				licencias += licencia.getNumero() + "  ";
