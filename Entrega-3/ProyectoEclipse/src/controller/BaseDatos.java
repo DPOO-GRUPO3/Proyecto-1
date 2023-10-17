@@ -477,7 +477,7 @@ private void actualizarArchivoEmpleados() throws IOException {
 	fichero.close();
 }
 
-
+////////////////////////////////////////////////////////////////////////////////
 // EL WRITE DE LOS ADMIN'S
 
 private String generarTextoAdministradores(){
@@ -488,7 +488,6 @@ private String generarTextoAdministradores(){
 	}
 	return texto;
 }
-
 
 
 private void actualizarArchivoAdministradores() throws IOException {
@@ -503,11 +502,10 @@ private void crearMapaAdministradores() throws IOException {
 	String linea = br.readLine();
 	while (linea != null) {
 		String[] partes = linea.split(";");
-		String id = partes[0];
+		String usuario = partes[0];
 		
-		ArrayList<Object> lista = reader.descomprimirAdministrador(linea);
-		Administrador administrador = (Administrador) lista.get(0);
-		mapaAdministradores.put(id, administrador);
+		Administrador administrador= reader.descomprimirAdministrador(linea, mapaSedes);
+		mapaAdministradores.put(usuario, administrador);
 		linea = br.readLine();
 	}
     br.close();
@@ -515,7 +513,8 @@ private void crearMapaAdministradores() throws IOException {
 
 
 
-//////////////////////////////////////////////////
+
+/////////////////////////////////////////////////////////////////////////////////////////
 
 //UNDECIMO OBJETO: SEGURO
 

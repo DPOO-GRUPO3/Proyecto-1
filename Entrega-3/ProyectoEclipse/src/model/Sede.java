@@ -15,18 +15,21 @@ public class Sede {
 	
 	private LocalTime fin;
 	
+	private Administrador administrador;
+	
 	private ArrayList<Carro> carros;
 	
 	private ArrayList<Usuario> usuarios;
 	
 	//Constructor
 	
-	public Sede (String nombre, String ubicacion, LocalTime inicio, LocalTime fin)
+	public Sede (String nombre, String ubicacion, LocalTime inicio, LocalTime fin, Administrador administrador)
 	{
 		this.nombre = nombre;
 		this.ubicacion= ubicacion;
 		this.inicio = inicio;
 		this.fin = fin;
+		this.administrador = administrador;
 		this.carros = new ArrayList<Carro>();
 		this.usuarios= new ArrayList<Usuario>();}
 		
@@ -61,12 +64,20 @@ public class Sede {
 		return this.carros;
 	}
 	
+	
+	public Administrador setAdministrador(Administrador administrador)
+	{
+		return this.administrador;
+	}
+	
 	//setters
 	
 	public void setCarro(Carro carro)
 	{
 		carros.add(carro);
 	}
+	
+
 	
 	public void setUsuarios(Usuario usuario)
 	{

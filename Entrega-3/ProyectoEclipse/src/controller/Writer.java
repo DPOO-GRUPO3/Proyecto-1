@@ -134,7 +134,8 @@ public class Writer {
 		String usuario = administrador.getUsuario();
 		String contrasena = administrador.getContrasena();
 		String nombre = administrador.getNombre();
-		return documento + ";" + usuario + ";" + contrasena + ";" + nombre;
+		String sede = administrador.getSede().getNombre();
+		return usuario + ";" + contrasena + ";" + nombre + ";" + documento + ";"+ sede;
 	}
 
 //NOVENO OBJETO: Reserva

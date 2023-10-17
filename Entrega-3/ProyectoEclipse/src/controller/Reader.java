@@ -107,7 +107,7 @@ public Sede descomprimirSede(String linea) {
 	String fin=partes[3];
 	LocalTime in=LocalTime.parse(inicio);
 	LocalTime f=LocalTime.parse(fin);
-	Sede s=new Sede(nombre, dir, in,  f);
+	Sede s=new Sede(nombre, dir, in,  f, null);
 	return s;
 }
 // SEPTIMO OBJETO: CARRO
@@ -214,7 +214,7 @@ public Empleado descomprimirEmpleado(String linea, HashMap<String, Sede> mapaSed
 	
 	Sede sede = mapaSedes.get(nombreSede);
 	
-	Empleado empleado= new Empleado(id, nombre, usuario, contrasena, email,sede);
+	Empleado empleado= new Empleado(id, nombre, usuario, contrasena, email, sede);
 	
 	return empleado;
 }
@@ -223,18 +223,23 @@ public Empleado descomprimirEmpleado(String linea, HashMap<String, Sede> mapaSed
 
 
 
-public ArrayList<Object> descomprimirAdministrador(String linea) {
+public Administrador descomprimirAdministrador(String linea, HashMap<String, Sede> mapaSedes) {
 	String[] partes = linea.split(";");
-	String id = partes[0];
-	String usuario = partes[1];
-	String contrasena = partes[2];
-	String nombre=partes[3];
-
-	Administrador admin=new Administrador(id,usuario, contrasena, nombre);
-	ArrayList<Object> lista = new ArrayList<Object>();
-	lista.add(admin);
+	String usuario = partes[0];
+	String contrasena = partes[1];
+	String nombre=partes[2];
+	String id = partes[3];
+	String nombreSede = partes[4];
 	
-	return lista;
+
+
+	Administrador admin= new Administrador(id,usuario, contrasena, nombre);
+	
+	admin.setSede(mapaSedes.get(nombreSede));
+	Sede sede= mapaSedes.get(nombreSede);
+	sede.setAdministrador(admin);
+	
+	return admin;
 }
 ////////////////////////////////////////////////
 

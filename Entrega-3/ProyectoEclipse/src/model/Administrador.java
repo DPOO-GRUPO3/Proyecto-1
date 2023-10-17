@@ -10,7 +10,7 @@ public class Administrador implements Usuario {
 	
 	private String nombre;
 	
-	//private Sede sede;
+	private Sede sede;
 
     public Administrador(String id, String usuario, String contrasena, String nombre) {
     	this.id = id;
@@ -26,11 +26,7 @@ public class Administrador implements Usuario {
 		return id;
 	}
 	
-	public String getNombre()
-	{
-		return nombre;
-	}
-	
+
 	public String getUsuario()
 	{
 		return usuario;
@@ -42,6 +38,21 @@ public class Administrador implements Usuario {
 		return contrasena;
 		
 	}
+	
+	public String getNombre()
+	{
+		return nombre;
+	}
+	
+	public Sede getSede() {
+		return sede;
+	}
+	
+	public Sede setSede(Sede sede) {
+		return this.sede = sede;
+	}
+	
+	
 	
 
 

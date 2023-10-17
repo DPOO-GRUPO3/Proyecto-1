@@ -16,13 +16,14 @@ public class Empleado implements Usuario {
 	
 	private Sede sede;
 	
-	public Empleado(String id, String nombre, String usuario, String contrasena, String email, Sede sede)
+	public Empleado(String id, String nombre, String usuario, String contrasena, String email,Sede sede)
 	{
 		this.id= id;
 		this.nombre=nombre;
 		this.usuario= usuario;
 		this.contrasena=contrasena;
 		this.email=email;
+		this.sede=sede;
 	
 	}
 	

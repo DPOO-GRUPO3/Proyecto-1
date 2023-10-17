@@ -6,7 +6,9 @@ import java.io.InputStreamReader;
 
 import controller.BaseDatos;
 import controller.ControllerAdministrador;
-
+import controller.ControllerEmpleado;
+import controller.Writer;
+import model.Empleado;
 
 
 public class InterfazAdministrador {
@@ -33,7 +35,7 @@ public class InterfazAdministrador {
 						try
 						{
 							mostrarMenu2();
-							int opcion_seleccionada2 = Integer.parseInt(input("Por favor seleccione una opcion: "));
+							int opcion_seleccionada2 = Integer.parseInt(input("Ingresa una opcion "));
 							if (opcion_seleccionada2 == 1) {
 								
 								String placa=input("Ingrese la placa del vehiculo");
@@ -45,14 +47,28 @@ public class InterfazAdministrador {
 								
 							}
 							else if (opcion_seleccionada2 == 2) {
+								String id=input("Ingresa la placa del vehiculo a eliminar");
+								ControllerAdministrador.eliminarLineaVehiculos("data/carros.txt", id);
+							}
+							else if (opcion_seleccionada2 == 3) {
 								String id=input("Ingrese el documento de identidad del empleado");
 								String nombre=input("Ingrese el nombre del empleado");
 								String usuario=input("Asigne un nombre de usuario para el ingreso del empleado");
 								String contrasena=input("Asigne un password para la contrasena del usuario");
 								String email=input("Ingrese el email del empleado");
-								String sede=input("Ingrese la sede a la que pertenece el empleado");
-								ControllerAdministrador.agregarEmpleado(id, nombre, usuario, contrasena, email, sede);
+								String sede = input ("Ingrese la sede a la que pertece el empleado");
+								String crearLineaEmpleado = ControllerAdministrador.crearLineaEmpleado(id, nombre, usuario, contrasena, email, sede);
+								ControllerAdministrador.agregarLineaEmpleados("data/empleados.txt", crearLineaEmpleado);
+								
+								//String sede=input("Ingrese la sede a la que pertenece el empleado");
+								//Empleado empleado = new Empleado(id,nombre,usuario,contrasena,email);
+								//String lineaEliminar= ControllerAdministrador.agregarEmpleado(empleado);
+								//ControllerAdministrador.agregarEmpleado(id, nombre, usuario, contrasena, email, sede);
 							}
+							else if (opcion_seleccionada2 == 4) {
+								String usuario=input("Ingresa el usuario del empleado a eliminar");
+								ControllerAdministrador.eliminarLineaEmpleados("data/empleados.txt", usuario);
+						    }
 						}
 						catch (NumberFormatException e)
 						{
@@ -105,14 +121,19 @@ public class InterfazAdministrador {
 		
 		public static void mostrarMenu2()
 		{
-			System.out.println("\nSeleccione alguna de las opciones");
-			System.out.println("1. Registrar nuevo Vehiculos");
-			System.out.println("2. Registrar Empleado nuevo");
+			System.out.println("\nMENU ADMINISTRADOR");
+			System.out.println("1. Registrar compra nuevo Vehiculo");
+			System.out.println("2. eliminar Vehiculo");
+			System.out.println("3. Registrar Empleado nuevo");
+			System.out.println("4. Eliminar Empleado");
+			
 		}
 		
 		public static void LogIn() {
-			String usuario =input("Usuario ");
-			String contrasena =input("contraseña ");
+			
+			String usuario = input("Usuario ");
+			String contrasena = input("contraseña ");
+			
 			
 			elAdministrador.LogIn(usuario, contrasena);
 			if(elAdministrador.getAdministrador().equals(null)) {
