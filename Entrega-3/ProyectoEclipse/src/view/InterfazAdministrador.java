@@ -123,7 +123,7 @@ public class InterfazAdministrador {
 		{
 			System.out.println("\nMENU ADMINISTRADOR");
 			System.out.println("1. Registrar compra nuevo Vehiculo");
-			System.out.println("2. eliminar Vehiculo");
+			System.out.println("2. Eliminar Vehiculo en deshuso");
 			System.out.println("3. Registrar Empleado nuevo");
 			System.out.println("4. Eliminar Empleado");
 			
