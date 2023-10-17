@@ -138,7 +138,7 @@ public class ControllerAdministrador {
         }
     }
     
-    public static void eliminarLineaVehiculos(String archivo, String fragmento) {
+    public static void eliminarLineaVehiculos(String archivo, String placa) {
         try {
             // Abre el archivo original y un archivo temporal para escritura
             BufferedReader reader = new BufferedReader(new FileReader(archivo));
@@ -147,7 +147,7 @@ public class ControllerAdministrador {
 
             // Lee línea por línea y copia todas las líneas excepto las que contienen el fragmento
             while ((lineaActual = reader.readLine()) != null) {
-                if (!lineaActual.contains(fragmento)) {
+                if (!lineaActual.contains(placa)) {
                     writer.write(lineaActual + System.getProperty("line.separator"));
                 }
             }
